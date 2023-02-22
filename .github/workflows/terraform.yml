@@ -1,0 +1,14 @@
+name: terraform
+on:
+  push:
+    branches: ["main"]
+  
+  workflow_dispatch:
+
+jobs:
+  check-terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+      - run: cd tf && terraform init
