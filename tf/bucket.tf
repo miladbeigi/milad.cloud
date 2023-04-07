@@ -1,8 +1,8 @@
 # Create AWS S3 bucket for static hosting
 
 resource "aws_s3_bucket" "website" {
-  bucket  = var.website_bucket_name
-  acl     = "public-read"
+  bucket = var.website_bucket_name
+  acl    = "public-read"
 
   tags = {
     Name = "Static Website"
