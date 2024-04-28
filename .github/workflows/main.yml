@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,20 +18,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::378006268349:role/oidc-role-root
+          role-to-assume: ${{ secrets.AWS_ROOT_ROLE_ARN }}
           role-session-name: github-actions-s3-sync
           aws-region: eu-west-1
       
-      # Check access to S3
-      - name: Check access to S3
-        run: aws s3 ls s3://milad.cloud
-      
-      # - uses: jakejarvis/s3-sync-action@master
-      #   with:
-      #     args: --delete --acl public-read
-      #   env:
-      #     AWS_S3_BUCKET: milad.cloud
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_REGION: 'eu-west-1'
-      #     SOURCE_DIR: 'website/public'
+      - name: Deploy to S3
+        run: aws s3 sync website/public s3://milad.cloud --delete --acl public-read
