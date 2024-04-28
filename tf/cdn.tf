@@ -10,6 +10,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_root_object = "index.html"
 
   aliases = [var.domain_name, "www.${var.domain_name}"]
+  custom_error_response {
+    error_caching_min_ttl = 10
+    error_code            = 404
+    response_code         = 404
+    response_page_path    = "/404.html"
+  }
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
