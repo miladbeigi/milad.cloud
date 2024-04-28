@@ -1,0 +1,55 @@
+baseURL = 'https://milad.cloud/'
+languageCode = 'en-us'
+title = 'Milad Beigi'
+theme = 'hugo-coder'
+paginate = 6
+enableEmoji = true
+
+[params]
+author = "Milad Beigi"
+info = ["Cloud Solution Architect"]
+avatarURL = "images/avatar.jpg"
+colorScheme = "auto"
+maxSeeAlsoItems = 5
+hideColorSchemeToggle = false
+dateFormat = "January 2, 2006"
+keywords = "blog,developer,personal,devops"
+description = "Milad Beigi's personal website"
+
+[[params.social]]
+name = "Github"
+icon = "fa-brands fa-github fa-2x"
+weight = 1
+url = "https://github.com/miladbeigi/"
+
+[[params.social]]
+name = "LinkedIn"
+icon = "fa-brands fa-linkedin fa-2x"
+weight = 4
+url = "https://www.linkedin.com/in/miladbeigi/"
+
+[[params.social]]
+name = "Medium"
+icon = "fa-brands fa-medium fa-2x"
+weight = 5
+url = ""
+
+[[languages.en.menu.main]]
+name = "About"
+weight = 1
+url = "about/"
+
+[[languages.en.menu.main]]
+name = "Blog"
+weight = 2
+url = "posts/"
+
+[[languages.en.menu.main]]
+name = "Projects"
+weight = 3
+url = "projects/"
+
+[[languages.en.menu.main]]
+name = "Contact"
+weight = 5
+url = "contact/"
