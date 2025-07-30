@@ -8,7 +8,7 @@ enableEmoji = true
 [params]
 author = "Milad Beigi"
 info = ["Cloud Solution Architect"]
-avatarURL = "images/avatar.jpg"
+avatarURL = "images/avatar_new.jpg"
 colorScheme = "auto"
 maxSeeAlsoItems = 5
 hideColorSchemeToggle = false
