@@ -23,11 +23,11 @@ export default function RootLayout({ children }) {
 function Header() {
   return (
     <header className="flex items-center justify-between py-6">
-      <a href="/" className="text-sm font-semibold tracking-wide hover:underline">Home</a>
       <nav className="space-x-6 text-sm font-medium">
-        <a className="hover:underline" href="/projects/">Projects</a>
-        <a className="hover:underline" href="/blog/">Blog</a>
-        <a className="hover:underline" href="/about/">About</a>
+        <a href="/" className="hover:underline">Home</a>
+        <a href="/projects/" className="hover:underline">Projects</a>
+        <a href="/blog/" className="hover:underline">Blog</a>
+        <a href="/about/" className="hover:underline">About</a>
       </nav>
     </header>
   );
