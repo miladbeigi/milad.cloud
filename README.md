@@ -1,4 +1,4 @@
-# Personal Website (milad.cloud)
+# Personal Website with Next.js and S3 + CloudFront
 
 Personal static website built with Next.js and deployed to AWS S3 + CloudFront using Terraform. The setup also manages DNS with Route 53 and TLS certificates via ACM.
 
