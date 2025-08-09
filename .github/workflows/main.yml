@@ -23,4 +23,4 @@ jobs:
           aws-region: eu-west-1
       
       - name: Deploy to S3
-        run: aws s3 sync website/public s3://milad.cloud --delete --acl public-read
+        run: aws s3 sync website/out s3://milad.cloud --delete --acl public-read
