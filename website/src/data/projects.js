@@ -3,7 +3,7 @@ const projects = [
     slug: "personal-site",
     title: "Personal Website",
     description: "A fully static, modular personal site built with Next.js and Tailwind.",
-    tags: ["Next.js", "Tailwind", "Static", "React"],
+    tags: ["Next.js", "Tailwind", "Static", "React", "Terraform", "AWS"],
     year: 2025,
     featured: true,
     url: "https://github.com/miladbeigi/milad.cloud",
