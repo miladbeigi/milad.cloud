@@ -22,13 +22,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install dependencies
-        run: cd website && pnpm install
+        run: cd website && npm install
 
       - name: Build website
-        run: cd website && pnpm run build
+        run: cd website && npm run build
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
