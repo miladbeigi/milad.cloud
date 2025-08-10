@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "website/out/**"
+      - "website/**"
       - ".github/workflows/deploy-to-s3.yml"
   workflow_dispatch:
 
