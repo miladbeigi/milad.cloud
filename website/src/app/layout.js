@@ -2,8 +2,8 @@ import "./globals.css";
 
 export const metadata = {
   title: "Milad Beigi",
-  description: "Computer Engineer",
-  metadataBase: new URL("https://milad.beigi.example"),
+  description: "Personal website",
+  metadataBase: new URL("https://milad.cloud"),
 };
 
 export default function RootLayout({ children }) {
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
 function Header() {
   return (
     <header className="flex items-center justify-between py-6">
-      <nav className="space-x-6 text-sm font-medium">
+      <nav className="flex justify-center space-x-6 text-sm font-medium">
         <a href="/" className="hover:underline">Home</a>
         <a href="/projects/" className="hover:underline">Projects</a>
         <a href="/blog/" className="hover:underline">Blog</a>
