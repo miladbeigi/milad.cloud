@@ -7,7 +7,7 @@ export default function AboutPage() {
     <main className="pb-16">
       <h1 className="text-2xl font-semibold">About</h1>
       <p className="mt-4 max-w-none text-justify text-gray-600">
-      Hey, I’m Milad 👋
+      Hey, I’m Milad 👋<br />
       I design and build cloud architectures that are scalable, reliable, and tailored to solve real problems. From mapping out the big picture to fine-tuning the details, I focus on creating solutions that make technology work seamlessly for people and businesses.
       I enjoy tackling complex challenges, simplifying them into clear strategies, and seeing them come to life in production. Outside of work, you’ll find me exploring new tech trends, refining my toolkit, or recharging over a good cup of coffee.
       </p>

@@ -5,7 +5,7 @@ const experience = [
     start: "2024",
     end: "Present",
     summary:
-      "Leading the development and optimization of cloud infrastructure while implementing scalable solutions for the rewards and loyalty platform.",
+      "Working on the development and optimization of cloud infrastructure while implementing scalable solutions for the rewards and loyalty platform.",
   }
 ];
 
