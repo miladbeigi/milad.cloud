@@ -1,7 +1,7 @@
 const projects = [
   {
     slug: "personal-site",
-    title: "with Next.js and S3 + CloudFront",
+    title: "Personal Site with Next.js and S3 + CloudFront",
     description: "A fully static, modular personal site built with Next.js and deployed to S3 + CloudFront.",
     tags: ["JavaScript", "Terraform", "AWS"],
     year: 2025,
