@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import projects from "@/data/projects";
-import posts from "@/data/posts";
+import posts from "@/content/postsIndex";
 import ProjectCard from "@/components/ProjectCard";
 
 export default function Home() {

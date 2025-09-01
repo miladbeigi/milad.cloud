@@ -1,5 +1,5 @@
 export const dynamic = "force-static";
-import posts from "@/data/posts";
+import posts from "@/content/postsIndex";
 
 export default function sitemap() {
   const base = "";
@@ -8,6 +8,8 @@ export default function sitemap() {
     { url: `${base}/about/` },
     { url: `${base}/projects/` },
     { url: `${base}/blog/` },
-    ...posts.filter((p) => p.published).map((p) => ({ url: `${base}/blog/${p.slug}/` })),
+    ...posts
+      .filter((p) => p.published)
+      .map(({ Component, ...meta }) => ({ url: `${base}/blog/${meta.slug}/` })),
   ];
 }
