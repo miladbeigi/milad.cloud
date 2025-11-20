@@ -5,13 +5,15 @@ export function generateStaticParams() {
   return posts.filter((p) => p.published).map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const post = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
   return { title: `${post?.title || "Post"} – Milad Beigi` };
 }
 
-export default function PostPage({ params }) {
-  const index = posts.findIndex((p) => p.slug === params.slug);
+export default async function PostPage({ params }) {
+  const { slug } = await params;
+  const index = posts.findIndex((p) => p.slug === slug);
   const post = posts[index];
   const prev = posts[index + 1];
   const next = posts[index - 1];
