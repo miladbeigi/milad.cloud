@@ -1,18 +1,19 @@
 import Link from "next/link";
-import posts from "@/data/posts";
-import postsContent from "@/content/postsContent";
+import posts from "@/content/postsIndex";
 
 export function generateStaticParams() {
   return posts.filter((p) => p.published).map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const post = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
   return { title: `${post?.title || "Post"} – Milad Beigi` };
 }
 
-export default function PostPage({ params }) {
-  const index = posts.findIndex((p) => p.slug === params.slug);
+export default async function PostPage({ params }) {
+  const { slug } = await params;
+  const index = posts.findIndex((p) => p.slug === slug);
   const post = posts[index];
   const prev = posts[index + 1];
   const next = posts[index - 1];
@@ -29,7 +30,9 @@ export default function PostPage({ params }) {
     <main className="prose prose-neutral max-w-none pb-16">
       <h1>{post.title}</h1>
       <p className="text-sm text-gray-500">{new Date(post.date).toDateString()}</p>
-      <article className="mt-6" dangerouslySetInnerHTML={{ __html: markdownToHtml(postsContent[post.slug] || "") }} />
+      <article className="mt-6">
+        <post.Component />
+      </article>
 
       <hr className="my-10" />
       <div className="flex items-center justify-between text-sm">
@@ -50,15 +53,4 @@ export default function PostPage({ params }) {
       </div>
     </main>
   );
-}
-
-function markdownToHtml(md) {
-  // Extremely small markdown subset renderer for demo purposes only
-  let html = md;
-  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-  html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
-  html = html.replace(/\n\n/g, '<p></p>');
-  html = html.replace(/\n/g, '<br/>');
-  return html;
 }
