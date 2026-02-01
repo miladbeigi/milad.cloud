@@ -7,9 +7,11 @@ export default function AboutPage() {
     <main className="pb-16">
       <h1 className="text-2xl font-semibold">About</h1>
       <p className="mt-4 max-w-none text-justify text-gray-600">
-      Hey, I’m Milad 👋<br />
-      I design and build cloud architectures that are scalable, reliable, and tailored to solve real problems. From mapping out the big picture to fine-tuning the details, I focus on creating solutions that make technology work seamlessly for people and businesses.
-      I enjoy tackling complex challenges, simplifying them into clear strategies, and seeing them come to life in production. Outside of work, you’ll find me exploring new tech trends, refining my toolkit, or recharging over a good cup of coffee.
+        Hey, I’m Milad 👋<br/>
+        <br />
+        With a background in computer engineering. I've worked as a System Administrator, DevOps Engineer and now as a Platform Engineer. My work experience has been focused on the infrastructure and platform side of the software development lifecycle. From traditional infrastructure to modern cloud architectures, I've worked with a variety of technologies and tools to help me build scalable and reliable systems.<br />
+        <br /> But my curiosity and passion hasn't been limited to only the infrastructure side, I've always had an urge for building and designing software solutions too. In my academic journey, I've studied Data Analytics and Machine Learning at Polytechnic University of Turin. This has given me a framework to understand the data science and understand how it can be used to solve real problems.<br />
+        <br /> I'm always looking for new challenges and opportunities to learn and grow. If you have any questions or want to work together, feel free to reach out.<br />
       </p>
 
       <section className="mt-10">
