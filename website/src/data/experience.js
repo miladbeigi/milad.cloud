@@ -5,7 +5,7 @@ const experience = [
     start: "2024",
     end: "Present",
     summary:
-      "Working on the development and optimization of cloud infrastructure while implementing scalable solutions for the rewards and loyalty platform.",
+      "Designing, building, and improving cloud infrastructure to support the growth and reliability of Smile.io's rewards and loyalty platform. Focused on implementing scalable, efficient solutions that enhance performance and stability of the cloud infrastructure.",
   }
 ];
 
