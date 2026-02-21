@@ -1,0 +1,50 @@
+name: ARC RunnerSet smoke test
+
+on:
+  push:
+    branches: [ test ]
+
+permissions:
+  contents: read
+
+jobs:
+  self_hosted_smoke:
+    name: Self-hosted (arc-runner-set) smoke test
+    runs-on:
+      - arc-runner-set-miladbeigi
+    timeout-minutes: 15
+    steps:
+      - name: Print runner details
+        run: |
+          echo "RUNNER_NAME=$RUNNER_NAME"
+          echo "RUNNER_OS=$RUNNER_OS"
+          echo "RUNNER_ARCH=$RUNNER_ARCH"
+          echo "RUNNER_TEMP=$RUNNER_TEMP"
+          echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
+          echo "Labels: $RUNNER_LABELS"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate basic tooling
+        shell: bash
+        run: |
+          set -x
+          uname -a
+          cat /etc/os-release || true
+          which bash
+          which docker || echo "docker not present"
+          which git
+          df -h
+          free -h || true
+      - name: Network check
+        run: |
+          curl -I https://api.github.com -sS || echo "curl not available or blocked"
+          ping -c 1 github.com || echo "ICMP blocked (usually fine)"
+      - name: Sanity run
+        run: |
+          echo "Hello from ARC runner at $(date -u)"
+          echo "Workspace: $GITHUB_WORKSPACE"
+          echo "Actor: $GITHUB_ACTOR"
+      - name: Post-run cleanup hint
+        if: always()
+        run: |
+          echo "If this is an ephemeral ARC runner, it should auto-de-register and terminate after the job."
