@@ -17,6 +17,15 @@ const projects = [
     featured: true,
     url: "https://github.com/miladbeigi/portable-toolbelt",
   },
+  {
+    slug: "vaultui",
+    title: "VaultUI",
+    description: "A k9s-inspired terminal UI for HashiCorp Vault — browse secrets, policies, auth methods, PKI, Transit, and Identity engines without leaving your terminal.",
+    tags: ["Go", "Vault", "TUI", "DevOps"],
+    year: 2025,
+    featured: true,
+    url: "https://github.com/miladbeigi/vaultui",
+  },
 ];
 
 export default projects;
