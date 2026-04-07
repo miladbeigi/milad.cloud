@@ -5,7 +5,7 @@ const projects = [
     description: "A fully static, modular personal site built with Next.js and deployed to S3 + CloudFront.",
     tags: ["JavaScript", "Terraform", "AWS"],
     year: 2025,
-    featured: true,
+    featured: false,
     url: "https://github.com/miladbeigi/milad.cloud",
   },
   {
