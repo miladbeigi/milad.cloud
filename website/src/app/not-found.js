@@ -19,9 +19,6 @@ export default function NotFound() {
         <Link href="/sitemap/" className="text-sm text-blue-600 hover:underline">
           View sitemap
         </Link>
-        <Link href="/blog/" className="text-sm text-blue-600 hover:underline">
-          Read the blog
-        </Link>
         <Link href="/projects/" className="text-sm text-blue-600 hover:underline">
           Browse projects
         </Link>

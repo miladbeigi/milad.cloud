@@ -26,8 +26,6 @@ function Header() {
       <nav className="flex justify-center space-x-6 text-sm font-medium">
         <a href="/" className="hover:underline">Home</a>
         <a href="/projects/" className="hover:underline">Projects</a>
-        <a href="/blog/" className="hover:underline">Blog</a>
-        <a href="/about/" className="hover:underline">About</a>
       </nav>
     </header>
   );
