@@ -49,15 +49,8 @@ jobs:
             --cache-control "public,max-age=31536000,immutable"
           # Everything else (HTML, RSC payloads, images) revalidates quickly
           aws s3 sync out s3://milad.cloud --delete \
-            --exclude "_next/*" --exclude "toolbelt" \
+            --exclude "_next/*" \
             --cache-control "public,max-age=300"
-
-      # Kept until the CloudFront function that serves /toolbelt is applied
-      - name: Upload toolbelt
-        run: |
-          aws s3 cp toolbelt s3://milad.cloud/toolbelt \
-          --cache-control "no-cache" \
-          --website-redirect "https://raw.githubusercontent.com/miladbeigi/portable-toolbelt/main/boot.sh"
 
       - name: Invalidate CloudFront
         if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
