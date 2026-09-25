@@ -6,6 +6,9 @@ on:
     paths:
       - "website/**"
       - ".github/workflows/deploy-to-s3.yml"
+  schedule:
+    # Daily redeploy so the activity graph and release tags stay current
+    - cron: "17 9 * * *"
   workflow_dispatch:
 
 defaults:
@@ -16,40 +19,42 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: deploy-to-s3
+  cancel-in-progress: false
+
 jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
 
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: "npm"
-          cache-dependency-path: website/package-lock.json
+      - name: Refresh contributions and release tags
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        # A failed fetch keeps the committed data, so it never blocks a deploy
+        run: python3 scripts/refresh-data.py || echo "::warning::refresh-data.py failed; deploying the committed data"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build website
-        run: npm run build
-      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ secrets.AWS_ROOT_ROLE_ARN }}
           role-session-name: github-actions-s3-sync
           aws-region: eu-west-1
-      
+
       - name: Deploy to S3
         run: |
-          # Hashed build assets never change, so cache them for a year
-          aws s3 sync out/_next s3://milad.cloud/_next --delete \
+          # Fonts never change: cache for a year, with an explicit type
+          aws s3 sync assets/fonts s3://milad.cloud/assets/fonts --delete \
+            --content-type font/woff2 \
             --cache-control "public,max-age=31536000,immutable"
-          # Everything else (HTML, RSC payloads, images) revalidates quickly
-          aws s3 sync out s3://milad.cloud --delete \
-            --exclude "_next/*" \
+          # Images and logos: a day
+          aws s3 sync assets s3://milad.cloud/assets --delete \
+            --exclude "fonts/*" --exclude "*.json" \
+            --cache-control "public,max-age=86400"
+          # HTML, CSS, JS and data files revalidate quickly; this also removes the old Next.js files
+          aws s3 sync . s3://milad.cloud --delete \
+            --exclude "scripts/*" --exclude "assets/*" --include "assets/*.json" \
             --cache-control "public,max-age=300"
 
       - name: Invalidate CloudFront
