@@ -32,7 +32,7 @@ function Hero() {
     <section className="mt-16 flex min-h-[48vh] flex-col items-center justify-center text-center">
       <div className="relative mb-6 h-40 w-40 rounded-full bg-yellow-400">
         <Image
-          src="/avatar_new.jpg"
+          src="/avatar.webp"
           alt="Milad Beigi"
           fill
           className="rounded-full object-contain p-4"
@@ -50,9 +50,6 @@ function Hero() {
             icon={profile.name.toLowerCase()}
           />
         ))}
-        <SocialIcon href="https://github.com/miladbeigi" label="GitHub" icon="github" />
-        <SocialIcon href="https://linkedin.com/in/miladbeigi" label="LinkedIn" icon="linkedin" />
-        <SocialIcon href="https://instagram.com/milad_beigiii" label="Instagram" icon="instagram" />
       </div>
     </section>
   );

@@ -82,6 +82,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
   }
 }
 
+# No longer used: CloudFront reads the bucket through its REST endpoint with OAC.
+# Remove once the OAC migration has been applied, so the switch has no downtime.
 resource "aws_s3_bucket_website_configuration" "this" {
   bucket = aws_s3_bucket.website.bucket
   error_document {
@@ -94,101 +96,176 @@ resource "aws_s3_bucket_website_configuration" "this" {
 
 }
 
-resource "aws_s3_bucket_public_access_block" "block" {
-  bucket = aws_s3_bucket.website.bucket
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.website.id
 
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "block" {
+  bucket = aws_s3_bucket.website.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  # Swap the public policy for the CloudFront-only one before blocking public policies
+  depends_on = [aws_s3_bucket_policy.this]
+}
+
+data "aws_iam_policy_document" "website" {
+  statement {
+    sid       = "AllowCloudFrontRead"
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.website.arn}/*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.s3_distribution.arn]
+    }
+  }
+
+  # Lets CloudFront see missing keys as 404 instead of 403
+  statement {
+    sid       = "AllowCloudFrontList"
+    actions   = ["s3:ListBucket"]
+    resources = [aws_s3_bucket.website.arn]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.s3_distribution.arn]
+    }
+  }
 }
 
 resource "aws_s3_bucket_policy" "this" {
-  bucket = aws_s3_bucket.website.bucket
-
-  policy = <<EOF
-{
-  "Version": "2008-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadForGetBucketObjects",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.website_bucket_name}/*"
-    }
-  ]
+  bucket = aws_s3_bucket.website.id
+  policy = data.aws_iam_policy_document.website.json
 }
-EOF
+
+resource "aws_cloudfront_origin_access_control" "website" {
+  name                              = var.website_bucket_name
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+# Maps /path/ to /path/index.html (the S3 REST origin has no index documents),
+# adds trailing slashes, and serves the /toolbelt installer redirect.
+resource "aws_cloudfront_function" "rewrite" {
+  name    = "milad-cloud-rewrite"
+  runtime = "cloudfront-js-2.0"
+  publish = true
+  code    = file("${path.module}/functions/rewrite.js")
+}
+
+data "aws_cloudfront_cache_policy" "caching_optimized" {
+  name = "Managed-CachingOptimized"
+}
+
+resource "aws_cloudfront_response_headers_policy" "security" {
+  name = "milad-cloud-security-headers"
+
+  security_headers_config {
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      preload                    = true
+      override                   = true
+    }
+
+    content_type_options {
+      override = true
+    }
+
+    frame_options {
+      frame_option = "DENY"
+      override     = true
+    }
+
+    referrer_policy {
+      referrer_policy = "strict-origin-when-cross-origin"
+      override        = true
+    }
+
+    content_security_policy {
+      content_security_policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+      override                = true
+    }
+  }
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
-  aliases                         = ["${var.domain_name}", "www.${var.domain_name}"]
-  default_root_object             = "index.html"
-  enabled                         = true
-  http_version                    = "http2"
-  is_ipv6_enabled                 = true
-  price_class                     = "PriceClass_All"
-  retain_on_delete                = false
-  staging                         = false
-  tags                            = {}
-  tags_all                        = {}
-  wait_for_deployment             = true
+  aliases             = [var.domain_name, "www.${var.domain_name}"]
+  default_root_object = "index.html"
+  enabled             = true
+  http_version        = "http2and3"
+  is_ipv6_enabled     = true
+  price_class         = "PriceClass_100"
+
+  custom_error_response {
+    error_caching_min_ttl = 10
+    error_code            = 403
+    response_code         = 404
+    response_page_path    = "/404.html"
+  }
+
   custom_error_response {
     error_caching_min_ttl = 10
     error_code            = 404
     response_code         = 404
-    response_page_path    = "/404/indext.html"
+    response_page_path    = "/404.html"
   }
+
   default_cache_behavior {
     allowed_methods            = ["GET", "HEAD"]
     cached_methods             = ["GET", "HEAD"]
-    compress                   = false
-    default_ttl                = 3600
-    max_ttl                    = 86400
-    min_ttl                    = 0
-    smooth_streaming           = false
+    compress                   = true
     target_origin_id           = "website"
-    trusted_key_groups         = []
-    trusted_signers            = []
     viewer_protocol_policy     = "redirect-to-https"
-    forwarded_values {
-      headers                 = []
-      query_string            = false
-      query_string_cache_keys = []
-      cookies {
-        forward           = "none"
-        whitelisted_names = []
-      }
+    cache_policy_id            = data.aws_cloudfront_cache_policy.caching_optimized.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite.arn
     }
   }
+
   origin {
-    connection_attempts      = 3
-    connection_timeout       = 10
-    domain_name              = "${var.domain_name}.s3-website-eu-west-1.amazonaws.com"
+    domain_name              = aws_s3_bucket.website.bucket_regional_domain_name
     origin_id                = "website"
-    custom_origin_config {
-      http_port                = 80
-      https_port               = 443
-      origin_keepalive_timeout = 5
-      origin_protocol_policy   = "http-only"
-      origin_read_timeout      = 30
-      origin_ssl_protocols     = ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"]
-    }
+    origin_access_control_id = aws_cloudfront_origin_access_control.website.id
   }
+
   restrictions {
     geo_restriction {
-      locations        = []
       restriction_type = "none"
     }
   }
+
   viewer_certificate {
-    acm_certificate_arn            = aws_acm_certificate.cert.arn
-    cloudfront_default_certificate = false
-    iam_certificate_id             = null
-    minimum_protocol_version       = "TLSv1"
-    ssl_support_method             = "sni-only"
+    acm_certificate_arn      = aws_acm_certificate.cert.arn
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method       = "sni-only"
   }
+}
+
+output "cloudfront_distribution_id" {
+  value = aws_cloudfront_distribution.s3_distribution.id
 }
