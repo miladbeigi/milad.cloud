@@ -1,17 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import projects from "@/data/projects";
-import posts from "@/content/postsIndex";
 import social from "@/data/social";
 import ProjectCard from "@/components/ProjectCard";
-import ThoughtsCarousel from "@/components/ThoughtsCarousel";
 
 export default function Home() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 6);
-  const latestPosts = posts
-    .filter((p) => p.published)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
 
   return (
     <main className="pb-16">
@@ -60,7 +54,6 @@ function Hero() {
         <SocialIcon href="https://linkedin.com/in/miladbeigi" label="LinkedIn" icon="linkedin" />
         <SocialIcon href="https://instagram.com/milad_beigiii" label="Instagram" icon="instagram" />
       </div>
-      <ThoughtsCarousel />
     </section>
   );
 }
