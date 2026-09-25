@@ -82,20 +82,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
   }
 }
 
-# No longer used: CloudFront reads the bucket through its REST endpoint with OAC.
-# Remove once the OAC migration has been applied, so the switch has no downtime.
-resource "aws_s3_bucket_website_configuration" "this" {
-  bucket = aws_s3_bucket.website.bucket
-  error_document {
-    key = "404.html"
-  }
-
-  index_document {
-    suffix = "index.html"
-  }
-
-}
-
 resource "aws_s3_bucket_ownership_controls" "this" {
   bucket = aws_s3_bucket.website.id
 
