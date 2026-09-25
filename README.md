@@ -6,8 +6,9 @@ Personal static website built with Next.js and deployed to AWS S3 + CloudFront u
 
 - `website/`: Next.js app configured for static export (`output: "export"`), producing static files in `website/out/`
 - `tf/`: Terraform to provision:
-  - S3 bucket for static website hosting
-  - CloudFront distribution (HTTPS, custom domain)
+  - Private S3 bucket, readable only by CloudFront (Origin Access Control)
+  - CloudFront distribution (HTTPS, custom domain, compression, security headers)
+  - CloudFront function for `index.html` rewrites and the `/toolbelt` redirect
   - Route 53 hosted zone and A/ALIAS records
   - ACM certificate (in `us-east-1` for CloudFront)
   - Remote Terraform state (S3 + DynamoDB) via module `miladbeigi/backend-state/aws`
@@ -16,39 +17,23 @@ Personal static website built with Next.js and deployed to AWS S3 + CloudFront u
 
 ```bash
 cd website
-pnpm run build
-# With next.config.mjs (output: "export"), static files are emitted to ./out
+npm ci
+npm run build   # static files are emitted to ./out
+npm run lint
 ```
 
 Local development:
 
 ```bash
-pnpm run dev
+npm run dev
 ```
 
-## Deploy static files to S3
+## Deploy
 
-After provisioning, deploy the static export to the bucket (default `milad.cloud`).
+Pushing to `main` (changes under `website/`) runs `.github/workflows/deploy-to-s3.yml`, which builds the site, syncs it to S3 with cache headers (a year for hashed `_next/` assets, five minutes for everything else) and invalidates CloudFront.
 
-```bash
-export BUCKET=milad.cloud
-
-# Long cache for assets (exclude HTML)
-aws s3 sync website/out s3://$BUCKET \
-  --delete \
-  --exclude "*.html" \
-  --cache-control "public,max-age=31536000,immutable"
-
-# Short cache for HTML files
-aws s3 sync website/out s3://$BUCKET \
-  --exclude "*" --include "*.html" \
-  --cache-control "public,max-age=60"
-```
-
-Invalidate CloudFront to pick up changes quickly (replace with your distribution id):
+The invalidation step needs the `CLOUDFRONT_DISTRIBUTION_ID` repository variable:
 
 ```bash
-aws cloudfront create-invalidation \
-  --distribution-id <CLOUDFRONT_DISTRIBUTION_ID> \
-  --paths '/*'
+gh variable set CLOUDFRONT_DISTRIBUTION_ID --body "$(terraform -chdir=tf output -raw cloudfront_distribution_id)"
 ```

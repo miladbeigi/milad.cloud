@@ -20,34 +20,45 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "npm"
           cache-dependency-path: website/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build website
         run: npm run build
       
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ secrets.AWS_ROOT_ROLE_ARN }}
           role-session-name: github-actions-s3-sync
           aws-region: eu-west-1
       
       - name: Deploy to S3
-        run: aws s3 sync out s3://milad.cloud --delete --acl public-read
-      
+        run: |
+          # Hashed build assets never change, so cache them for a year
+          aws s3 sync out/_next s3://milad.cloud/_next --delete \
+            --cache-control "public,max-age=31536000,immutable"
+          # Everything else (HTML, RSC payloads, images) revalidates quickly
+          aws s3 sync out s3://milad.cloud --delete \
+            --exclude "_next/*" --exclude "toolbelt" \
+            --cache-control "public,max-age=300"
+
+      # Kept until the CloudFront function that serves /toolbelt is applied
       - name: Upload toolbelt
         run: |
           aws s3 cp toolbelt s3://milad.cloud/toolbelt \
-          --acl public-read \
           --cache-control "no-cache" \
           --website-redirect "https://raw.githubusercontent.com/miladbeigi/portable-toolbelt/main/boot.sh"
+
+      - name: Invalidate CloudFront
+        if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        run: aws cloudfront create-invalidation --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*"
