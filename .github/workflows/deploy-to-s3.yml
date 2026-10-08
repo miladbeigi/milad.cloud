@@ -36,7 +36,7 @@ jobs:
         run: python3 scripts/refresh-data.py || echo "::warning::refresh-data.py failed; deploying the committed data"
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_ROOT_ROLE_ARN }}
           role-session-name: github-actions-s3-sync
