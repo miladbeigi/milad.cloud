@@ -87,7 +87,8 @@
     };
   }
 
-  // penhan: output captured from penhan v0.5.1 against a throwaway Vault dev server
+  // penhan: output captured from penhan v0.7.1 against a throwaway Vault dev server, with a
+  // generated SSH key served as github.com/alice.keys for the master-key part
   {
     const pre = $("#penhan-term");
     const rows = +pre.dataset.rows;
@@ -107,13 +108,39 @@
       { cmd: ["echo 'api_key: sk_test_456' > secrets/stripe/key.yaml"] },
       { cmd: ["penhan check"], out: ["  unchanged  db/credentials", "  changed    stripe/key", "", "2 secret(s), 1 to push"] },
       { cmd: ["penhan push"], out: ["  Unchanged: db/credentials", "  Pushed (changed): stripe/key", "", "Push complete: 1 pushed, 1 unchanged"] },
+      { cmd: ["cd .. && penhan access grant alice"], out: [
+        "✓ Created master key /tmp/penhan.kT7j/infra/.penhan/master.key (gitignored)",
+        "✓ Granted alice access with 1 key(s):",
+        "    SHA256:qnYdfiHzJPbfQnzVGUQ1jSy/wZoiLyYow75A97aoj9A ssh-ed25519",
+        "Commit .penhan/access.yaml and .penhan/master.age.",
+        "Next: run `penhan wrap` here to wrap the existing safe keys.",
+      ] },
+      { cmd: ["penhan wrap && git add -A && git commit -qm 'Add payments'"], out: ["✓ wrapped payments"] },
+      { cmd: ["git clone -q . ../laptop && cd ../laptop && penhan unlock"], out: [
+        "✓ Unlocked the master key into /tmp/penhan.kT7j/laptop/.penhan/master.key (gitignored)",
+      ] },
+      { cmd: ["cd payments && penhan decrypt"], out: ["  Decrypted: secrets/db/credentials.yaml", "  Decrypted: secrets/stripe/key.yaml"] },
+      { cmd: ["cat secrets/db/credentials.yaml"], out: ["password: hunter2"] },
     ];
+    // lines longer than the frame wrap at the last space that fits
+    const cols = +pre.dataset.cols;
+    const wrap = (l) => {
+      const out = [];
+      while (l.length > cols) {
+        const at = l.lastIndexOf(" ", cols);
+        const cut = at > 0 ? at : cols;
+        out.push(l.slice(0, cut));
+        l = l.slice(cut).replace(/^ /, "");
+      }
+      return [...out, l];
+    };
+    for (const s of session) if (s.out) s.out = s.out.flatMap(wrap);
     const paint = (l) => esc(l)
       .replace(/^✓/, '<span class="ok">✓</span>')
       .replace(/^(\s+)(new)(\s)/, '$1<span class="new">$2</span>$3')
       .replace(/^(\s+)(changed)(\s)/, '$1<span class="chg">$2</span>$3')
       .replace(/^(\s+)(unchanged)(\s)/, '$1<span class="dim">$2</span>$3')
-      .replace(/^(\s+)(Encrypted:|Pushed \(new\):)/, '$1<span class="ok">$2</span>')
+      .replace(/^(\s+)(Encrypted:|Decrypted:|Pushed \(new\):)/, '$1<span class="ok">$2</span>')
       .replace(/^(\s+)(Pushed \(changed\):)/, '$1<span class="chg">$2</span>')
       .replace(/^(\s+)(Unchanged:)/, '$1<span class="dim">$2</span>');
     const prompt = '<span class="pr">$</span> ';
