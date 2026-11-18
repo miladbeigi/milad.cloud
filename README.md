@@ -6,6 +6,8 @@ Personal static website, plain HTML, CSS and JavaScript with no framework or bui
 
 - `website/`: the site, served as is
   - `index.html`, `style.css`, `main.js`, `404.html`
+  - `glimpse/`, `penhan/`, `vaultui/`, `claude-usage-bar/`: a landing page per project, served at `milad.cloud/<project>/`
+  - `_/`: the stylesheet, script, fonts and icons the project pages share
   - `assets/`: images, logos, self-hosted fonts, and the data files `contributions.json` and `releases.json`
   - `scripts/refresh-data.py`: refreshes the data files (not deployed)
 - `tf/`: Terraform to provision:
@@ -36,7 +38,7 @@ python3 website/scripts/refresh-data.py
 
 ## Deploy
 
-Pushing to `main` (changes under `website/`) runs `.github/workflows/deploy-to-s3.yml`. It also runs daily so the data files stay current. The workflow refreshes the data files, syncs the site to S3 with cache headers (a year for fonts, a day for other assets, five minutes for HTML, CSS, JS and JSON) and invalidates CloudFront.
+Pushing to `main` (changes under `website/`) runs `.github/workflows/deploy-to-s3.yml`. It also runs daily so the data files stay current. The workflow refreshes the data files, syncs the site to S3 with cache headers (a year for fonts in `assets/fonts/` and `_/fonts/`, a day for other assets, five minutes for HTML, CSS, JS and JSON) and invalidates CloudFront.
 
 The invalidation step needs the `CLOUDFRONT_DISTRIBUTION_ID` repository variable:
 

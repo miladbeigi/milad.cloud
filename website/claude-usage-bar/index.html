@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Usage Bar: your Claude limits, in the menu bar</title>
+  <meta name="description" content="A tiny, free macOS menu bar app that shows how much of your Claude session and weekly limits you've used, with a pace animal that tells you whether you'll run out before the reset. Unofficial and open source.">
+  <link rel="canonical" href="https://milad.cloud/claude-usage-bar/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Claude Usage Bar: your Claude limits, in the menu bar">
+  <meta property="og:description" content="Session and weekly usage at a glance, plus a pace animal that tells you whether you'll run out before the reset.">
+  <meta property="og:url" content="https://milad.cloud/claude-usage-bar/">
+  <meta property="og:image" content="https://milad.cloud/claude-usage-bar/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#faf9f5">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/icon.png">
+  <link rel="preload" href="/_/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/_/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-clock" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm56,112H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-68-76a12,12,0,1,1-12-12A12,12,0,0,1,140,132Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,132ZM96,172a12,12,0,1,1-12-12A12,12,0,0,1,96,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,140,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,172Z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 256 256" fill="currentColor"><path d="M244,56v48a12,12,0,0,1-12,12H184a12,12,0,1,1,0-24H201.1l-19-17.38c-.13-.12-.26-.24-.38-.37A76,76,0,1,0,127,204h1a75.53,75.53,0,0,0,52.15-20.72,12,12,0,0,1,16.49,17.45A99.45,99.45,0,0,1,128,228h-1.37A100,100,0,1,1,198.51,57.06L220,76.72V56a12,12,0,0,1,24,0Z"/></symbol>
+    <symbol id="i-high" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-8,56a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z"/></symbol>
+    <symbol id="i-critical" viewBox="0 0 256 256" fill="currentColor"><path d="M227.31,80.23,175.77,28.69A16.13,16.13,0,0,0,164.45,24H91.55a16.13,16.13,0,0,0-11.32,4.69L28.69,80.23A16.13,16.13,0,0,0,24,91.55v72.9a16.13,16.13,0,0,0,4.69,11.32l51.54,51.54A16.13,16.13,0,0,0,91.55,232h72.9a16.13,16.13,0,0,0,11.32-4.69l51.54-51.54A16.13,16.13,0,0,0,232,164.45V91.55A16.13,16.13,0,0,0,227.31,80.23ZM120,80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z"/></symbol>
+    <symbol id="i-out" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></symbol>
+    <symbol id="i-turtle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m12 10 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a8 8 0 1 0-16 0v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3l2-4h4Z" /> <path d="M4.82 7.9 8 10" /> <path d="M15.18 7.9 12 10" /> <path d="M16.93 10H20a2 2 0 0 1 0 4H2" /></symbol>
+    <symbol id="i-dog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11.25 16.25h1.5L12 17z" /> <path d="M16 14v.5" /> <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309" /> <path d="M8 14v.5" /> <path d="M8.5 8.5c-.384 1.05-1.083 2.028-2.344 2.5-1.931.722-3.576-.297-3.656-1-.113-.994 1.177-6.53 4-7 1.923-.321 3.651.845 3.651 2.235A7.497 7.497 0 0 1 14 5.277c0-1.39 1.844-2.598 3.767-2.277 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" /></symbol>
+    <symbol id="i-rabbit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M13 16a3 3 0 0 1 2.24 5" /> <path d="M18 12h.01" /> <path d="M18 21h-8a4 4 0 0 1-4-4 7 7 0 0 1 7-7h.2L9.6 6.4a1 1 0 1 1 2.8-2.8L15.8 7h.2c3.3 0 6 2.7 6 6v1a2 2 0 0 1-2 2h-1a3 3 0 0 0-3 3" /> <path d="M20 8.54V4a2 2 0 1 0-4 0v3" /> <path d="M7.612 12.524a3 3 0 1 0-1.6 4.3" /></symbol>
+    <symbol id="i-bird" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01" /> <path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20" /> <path d="m20 7 2 .5-2 .5" /> <path d="M10 18v3" /> <path d="M14 17.75V21" /> <path d="M7 18a6 6 0 0 0 3.84-10.61" /></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c.55 5.2 3.3 8 10.5 10.5-7.2 2.5-9.95 5.3-10.5 10.5C11.45 17.3 8.7 14.5 1.5 12 8.7 9.5 11.45 6.7 12 1.5Z"/></symbol>
+  </svg>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="nav__brand" href="#top"><img src="img/icon.png" alt="" width="26" height="26">Claude Usage Bar</a>
+      <nav class="nav__links" aria-label="Sections">
+        <a class="hide-sm" href="#pace">Pace</a>
+        <a class="hide-sm" href="#privacy">Privacy</a>
+        <a class="hide-sm" href="#faq">FAQ</a>
+        <a href="https://github.com/miladbeigi/claude-usage-bar">GitHub</a>
+        <a class="nav__cta" href="#install">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__copy">
+        <h1>Know where you stand <em>before</em> you hit the limit.</h1>
+        <p class="lede">A tiny macOS menu bar app that shows how much of your Claude session and weekly limits you've used. A small animal tells you whether you'll run out before the reset.</p>
+        <div class="hero__cta">
+          <div class="cmd">
+            <span class="cmd__text" id="hero-cmd" data-text="curl -fsSL https://raw.githubusercontent.com/miladbeigi/claude-usage-bar/main/install.sh | bash"><span class="p">$</span>curl -fsSL https://raw.githubusercontent.com/miladbeigi/claude-usage-bar/main/install.sh | bash</span>
+            <button class="copy" type="button" data-copy="#hero-cmd"></button>
+          </div>
+          <p class="cmd-note"><span data-release="miladbeigi/claude-usage-bar">v1.4.0</span> · Free · macOS 14+ · Needs Claude Code signed in with Pro or Max</p>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="menubar" aria-hidden="false">
+          <div class="menubar__left" aria-hidden="true"><span class="menubar__app">Terminal</span><span>Shell</span><span>Edit</span><span>View</span><span class="hide-sm">Window</span><span class="hide-sm">Help</span></div>
+          <div class="menubar__right">
+            <button class="mb" id="mb" type="button" aria-expanded="true" aria-controls="pop" aria-label="Claude Usage Bar menu bar item"></button>
+            <span class="menubar__sys" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="M1.5 6.2a9.5 9.5 0 0 1 13 0M3.7 8.5a6.4 6.4 0 0 1 8.6 0M5.9 10.8a3.2 3.2 0 0 1 4.2 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="13" r="1.1" fill="currentColor"/></svg>
+              <span class="bat"><i></i></span>
+              <span id="mb-clock">Tue 2:10 PM</span>
+            </span>
+          </div>
+        </div>
+        <div class="stage__body">
+          <div class="pop-anchor" id="anchor">
+            <div class="pop" id="pop" role="dialog" aria-label="Claude usage"></div>
+          </div>
+          <div class="play" id="play">
+            <p class="play__title">Try it</p>
+            <label class="slider">
+              <span class="slider__label">Session used <output id="o-used">74%</output></span>
+              <input type="range" id="r-used" min="0" max="100" value="74" step="1">
+            </label>
+            <label class="slider">
+              <span class="slider__label">Time into the 5-hour window <output id="o-time">2h 47m</output></span>
+              <input type="range" id="r-time" min="0" max="300" value="167" step="1">
+            </label>
+            <p class="play__verdict" id="verdict" aria-live="polite"></p>
+            <div class="presets" role="group" aria-label="Examples">
+              <button type="button" data-u="22" data-t="150"><svg aria-hidden="true"><use href="#i-turtle"/></svg>A quiet afternoon</button>
+              <button type="button" data-u="51" data-t="170"><svg aria-hidden="true"><use href="#i-dog"/></svg>Right on pace</button>
+              <button type="button" data-u="74" data-t="167"><svg aria-hidden="true"><use href="#i-rabbit"/></svg>Deep in a refactor</button>
+              <button type="button" data-u="66" data-t="70"><svg aria-hidden="true"><use href="#i-bird"/></svg>Five agents at once</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="pace">
+      <div class="wrap">
+        <header class="sec__head rv">
+          <p class="kicker">Pace</p>
+          <h2>Percentages tell you where you are. <em>Animals tell you where you're headed.</em></h2>
+          <p>Pace compares how much of a limit you've used with how much of its window has passed, then projects where you'll end up at the reset.</p>
+        </header>
+        <ol class="zoo">
+          <li class="rv" style="--c: var(--turtle)">
+            <svg class="zoo__icon" aria-hidden="true"><use href="#i-turtle"/></svg>
+            <h3>Under pace</h3>
+            <p>At this rate you'll finish below 75% of the limit. Carry on.</p>
+            <div class="mini"><i style="width:24%"></i><b style="left:55%"></b></div>
+          </li>
+          <li class="rv" style="--c: var(--dog)">
+            <svg class="zoo__icon" aria-hidden="true"><use href="#i-dog"/></svg>
+            <h3>On pace</h3>
+            <p>You'll land between 75% and 100%. You're using what you pay for.</p>
+            <div class="mini"><i style="width:48%"></i><b style="left:55%"></b></div>
+          </li>
+          <li class="rv" style="--c: var(--rabbit)">
+            <svg class="zoo__icon" aria-hidden="true"><use href="#i-rabbit"/></svg>
+            <h3>Ahead</h3>
+            <p>You'll run out before the reset. The popover says roughly when.</p>
+            <div class="mini"><i style="width:68%"></i><b style="left:55%"></b></div>
+          </li>
+          <li class="rv" style="--c: var(--bird)">
+            <svg class="zoo__icon" aria-hidden="true"><use href="#i-bird"/></svg>
+            <h3>Way ahead</h3>
+            <p>You're heading for more than one and a half times the limit. Time to slow down.</p>
+            <div class="mini"><i style="width:92%"></i><b style="left:55%"></b></div>
+          </li>
+        </ol>
+        <div class="formula rv">
+          <p><span>projected</span> = <span>used</span> ÷ <span>elapsed</span></p>
+          <p class="formula__eg">74% used, 56% of the window gone → on track for <b>1.3×</b> the limit → <span class="inl" style="--c:var(--rabbit)"><svg aria-hidden="true"><use href="#i-rabbit"/></svg></span> ahead, out in about 58 minutes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="details">
+      <div class="wrap details">
+        <div class="details__copy rv">
+          <p class="kicker">The details</p>
+          <h2>Small on purpose.</h2>
+          <ul class="ticks">
+            <li><b>Menu bar:</b> session %, weekly %, and one animal for whichever limit is more urgent. Show both, or just one.</li>
+            <li><b>Popover:</b> a bar per limit with a tick for how much of the window has passed, the reset time and the pace. Bars turn amber at 70% and red at 90%.</li>
+            <li><b>Per-model limits:</b> turn them on to see each model's own weekly limit, when your plan has one.</li>
+            <li><b>Keeps Claude Code signed in:</b> shortly before the token expires, it has Claude Code refresh its own login. You can turn it off.</li>
+            <li><b>Light and dark</b>, closes when you click away, <kbd>⌘R</kbd> refreshes, <kbd>⌘,</kbd> opens settings.</li>
+            <li><b>Checks every 5 minutes</b> by default, launches at login if you like, and updates itself from GitHub Releases.</li>
+          </ul>
+          <figure class="setshot"><img src="img/settings-light.webp" width="990" height="570" alt="Settings in the popover: menu bar display, pace animal, per-model limits, check interval, Keep Claude Code signed in (on) and launch at login" loading="lazy"></figure>
+        </div>
+        <div class="details__shots rv">
+          <figure class="shot shot--a"><img src="img/models-light.webp" width="990" height="1191" alt="The popover in light mode with session, weekly and two per-model weekly limits" loading="lazy"></figure>
+          <figure class="shot shot--b"><img src="img/popover-dark.webp" width="990" height="729" alt="The popover in dark mode: session at 74% and ahead of pace, weekly at 18% and under pace" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="privacy">
+      <div class="wrap">
+        <div class="privacy rv">
+          <div>
+            <p class="kicker">Privacy</p>
+            <h2>One token. One endpoint. Nothing else.</h2>
+          </div>
+          <dl>
+            <div><dt>Reads</dt><dd>The sign-in Claude Code already saved in your Keychain. No new login, no Keychain prompt.</dd></div>
+            <div><dt>Sends</dt><dd>That token to <code>api.anthropic.com/api/oauth/usage</code>, the same endpoint behind Claude Code's own usage numbers.</dd></div>
+            <div><dt>Never</dt><dd>Reads your conversations or files, refreshes or changes the token itself, or stores anything except its settings.</dd></div>
+            <div><dt>Updates</dt><dd>Checks this project's GitHub Releases every 6 hours and verifies each download's SHA-256. You can turn it off.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="install">
+      <div class="wrap install rv">
+        <p class="kicker">Install</p>
+        <h2>Paste this into Terminal.</h2>
+        <div class="cmd">
+          <span class="cmd__text" id="install-cmd" data-text="curl -fsSL https://raw.githubusercontent.com/miladbeigi/claude-usage-bar/main/install.sh | bash"><span class="p">$</span>curl -fsSL https://raw.githubusercontent.com/miladbeigi/claude-usage-bar/main/install.sh | bash</span>
+          <button class="copy" type="button" data-copy="#install-cmd"></button>
+        </div>
+        <p class="cmd-note">It downloads the latest release, checks its SHA-256, installs to Applications and opens it. Look for it in your menu bar. <a href="https://github.com/miladbeigi/claude-usage-bar/blob/main/install.sh">Read the script</a> · <a href="https://github.com/miladbeigi/claude-usage-bar/releases/latest">Download the .zip</a></p>
+        <ul class="reqs">
+          <li><span>1</span>macOS 14 or later, Apple silicon or Intel</li>
+          <li><span>2</span><a href="https://claude.com/claude-code">Claude Code</a> installed and signed in with a Pro or Max plan</li>
+          <li><span>3</span>That's it: the app reuses Claude Code's sign-in</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="faq">
+      <div class="wrap faq">
+        <h2 class="rv">Questions</h2>
+        <details class="rv"><summary>Is this made by Anthropic?</summary><p>No. It's an unofficial app by one person, not affiliated with or endorsed by Anthropic. It reads an undocumented usage endpoint that may change or disappear, and if it does, the app will tell you it can't fetch your usage rather than show wrong numbers.</p></details>
+        <details class="rv"><summary>Does checking my usage use up my usage?</summary><p>Checking doesn't. It asks the usage endpoint how much you've used; it doesn't send any prompts. By default it checks every 5 minutes, and backs off if it's rate limited. The one exception is keeping Claude Code signed in: about every 8 hours that costs a few thousand Haiku tokens (see below).</p></details>
+        <details class="rv"><summary>Why animals?</summary><p>Because "projected utilization at reset: 1.31×" is a lot to read in a menu bar. A rabbit is not.</p></details>
+        <details class="rv"><summary>What happens when my token expires?</summary><p>The app never refreshes it itself. Shortly before it expires, about every 8 hours, it runs one tiny headless <code>claude -p</code> request on Haiku, with no tools, MCP servers, hooks or saved session, and Claude Code refreshes and saves its own login. Prefer it didn't? Turn off <b>Keep Claude Code signed in</b> in Settings, then run <code>claude</code> once when the token expires and the app picks up the new one.</p></details>
+        <details class="rv"><summary>Can I rebuild it myself?</summary><p>Yes. The <a href="https://github.com/miladbeigi/claude-usage-bar/blob/main/SPEC.md">SPEC.md</a> describes the whole app down to the point sizes, so you can hand it to Claude Code in an empty folder and get the same app back. Or clone the repo and run <code>./build.sh --install</code>.</p></details>
+      </div>
+    </section>
+
+    <p class="wrap disclaimer">Claude Usage Bar is an independent, open-source project. Claude is a trademark of Anthropic, PBC. This project is not affiliated with or endorsed by Anthropic.</p>
+  </main>
+
+  <footer class="foot" data-current="claude-usage-bar"></footer>
+  <script src="/_/base.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

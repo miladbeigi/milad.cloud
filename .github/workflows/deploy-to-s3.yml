@@ -48,13 +48,17 @@ jobs:
           aws s3 sync assets/fonts s3://milad.cloud/assets/fonts --delete \
             --content-type font/woff2 \
             --cache-control "public,max-age=31536000,immutable"
+          aws s3 sync _/fonts s3://milad.cloud/_/fonts --delete \
+            --exclude "*" --include "*.woff2" \
+            --content-type font/woff2 \
+            --cache-control "public,max-age=31536000,immutable"
           # Images and logos: a day
           aws s3 sync assets s3://milad.cloud/assets --delete \
             --exclude "fonts/*" --exclude "*.json" \
             --cache-control "public,max-age=86400"
           # HTML, CSS, JS and data files revalidate quickly; this also removes the old Next.js files
           aws s3 sync . s3://milad.cloud --delete \
-            --exclude "scripts/*" --exclude "assets/*" --include "assets/*.json" \
+            --exclude "scripts/*" --exclude "assets/*" --include "assets/*.json" --exclude "_/fonts/*" \
             --cache-control "public,max-age=300"
 
       - name: Invalidate CloudFront

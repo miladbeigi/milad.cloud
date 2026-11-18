@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VaultUI: a terminal UI for HashiCorp Vault</title>
+  <meta name="description" content="VaultUI is a k9s-inspired terminal UI for HashiCorp Vault. Browse KV secrets and their versions, policies, auth methods, PKI, Transit and Identity with the keyboard. Free and open source.">
+  <link rel="canonical" href="https://milad.cloud/vaultui/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VaultUI: a terminal UI for HashiCorp Vault">
+  <meta property="og:description" content="Browse secrets, versions, policies, auth methods, PKI, Transit and Identity without leaving your terminal.">
+  <meta property="og:url" content="https://milad.cloud/vaultui/">
+  <meta property="og:image" content="https://milad.cloud/vaultui/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#101118">
+  <link rel="icon" href="/_/icons/vaultui.svg" type="image/svg+xml">
+  <link rel="preload" href="/_/fonts/jetbrains-mono-term.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/_/fonts/departure-mono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/_/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="nav__brand" href="#top"><img src="/_/icons/vaultui.svg" alt="" width="26" height="26"><span>VaultUI</span></a>
+      <nav class="nav__links" aria-label="Sections">
+        <a class="hide-sm" href="#views">Views</a>
+        <a class="hide-sm" href="#headless">Headless</a>
+        <a class="hide-sm" href="#contexts">Contexts</a>
+        <a href="https://github.com/miladbeigi/vaultui">GitHub</a>
+        <a class="nav__cta" href="#install">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__copy">
+        <p class="badge"><span>k9s</span> for <span>Vault</span></p>
+        <h1>Vault, at the speed<br>of your keyboard<span class="caret">_</span></h1>
+        <p class="lede">VaultUI is a terminal UI for HashiCorp Vault. Browse secrets and their versions, policies, auth methods, PKI, Transit and Identity, then copy what you need, all without leaving the terminal.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#install">Install VaultUI</a>
+          <span class="hero__meta"><span data-release="miladbeigi/vaultui">v0.9.0</span> · macOS and Linux · MIT</span>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="tui" id="tui">
+          <div class="tui__bar">
+            <i></i><i></i><i></i>
+            <span class="tui__title">vaultui — 120×34</span>
+            <span class="tui__live" id="tui-live">click, then type</span>
+          </div>
+          <div class="tui__screen" id="tui-screen" tabindex="0" role="application" aria-label="Interactive VaultUI demo. Press 1 to 8 to jump between views, j and k to move, Enter to open, Escape to go back, colon for the command palette, question mark for help.">
+            <pre class="tui__pre" id="tui-pre"></pre>
+          </div>
+        </div>
+        <div class="keys" id="keys" aria-label="Keys">
+          <button type="button" data-k="1"><kbd>1</kbd>engines</button>
+          <button type="button" data-k="j"><kbd>j</kbd>down</button>
+          <button type="button" data-k="k"><kbd>k</kbd>up</button>
+          <button type="button" data-k="Enter"><kbd>⏎</kbd>open</button>
+          <button type="button" data-k="Escape"><kbd>esc</kbd>back</button>
+          <button type="button" data-k="v"><kbd>v</kbd>versions</button>
+          <button type="button" data-k="d"><kbd>d</kbd>diff</button>
+          <button type="button" data-k="r"><kbd>r</kbd>refresh</button>
+          <button type="button" data-k=":"><kbd>:</kbd>command</button>
+          <button type="button" data-k="?"><kbd>?</kbd>help</button>
+        </div>
+        <p class="tui__note">A replay of the real app: every screen was captured from VaultUI v0.9 running against a local Vault dev server with sample data.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="views">
+      <div class="wrap">
+        <header class="sec__head rv">
+          <p class="kicker">// views</p>
+          <h2>Everything Vault knows, one keystroke away.</h2>
+        </header>
+        <ol class="views">
+          <li class="rv"><button type="button" data-go="02-secret-engines"><kbd>1</kbd><b>Secret engines</b><span>Every mount, with type, version and description.</span></button></li>
+          <li class="rv"><button type="button" data-go="06-secret-detail"><kbd>⏎</kbd><b>KV v2 browser</b><span>Drill into paths, read secrets, copy a value or the whole thing as JSON. <kbd>r</kbd> refetches.</span></button></li>
+          <li class="rv"><button type="button" data-go="09-version-diff"><kbd>v</kbd><b>Versions and diffs</b><span>Browse a secret's history and diff any two versions.</span></button></li>
+          <li class="rv"><button type="button" data-go="12-policy-body"><kbd>3</kbd><b>Policies</b><span>List ACL policies and read their bodies.</span></button></li>
+          <li class="rv"><button type="button" data-go="10-auth-methods"><kbd>2</kbd><b>Auth methods</b><span>Type, accessor and description of everything enabled.</span></button></li>
+          <li class="rv"><button type="button" data-go="17-pki-cert-detail"><kbd>5</kbd><b>PKI</b><span>Certificates and roles, with the PEM ready to copy.</span></button></li>
+          <li class="rv"><button type="button" data-go="20-transit-key-detail"><kbd>6</kbd><b>Transit</b><span>Encryption keys and their properties.</span></button></li>
+          <li class="rv"><button type="button" data-go="15-identity-group-detail"><kbd>4</kbd><b>Identity</b><span>Entities and groups, with their members and policies.</span></button></li>
+          <li class="rv"><button type="button" data-go="28-token-inspector"><kbd>:</kbd><b>Token inspector</b><span>Who you are, what you can do and when it expires.</span></button></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec" id="headless">
+      <div class="wrap split">
+        <div class="rv">
+          <p class="kicker">// headless</p>
+          <h2>Scripts get JSON.</h2>
+          <p class="body">The same client and config, without the UI. <code>vaultui get</code> prints JSON, so it drops into shell scripts and CI next to <code>jq</code>. <code>vaultui version</code> prints a k9s-style banner with the version, commit and build date.</p>
+        </div>
+        <div class="code rv">
+          <div class="code__bar"><span>zsh</span></div>
+<pre><span class="pr">$</span> vaultui get secret secret/apps/myapp/config | jq .db_host
+<span class="o">"fake-db.test.internal"</span>
+
+<span class="pr">$</span> vaultui get engines | jq -r '.[].Path'
+<span class="o">agent-registry/
+aws/
+cubbyhole/
+database/
+identity/
+pki/
+secret/
+sys/
+transit/</span>
+
+<span class="pr">$</span> vaultui get health | jq -c '{Sealed, Version}'
+<span class="o">{"Sealed":false,"Version":"2.2.2"}</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contexts">
+      <div class="wrap split split--flip">
+        <div class="rv">
+          <p class="kicker">// contexts</p>
+          <h2>Dev, staging and prod in one file.</h2>
+          <p class="body">Keep every Vault you work with in <code>~/.vaultui.yaml</code> and switch with <code>:ctx</code>. Token, userpass and AppRole auth are supported, along with Enterprise namespaces. Flags and <code>VAULT_ADDR</code> / <code>VAULT_TOKEN</code> still work if you'd rather not have a config file.</p>
+          <ul class="facts">
+            <li><b>Clipboard auto-clear.</b> Copied secrets are wiped after 30 seconds.</li>
+            <li><b>Your keys.</b> Rebind any shortcut in the config file.</li>
+            <li><b>Vim-style.</b> <kbd>j</kbd> <kbd>k</kbd> <kbd>g</kbd> <kbd>G</kbd> <kbd>ctrl+d</kbd> <kbd>ctrl+u</kbd>, plus arrows for everyone else.</li>
+            <li><b>Help on hand.</b> <kbd>?</kbd> lists the global keys and the ones for the view you're in.</li>
+            <li><b>Deleted means deleted.</b> A soft-deleted KV v2 secret shows when it was deleted, and copy is disabled.</li>
+          </ul>
+        </div>
+        <div class="code rv">
+          <div class="code__bar"><span>~/.vaultui.yaml</span></div>
+<pre><span class="k">current_context:</span> dev
+
+<span class="k">contexts:</span>
+  - <span class="k">name:</span> dev
+    <span class="k">address:</span> <span class="s">http://127.0.0.1:8200</span>
+    <span class="k">token:</span> root
+
+  - <span class="k">name:</span> staging
+    <span class="k">address:</span> <span class="s">https://vault.staging.example.com</span>
+    <span class="k">auth:</span>
+      <span class="k">method:</span> userpass
+      <span class="k">username:</span> admin
+
+  - <span class="k">name:</span> prod
+    <span class="k">address:</span> <span class="s">https://vault.example.com</span>
+    <span class="k">auth:</span>
+      <span class="k">method:</span> approle
+      <span class="k">role_id:</span> <span class="s">"…"</span>
+
+<span class="k">settings:</span>
+  <span class="k">clipboard_timeout:</span> 30</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="install">
+      <div class="wrap">
+        <header class="sec__head rv">
+          <p class="kicker">// install</p>
+          <h2>Pick your poison.</h2>
+        </header>
+        <div class="install rv">
+          <div class="tabs" role="tablist" aria-label="Install method">
+            <button type="button" role="tab" id="t-bin" aria-controls="p-bin" aria-selected="true">Binary</button>
+            <button type="button" role="tab" id="t-go" aria-controls="p-go" aria-selected="false">Go</button>
+            <button type="button" role="tab" id="t-docker" aria-controls="p-docker" aria-selected="false">Docker</button>
+          </div>
+          <div class="panel" role="tabpanel" id="p-bin" aria-labelledby="t-bin">
+            <p>macOS and Linux, amd64 and arm64. Downloads the latest release for your machine.</p>
+            <div class="block">
+<pre id="c-bin">VERSION=$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/miladbeigi/vaultui/releases/latest | sed 's|.*/v||')
+OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')
+curl -fsSL "https://github.com/miladbeigi/vaultui/releases/download/v${VERSION}/vaultui_${VERSION}_${OS}_${ARCH}.tar.gz" | tar -xz vaultui
+sudo install vaultui /usr/local/bin/</pre>
+              <button class="copy" type="button" data-copy="#c-bin"></button>
+            </div>
+          </div>
+          <div class="panel" role="tabpanel" id="p-go" aria-labelledby="t-go" hidden>
+            <p>Requires Go 1.25 or later. The version shows as <code>dev</code> in builds made this way.</p>
+            <div class="block"><pre id="c-go">go install github.com/miladbeigi/vaultui@latest</pre><button class="copy" type="button" data-copy="#c-go"></button></div>
+          </div>
+          <div class="panel" role="tabpanel" id="p-docker" aria-labelledby="t-docker" hidden>
+            <p>Passes your Vault address and token through from the environment.</p>
+            <div class="block"><pre id="c-docker">docker run --rm -it -e VAULT_ADDR -e VAULT_TOKEN ghcr.io/miladbeigi/vaultui</pre><button class="copy" type="button" data-copy="#c-docker"></button></div>
+          </div>
+          <div class="then">
+            <p>Then:</p>
+            <div class="block"><pre id="c-run">VAULT_ADDR=https://vault.example.com VAULT_TOKEN=… vaultui</pre><button class="copy" type="button" data-copy="#c-run"></button></div>
+            <p class="fine">No Vault handy? <code>docker compose up -d</code> in the repo starts one with sample data. <a href="https://github.com/miladbeigi/vaultui#local-dev-environment">How it works</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" data-current="vaultui"></footer>
+  <script src="/_/base.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>
