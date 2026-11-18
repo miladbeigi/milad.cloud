@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Penhan: encrypted secrets in Git, synced to Vault and Kubernetes</title>
+  <meta name="description" content="Penhan is a small CLI that keeps secrets encrypted in your Git repository, reviewed and versioned like code, and pushes only what changed to HashiCorp Vault or Kubernetes. Teammates unlock the keys with the SSH key on their GitHub account. Free and open source.">
+  <link rel="canonical" href="https://milad.cloud/penhan/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Penhan: encrypted secrets in Git">
+  <meta property="og:description" content="Keep secrets encrypted in the repository and sync them to HashiCorp Vault or Kubernetes.">
+  <meta property="og:url" content="https://milad.cloud/penhan/">
+  <meta property="og:image" content="https://milad.cloud/penhan/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f2efe6">
+  <link rel="icon" href="/_/icons/penhan.svg" type="image/svg+xml">
+  <link rel="preload" href="/_/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/_/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="nav__brand" href="#top"><img src="/_/icons/penhan.svg" alt="" width="26" height="26">penhan</a>
+      <nav class="nav__links" aria-label="Sections">
+        <a class="hide-sm" href="#how">How it works</a>
+        <a class="hide-sm" href="#safe">Guardrails</a>
+        <a class="hide-sm" href="#team">Teams</a>
+        <a class="hide-sm" href="https://github.com/miladbeigi/penhan/tree/master/docs">Docs</a>
+        <a href="https://github.com/miladbeigi/penhan">GitHub</a>
+        <a class="nav__cta" href="#install">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="stamp"><span>پنهان</span> · Persian for <i>hidden</i></p>
+          <h1><span class="redact">Secrets</span> in Git.<br>Encrypted.</h1>
+          <p class="lede">Penhan is a small CLI for teams that want Git to be the source of truth for their secrets. They live in the repository as encrypted files, reviewed and versioned like code. Penhan decrypts them on your machine and pushes what changed to HashiCorp Vault or Kubernetes.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#install">Install</a>
+            <a class="btn btn--ghost" href="https://github.com/miladbeigi/penhan/blob/master/docs/getting-started.md">Getting started</a>
+          </div>
+          <p class="meta"><span data-release="miladbeigi/penhan">v0.7.1</span> · Go · macOS and Linux · MIT</p>
+        </div>
+
+        <figure class="dossier" id="dossier" aria-label="The same secret on your machine and in Git">
+          <div class="dossier__tabs" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-side="plain">secrets/db.yaml<small>on your machine</small></button>
+            <button type="button" role="tab" aria-selected="false" data-side="cipher">secrets/db.yaml.enc<small>in Git</small></button>
+          </div>
+          <div class="dossier__sheet">
+            <pre class="dossier__text" id="dossier-text" aria-live="off"></pre>
+            <p class="dossier__label" id="dossier-label"></p>
+          </div>
+          <figcaption>The real file: a 50-byte AES-256-GCM ciphertext, shown with <code>xxd</code>. The key stays in <code>.penhan/keys/</code>, which is gitignored.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sec" id="how">
+      <div class="wrap">
+        <header class="sec__head rv">
+          <p class="kicker">§ 1 · How it works</p>
+          <h2>Encrypt. Commit. Push what changed.</h2>
+        </header>
+        <ol class="steps">
+          <li class="rv">
+            <span class="steps__n">01</span>
+            <h3>Encrypt</h3>
+            <p>Write a flat YAML or JSON map, run <code>penhan encrypt</code>. Plaintext and keys are gitignored for you; only <code>.enc</code> files get committed.</p>
+<pre><span class="pr">$</span> penhan encrypt
+  Encrypted: secrets/db.yaml</pre>
+          </li>
+          <li class="rv">
+            <span class="steps__n">02</span>
+            <h3>Commit</h3>
+            <p>Review secrets in pull requests like any other change. Re-encrypting an unchanged secret leaves its file alone, so diffs stay clean.</p>
+<pre><span class="pr">$</span> git status --short -uall
+<span class="r">??</span> penhan.yaml
+<span class="r">??</span> secrets/db.yaml.enc</pre>
+          </li>
+          <li class="rv">
+            <span class="steps__n">03</span>
+            <h3>Push</h3>
+            <p><code>check</code> compares each secret with the backend; <code>push</code> writes only the new and changed ones.</p>
+<pre><span class="pr">$</span> penhan push
+  Pushed (new): db
+
+Push complete: 1 pushed, 0 unchanged</pre>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec sec--term">
+      <div class="wrap">
+        <div class="term rv" id="term">
+          <div class="term__bar"><i></i><i></i><i></i><span>~/project</span><button class="term__replay" id="replay" type="button">Replay</button></div>
+          <pre class="term__body" id="term-body" aria-label="A Penhan session: create a safe backed by Vault, encrypt a secret, push it, change it and push again, then share the key through a master key and unlock it on a fresh clone"></pre>
+        </div>
+        <p class="term__note rv">Real output from penhan v0.7.1 against a throwaway Vault dev server, with a throwaway SSH key standing in for alice’s GitHub key.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="flow">
+      <div class="wrap flow">
+        <div class="rv">
+          <p class="kicker">§ 2 · Backends</p>
+          <h2>One repository, many safes.</h2>
+          <p class="body">A project holds one or more <b>safes</b>. Each is a directory with its own <code>penhan.yaml</code>, key and backend, so one repository can manage secrets for several apps, environments or namespaces.</p>
+          <ul class="backends">
+            <li><b>HashiCorp Vault</b> KV v2, with a token file per safe.</li>
+            <li><b>Kubernetes Secrets</b> in a namespace, pinned to one kubeconfig context.</li>
+            <li><b>An encrypted directory</b>, for anything else.</li>
+          </ul>
+        </div>
+        <svg class="diagram rv" viewBox="0 0 520 380" role="img" aria-labelledby="dg-t">
+          <title id="dg-t">Encrypted files in Git and a safe key go into penhan, which writes to HashiCorp Vault, Kubernetes Secrets or an encrypted directory. The safe key is local, or unwrapped by the master key in .penhan/master.age, which your GitHub SSH key unlocks.</title>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <g class="dg-box">
+            <rect x="10" y="20" width="190" height="112" rx="6"/>
+            <text x="26" y="48" class="dg-h">Git repository</text>
+            <text x="26" y="72" class="dg-m">secrets/*.yaml.enc</text>
+            <text x="26" y="92" class="dg-m">.penhan/master.age</text>
+            <text x="26" y="116" class="dg-s">encrypted, committed</text>
+          </g>
+          <g class="dg-box dg-key">
+            <rect x="10" y="172" width="190" height="86" rx="6"/>
+            <text x="26" y="200" class="dg-h">safe key</text>
+            <text x="26" y="222" class="dg-s">in .penhan/keys/, or</text>
+            <text x="26" y="240" class="dg-s">unwrapped via master.age</text>
+          </g>
+          <g class="dg-box dg-key">
+            <rect x="10" y="302" width="190" height="64" rx="6"/>
+            <text x="26" y="330" class="dg-h">~/.ssh</text>
+            <text x="26" y="350" class="dg-s">your GitHub SSH key</text>
+          </g>
+          <g class="dg-core">
+            <rect x="236" y="148" width="100" height="72" rx="36"/>
+            <text x="286" y="181" text-anchor="middle" class="dg-h">penhan</text>
+            <text x="286" y="201" text-anchor="middle" class="dg-s">check / push</text>
+          </g>
+          <g class="dg-box">
+            <rect x="376" y="40" width="134" height="64" rx="6"/>
+            <text x="392" y="68" class="dg-h">Vault</text>
+            <text x="392" y="88" class="dg-s">KV v2</text>
+          </g>
+          <g class="dg-box">
+            <rect x="376" y="152" width="134" height="64" rx="6"/>
+            <text x="392" y="180" class="dg-h">Kubernetes</text>
+            <text x="392" y="200" class="dg-s">Secrets</text>
+          </g>
+          <g class="dg-box">
+            <rect x="376" y="264" width="134" height="64" rx="6"/>
+            <text x="392" y="292" class="dg-h">Directory</text>
+            <text x="392" y="312" class="dg-s">encrypted files</text>
+          </g>
+          <g class="dg-wires">
+            <path d="M200 76 C 222 76, 220 172, 236 174" marker-end="url(#ah)"/>
+            <path class="dg-dash" d="M200 215 C 218 215, 222 198, 236 196" marker-end="url(#ah)"/>
+            <path class="dg-dash" d="M105 302 L 105 261" marker-end="url(#ah)"/>
+            <path class="dg-flow" d="M336 172 C 356 160, 352 72, 374 72" marker-end="url(#ah)"/>
+            <path class="dg-flow" d="M336 184 L 374 184" marker-end="url(#ah)"/>
+            <path class="dg-flow" d="M336 196 C 356 208, 352 296, 374 296" marker-end="url(#ah)"/>
+          </g>
+          <text x="114" y="286" class="dg-s">penhan unlock</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="sec" id="safe">
+      <div class="wrap">
+        <header class="sec__head rv">
+          <p class="kicker">§ 3 · Guardrails</p>
+          <h2>Safe by default, because it's your secrets.</h2>
+        </header>
+        <dl class="rules">
+          <div class="rv"><dt>Pins the context</dt><dd>A Kubernetes safe is tied to one kubeconfig context, so a push can't land in the wrong cluster.</dd></div>
+          <div class="rv"><dt>Never takes over</dt><dd>It won't overwrite a Secret it didn't create. <code>penhan import</code> adopts existing ones without changing them.</dd></div>
+          <div class="rv"><dt>Never regenerates a key</dt><dd>A missing key is an error, not a reason to make a new one and orphan every file.</dd></div>
+          <div class="rv"><dt>Byte for byte</dt><dd>Secret values reach the backend exactly as written: no trimming, no re-encoding.</dd></div>
+          <div class="rv"><dt>Changes only</dt><dd>Hashes decide what's new or changed; unchanged secrets are skipped and reported as such.</dd></div>
+          <div class="rv"><dt>Nothing to learn from history</dt><dd>AES-256-GCM or OpenPGP, keyed per safe and randomized on every encryption, so Git history never shows when two secrets match or a value changes back.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="sec" id="team">
+      <div class="wrap split">
+        <div class="rv">
+          <p class="kicker">§ 4 · Teams</p>
+          <h2>Share keys through GitHub.</h2>
+          <p class="body">Give the project a <b>master key</b> and nobody copies keys by hand again. It encrypts each safe's key so that key can be committed, and is itself encrypted with <a href="https://age-encryption.org">age</a> to the SSH keys of everyone with access, taken from their GitHub accounts.</p>
+          <p class="body">On a fresh clone, <code>penhan unlock</code> opens it with your SSH private key and every safe just works. Each person's keys are pinned in <code>.penhan/access.yaml</code>, so access changes show up in pull requests. <code>revoke</code> rotates the master key; CI reads it from <code>PENHAN_MASTER_KEY</code>.</p>
+          <p class="body"><a href="https://github.com/miladbeigi/penhan/blob/master/docs/master-key.md">How the master key works</a></p>
+        </div>
+        <pre class="paper rv"><span class="c"># once, at the project root</span>
+penhan access grant alice
+penhan wrap
+git add .penhan/access.yaml .penhan/master.age */.penhan/*.key.enc
+
+<span class="c"># bob joins</span>
+penhan access grant bob
+
+<span class="c"># on bob's machine, after pulling</span>
+penhan unlock
+cd myapp &amp;&amp; penhan check
+
+<span class="c"># bob leaves: rotate the master key</span>
+penhan access revoke bob</pre>
+      </div>
+    </section>
+
+    <section class="sec" id="config">
+      <div class="wrap split">
+        <div class="rv">
+          <p class="kicker">§ 5 · Configuration</p>
+          <h2>One small file per safe.</h2>
+          <p class="body"><code>penhan add</code> writes it for you, with flags or interactively. This is the one from the session above.</p>
+          <p class="body"><a href="https://github.com/miladbeigi/penhan/blob/master/docs/configuration.md">Every option</a> · <a href="https://github.com/miladbeigi/penhan/blob/master/docs/commands.md">Every command</a></p>
+        </div>
+        <pre class="paper rv"><span class="c"># myapp/penhan.yaml</span>
+<span class="k">encryption:</span>
+    <span class="k">method:</span> aes
+    <span class="k">aes:</span>
+        <span class="k">key_path:</span> .penhan/keys/aes.key
+<span class="k">backend:</span>
+    <span class="k">type:</span> vault
+    <span class="k">vault:</span>
+        <span class="k">addr:</span> http://127.0.0.1:8201
+        <span class="k">token_path:</span> .penhan/vault-token
+        <span class="k">mount_path:</span> secret
+        <span class="k">base_path:</span> myapp
+<span class="k">secrets:</span>
+    <span class="k">path:</span> secrets/
+    <span class="k">format:</span> yaml</pre>
+      </div>
+    </section>
+
+    <section class="sec" id="install">
+      <div class="wrap install rv">
+        <p class="kicker">§ 6 · Install</p>
+        <h2>Prebuilt for macOS and Linux.</h2>
+        <div class="tabs" role="tablist" aria-label="Install method">
+          <button type="button" role="tab" id="t-bin" aria-controls="p-bin" aria-selected="true">Binary</button>
+          <button type="button" role="tab" id="t-go" aria-controls="p-go" aria-selected="false">Go</button>
+        </div>
+        <div role="tabpanel" id="p-bin" aria-labelledby="t-bin">
+          <div class="block">
+<pre id="c-bin">OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')
+VERSION=$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/miladbeigi/penhan/releases/latest | sed 's|.*/v||')
+curl -fsSL "https://github.com/miladbeigi/penhan/releases/download/v${VERSION}/penhan_${VERSION}_${OS}_${ARCH}.tar.gz" | tar -xz penhan
+sudo install penhan /usr/local/bin/</pre>
+            <button class="copy" type="button" data-copy="#c-bin"></button>
+          </div>
+        </div>
+        <div role="tabpanel" id="p-go" aria-labelledby="t-go" hidden>
+          <div class="block"><pre id="c-go">go install github.com/miladbeigi/penhan/cmd/penhan@latest</pre><button class="copy" type="button" data-copy="#c-go"></button></div>
+          <p class="fine">Requires Go 1.26 or later.</p>
+        </div>
+        <p class="fine">Update any time with <code>penhan update</code>, which installs the latest release after checking its checksum. Then run <code>penhan add</code> for an interactive setup, or follow <a href="https://github.com/miladbeigi/penhan/blob/master/docs/getting-started.md">Getting started</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" data-current="penhan"></footer>
+  <script src="/_/base.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>
