@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glimpse · The Workbench</title>
+<style>
+@font-face {
+  font-family: 'Cormorant';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/dd0b2cd77cfb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/dd0b2cd77cfb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/dd0b2cd77cfb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/69f126ebeb86.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/69f126ebeb86.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/acb0f0a4f777.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/117e8850f882.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(fonts/6148594dc0d9.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(fonts/6148594dc0d9.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(fonts/6148594dc0d9.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+:root{
+  --bg:#0b0a09; --bg2:#12100e; --panel:#171512; --ink:#ece6dc; --mute:#9a9286; --dim:#625b52; --line:#2a2622;
+  --acc:#e9b04f; --acc2:#f3d39a;
+  --serif:"Cormorant",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --toc:248px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+::selection{background:var(--acc);color:#000}
+
+/* layout */
+.page{display:grid;grid-template-columns:minmax(0,1fr) var(--toc);max-width:1600px;margin:0 auto}
+main{min-width:0;border-right:1px solid var(--line)}
+.pad{padding-left:56px;padding-right:56px}
+
+/* masthead */
+.mast{display:flex;align-items:center;gap:14px;height:64px;border-bottom:1px solid var(--line)}
+.mast img{width:26px;height:26px}
+.mast b{font:600 15px var(--sans);letter-spacing:.01em}
+.mast .meta{margin-left:auto;font:400 12px var(--mono);color:var(--mute);letter-spacing:.04em}
+
+/* TOC */
+aside.toc{position:sticky;top:0;height:100vh;padding:28px 24px;display:flex;flex-direction:column;gap:6px}
+.toc h2{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 14px}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.toc li a{display:grid;grid-template-columns:28px 1fr auto;align-items:baseline;gap:8px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--mute);transition:color .2s}
+.toc li a .n{font:400 12px var(--mono);color:var(--dim)}
+.toc li a .t{font:italic 500 22px/1.1 var(--serif);color:inherit}
+.toc li a .c{font:400 11px var(--mono);color:var(--dim)}
+.toc li a:hover{color:var(--ink)}
+.toc li a.on{color:var(--acc)}
+.toc li a.on .n,.toc li a.on .c{color:var(--acc)}
+.toc li a.on .t::before{content:"▸ ";font-style:normal;font-size:14px;vertical-align:3px}
+.toc .ins{margin-top:auto;border:1px solid var(--acc);color:var(--acc);text-decoration:none;font:500 13px var(--sans);padding:12px 14px;display:flex;justify-content:space-between}
+.toc .ins:hover{background:var(--acc);color:#000}
+.toc .fine{font:400 11px/1.5 var(--mono);color:var(--dim);margin-top:12px}
+
+/* hero */
+.hero{padding-top:28px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+.stage{position:relative;overflow:hidden;background:#050404;border:1px solid var(--line);padding:56px 56px 0}
+.stage .back{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.2) saturate(.5) blur(4px);transform:scale(1.08)}
+.stage::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 60% 75%,transparent 20%,rgba(5,4,4,.6) 60%,rgba(5,4,4,.97) 100%);pointer-events:none}
+.stage > *:not(.back){position:relative;z-index:2}
+.hero .eyebrow{font:400 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.hero h1{font:italic 500 clamp(40px,4.3vw,74px)/.98 var(--serif);letter-spacing:-.01em;margin:20px 0 0;text-shadow:0 2px 30px rgba(0,0,0,.8)}
+.hero h1 span{display:block}
+.hero h1 span:nth-child(2){padding-left:.9em}
+.hero h1 span:nth-child(3){padding-left:1.4em;color:var(--acc2)}
+.hero .lede{margin:26px 0 0 2.4em;font-size:18px;line-height:1.55;max-width:34em;color:var(--ink)}
+.hero .lede + ul{list-style:none;margin:14px 0 0 2.4em;padding:0;display:flex;flex-wrap:wrap;gap:4px 22px;font:400 12px var(--mono);color:var(--mute)}
+.hero .lede + ul li::before{content:"— ";color:var(--acc)}
+.shots{height:clamp(300px,34vw,520px);margin-top:44px}
+.shots img{position:absolute;box-shadow:0 40px 90px rgba(0,0,0,.85)}
+.shots .main{left:6%;top:0;width:62%}
+.shots .side{right:0;top:22%;width:34%;border:1px solid #333}
+.slate{position:absolute!important;left:18px;bottom:14px;z-index:3!important;font:400 11px var(--mono);letter-spacing:.1em;color:var(--mute)}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;z-index:2;background:linear-gradient(transparent,rgba(5,4,4,.92));pointer-events:none}
+
+/* station */
+.st{padding-top:88px;padding-bottom:96px;border-bottom:1px solid var(--line);scroll-margin-top:0}
+.st:nth-of-type(odd){background:var(--bg2)}
+.st-head{display:grid;grid-template-columns:auto 1fr;gap:12px 36px;align-items:end}
+.st-no{font:italic 400 clamp(96px,12vw,180px)/.8 var(--serif);color:var(--acc);letter-spacing:-.03em}
+.st-head h2{font:500 clamp(40px,4.8vw,72px)/1 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
+.st-head .kick{font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.st-head p{grid-column:1/-1;margin:30px 0 0;font-size:19px;max-width:38em;color:var(--ink)}
+.feature{margin:44px 0 0;position:relative;border:1px solid var(--line);background:#050404}
+.feature img{width:100%}
+.feature figcaption{display:flex;justify-content:space-between;gap:16px;font:400 12px var(--mono);color:var(--mute);padding:12px 14px;border-top:1px solid var(--line);background:var(--panel)}
+.feature figcaption b{color:var(--acc);font-weight:400}
+.items{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.items li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 14px 14px;min-height:118px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.items .k{font:500 15px var(--mono);color:var(--acc)}
+.items .k.big{font:italic 500 40px/1 var(--serif)}
+.items .cap{font-size:14px;line-height:1.35;color:var(--ink)}
+.items .cap small{display:block;color:var(--mute);font-size:12px;margin-top:3px}
+.items .thumb{height:84px;overflow:hidden;border:1px solid var(--line);margin:-4px -2px 0}
+.items .thumb img{width:100%;height:100%;object-fit:cover}
+.items.wide{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.items.three{grid-template-columns:repeat(3,1fr)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.split .feature{margin:0}
+
+/* agents */
+.term{background:#050404;border:1px solid var(--line);font:400 13px/1.8 var(--mono);color:#d9d2c5;padding:22px;overflow-x:auto}
+.term .p{color:var(--acc)} .term .c{color:var(--dim)} .term .o{color:#8fc59a}
+.mcp{display:flex;border:1px solid var(--line);margin-top:16px;background:var(--panel)}
+.mcp code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font:400 12.5px var(--mono);color:var(--ink);padding:14px 16px}
+.copy{border:0;border-left:1px solid var(--line);background:transparent;color:var(--acc);font:500 13px var(--sans);padding:0 18px;cursor:pointer;min-width:80px}
+.copy:hover{background:var(--acc);color:#000}
+
+/* finale */
+.finale{padding-top:120px;padding-bottom:120px;text-align:left;position:relative;background:radial-gradient(ellipse at 30% 0%,#2a1f10 0%,var(--bg) 60%);scroll-margin-top:0}
+.finale .eyebrow{font:400 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+.finale h2{font:italic 500 clamp(56px,8vw,128px)/.9 var(--serif);margin:20px 0 10px}
+.finale .credits{font:400 13px/2 var(--mono);color:var(--mute);margin:26px 0 36px;display:grid;grid-template-columns:auto 1fr;gap:0 22px;max-width:640px}
+.finale .credits dt{text-transform:uppercase;letter-spacing:.12em;color:var(--dim)}
+.finale .credits dd{margin:0;color:var(--ink)}
+.cmd{display:flex;border:1px solid var(--acc);background:#050404;max-width:900px}
+.cmd code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font:400 14px var(--mono);color:var(--acc2);padding:18px 18px}
+.cmd .copy{border-left:1px solid var(--acc);background:var(--acc);color:#000;font-weight:600}
+.cmd .copy:hover{background:var(--acc2)}
+.links{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:24px;font-size:15px}
+.links a{text-decoration:none;border-bottom:1px solid var(--acc);padding-bottom:2px}
+footer{padding-top:22px;padding-bottom:70px;font:400 11px var(--mono);color:var(--dim);border-top:1px solid var(--line)}
+.tag{position:fixed;left:14px;bottom:14px;z-index:60;background:var(--acc);color:#000;font:500 11px var(--mono);padding:6px 9px}
+
+@media (max-width:1100px){
+  .pad{padding-left:32px;padding-right:32px}
+  :root{--toc:210px}
+}
+@media (max-width:860px){
+  .page{display:block}
+  main{border-right:0}
+  aside.toc{position:sticky;top:0;z-index:40;height:auto;padding:0;background:rgba(11,10,9,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .toc h2,.toc .fine{display:none}
+  .toc nav{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+  .toc nav::-webkit-scrollbar{display:none}
+  .toc ol{flex-direction:row;flex:none}
+  .toc li a{display:flex;gap:6px;white-space:nowrap;padding:12px 14px;border-top:0;border-right:1px solid var(--line);border-bottom:2px solid transparent}
+  .toc li a.on{border-bottom-color:var(--acc)}
+  .toc li a .t{font-size:18px}
+  .toc li a.on .t::before{content:none}
+  .toc .ins{margin:0;border:0;border-left:1px solid var(--line);flex:none;align-items:center;padding:0 16px;white-space:nowrap}
+  .toc .ins span:last-child{display:none}
+  .page{display:flex;flex-direction:column}
+  aside.toc{order:-1}
+  .split{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .pad{padding-left:16px;padding-right:16px}
+  .hero{padding-top:36px;padding-bottom:44px}
+  .hero{padding-top:16px}
+  .stage{padding:32px 18px 0}
+  .hero h1 span:nth-child(2){padding-left:.5em}
+  .hero h1 span:nth-child(3){padding-left:1em}
+  .hero .lede,.hero .lede + ul{margin-left:0}
+  .hero .lede{font-size:16px}
+  .shots{height:300px;margin-top:30px}
+  .shots .main{left:0;width:96%}
+  .shots .side{width:56%;top:40%;right:-4%}
+  .st{padding-top:56px;padding-bottom:64px}
+  .st-head{grid-template-columns:1fr;gap:0}
+  .st-no{font-size:96px}
+  .st-head h2{margin-top:10px}
+  .st-head p{font-size:17px;margin-top:14px}
+  .items{grid-template-columns:repeat(2,1fr)}
+  .items.wide,.items.three{grid-template-columns:1fr}
+  .items li{min-height:100px}
+  .feature figcaption{flex-direction:column;gap:2px}
+  .finale{padding-top:80px;padding-bottom:90px}
+  .cmd{flex-direction:column}
+  .cmd .copy{border-left:0;border-top:1px solid var(--acc);padding:12px}
+  .finale .credits{grid-template-columns:1fr}
+  .finale .credits dd{margin-bottom:8px}
+  .tag{font-size:10px;padding:4px 7px;left:8px;bottom:8px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<main>
+  <header class="mast pad">
+    <img src="../img/icon.png" alt="">
+    <b>Glimpse</b>
+    <span class="meta">v1.6.0 · macOS menu bar</span>
+  </header>
+
+  <section class="hero pad" id="top">
+    <div class="stage">
+      <img class="back" src="../img/selection.webp" alt="" width="1500" height="820">
+      <div class="eyebrow">A native Mac app for showing your screen</div>
+      <h1><span>Grab the screen.</span><span>Draw the point.</span><span>Hand it to a person, or your agent.</span></h1>
+      <p class="lede">Glimpse is one menu bar app for everything you show and tell from your screen. Capture it, mark it up, send it to a person or to Claude Code and Codex, and find it again later. Agents can use it too.</p>
+      <ul><li>Free, MIT</li><li>macOS 14+</li><li>Apple silicon and Intel</li><li>On-device OCR and transcripts</li></ul>
+      <div class="shots">
+        <img class="main" src="../img/editor.webp" alt="Glimpse editor with numbered steps, a red box and a curved arrow from the note Best month yet to the tallest bar" width="2052" height="1524">
+        <img class="side" src="../img/recent.webp" alt="Recent stack of screenshots at the screen edge" width="1100" height="778">
+      </div>
+      <div class="slate">NOW ON SCREEN · EDITOR + RECENT STACK</div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="st pad" id="s1">
+    <div class="st-head">
+      <div class="st-no">01</div>
+      <div><div class="kick">Station one · 7 ways in</div><h2>Capture</h2></div>
+      <p>Freeze the screen and take exactly the part you mean: an area, a window, a whole page, or just its text.</p>
+    </div>
+    <ul class="items">
+      <li><span class="k">⌥⇧⌘4</span><span class="cap">Area<small>Frozen screen, magnifier, live size</small></span></li>
+      <li><span class="k">⌥⇧⌘5</span><span class="cap">Window<small>Clean cut-out</small></span></li>
+      <li><span class="k">⌥⇧⌘6</span><span class="cap">Scrolling page<small>The whole thing, top to bottom</small></span></li>
+      <li><span class="k">⌥⇧⌘2</span><span class="cap">Text<small>On-device OCR, or QR</small></span></li>
+      <li><span class="k">⌥⇧⌘3</span><span class="cap">Fullscreen</span></li>
+      <li><span class="k">⌥⇧⌘7</span><span class="cap">Previous area<small>Same rectangle again</small></span></li>
+      <li><span class="k">⌥⇧⌘8</span><span class="cap">Self-timer</span></li>
+    </ul>
+    <figure class="feature"><img src="../img/selection.webp" alt="Area selection over a dimmed dashboard showing size 535 by 242 and a magnifier" width="1500" height="820" loading="lazy"><figcaption><span><b>01</b> Area selection</span><span>535 × 242, magnifier at the cursor</span></figcaption></figure>
+  </section>
+
+  <!-- 02 -->
+  <section class="st pad" id="s2">
+    <div class="st-head">
+      <div class="st-no">02</div>
+      <div><div class="kick">Station two · 14 tools</div><h2>Mark up</h2></div>
+      <p>Draw the point. Every mark stays editable, and notes land beside a box or arrow as you type.</p>
+    </div>
+    <ul class="items" style="grid-template-columns:repeat(auto-fill,minmax(112px,1fr))">
+      <li><span class="k big">V</span><span class="cap">Select</span></li>
+      <li><span class="k big">A</span><span class="cap">Curved arrow</span></li>
+      <li><span class="k big">L</span><span class="cap">Line</span></li>
+      <li><span class="k big">R</span><span class="cap">Box</span></li>
+      <li><span class="k big">F</span><span class="cap">Filled box</span></li>
+      <li><span class="k big">O</span><span class="cap">Ellipse</span></li>
+      <li><span class="k big">P</span><span class="cap">Pencil</span></li>
+      <li><span class="k big">H</span><span class="cap">Highlighter</span></li>
+      <li><span class="k big">T</span><span class="cap">Text</span></li>
+      <li><span class="k big">N</span><span class="cap">Numbered step</span></li>
+      <li><span class="k big">X</span><span class="cap">Pixelate</span></li>
+      <li><span class="k big">B</span><span class="cap">Blur</span></li>
+      <li><span class="k big">S</span><span class="cap">Spotlight</span></li>
+      <li><span class="k big">C</span><span class="cap">Crop</span></li>
+    </ul>
+    <figure class="feature"><img src="../img/editor.webp" alt="Glimpse editor with numbered steps, highlight, a red box, blurred emails and a curved arrow with a note" width="2052" height="1524" loading="lazy"><figcaption><span><b>02</b> The editor</span><span>Steps, box, highlight, blur, arrow with note</span></figcaption></figure>
+  </section>
+
+  <!-- 03 -->
+  <section class="st pad" id="s3">
+    <div class="st-head">
+      <div class="st-no">03</div>
+      <div><div class="kick">Station three · 4 exits</div><h2>Hand off</h2></div>
+      <p>Give it to a person, or press ⌘↩ and give it to Claude Code or Codex.</p>
+    </div>
+    <ul class="items wide">
+      <li><div class="thumb"><img src="../img/overlay.webp" alt="" loading="lazy" style="object-position:right bottom"></div><span class="cap">Quick Access Overlay<small>Waits in the corner. Copy or save.</small></span></li>
+      <li><div class="thumb"><img src="../img/overlay.webp" alt="" loading="lazy" style="object-position:70% 70%"></div><span class="cap">Drag anywhere<small>Into Slack, Mail or Finder</small></span></li>
+      <li><div class="thumb"><img src="../img/pin.webp" alt="" loading="lazy" style="object-position:80% 80%"></div><span class="cap">Pin<small>Floats above every window</small></span></li>
+      <li><div class="thumb"><img src="../img/send.webp" alt="" loading="lazy" style="object-position:80% 70%"></div><span class="cap">⌘↩ Send to your agent<small>Pick a session when several are open</small></span></li>
+    </ul>
+    <figure class="feature"><img src="../img/send.webp" alt="Editor with the note why does Sep jump and a Send to menu listing three agent sessions" width="1660" height="1160" loading="lazy"><figcaption><span><b>03</b> Send to</span><span>The Claude Code plugin delivers it between turns</span></figcaption></figure>
+  </section>
+
+  <!-- 04 -->
+  <section class="st pad" id="s4">
+    <div class="st-head">
+      <div class="st-no">04</div>
+      <div><div class="kick">Station four · 3 shelves</div><h2>Keep</h2></div>
+      <p>Double-tap right Shift and your last 30 screenshots slide in at the edge of the screen.</p>
+    </div>
+    <ul class="items wide">
+      <li><span class="k">⇧⇧ · ⌥⇧⌘0</span><span class="cap">Recent stack<small>Your last 30, select several at once</small></span></li>
+      <li><span class="k">Stitch</span><span class="cap">One numbered image<small>Laid out so an AI model shrinks it the least</small></span></li>
+      <li><span class="k">~/Glimpse/Meetings</span><span class="cap">Meeting notes<small>Each call becomes a markdown file</small></span></li>
+    </ul>
+    <figure class="feature"><img src="../img/recent.webp" alt="Recent stack at the screen edge with five cards, two selected, and an action bar" width="1100" height="778" loading="lazy"><figcaption><span><b>04</b> Recent stack</span><span>Copy, Draw, Stitch, Send</span></figcaption></figure>
+    <figure class="feature"><img src="../img/stitch.webp" alt="Three screenshots stitched into one image with number badges 1 to 3" width="2067" height="931" loading="lazy"><figcaption><span><b>04b</b> Stitch</span><span>Three captures, one image</span></figcaption></figure>
+  </section>
+
+  <!-- 05 -->
+  <section class="st pad" id="s5">
+    <div class="st-head">
+      <div class="st-no">05</div>
+      <div><div class="kick">Station five · 6 abilities</div><h2>Agents</h2></div>
+      <p>It works both ways. An MCP server lets Claude Code, Cursor and other agents see your screen and show you things. It stays off until you allow it.</p>
+    </div>
+    <ul class="items wide three">
+      <li><span class="k">list</span><span class="cap">List open windows</span></li>
+      <li><span class="k">screenshot</span><span class="cap">Screenshot one window<small>Even when it is covered</small></span></li>
+      <li><span class="k">read</span><span class="cap">Read the text on screen</span></li>
+      <li><span class="k">record</span><span class="cap">Record short clips<small>To check their own work</small></span></li>
+      <li><span class="k">draw</span><span class="cap">Draw in their own colour<small>Arrows, boxes, notes to show or ask you</small></span></li>
+      <li><span class="k">search</span><span class="cap">Search meeting transcripts</span></li>
+    </ul>
+    <div class="feature" style="border:0;background:none">
+      <div class="term" role="img" aria-label="Terminal adding the Glimpse MCP server to Claude Code">
+        <div class="c"># once</div>
+        <div><span class="p">$</span> claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</div>
+        <br>
+        <div class="c"># later, in a session</div>
+        <div><span class="p">›</span> Check the chart after your change. Mark anything that looks off.</div>
+        <div class="c">  glimpse · list windows</div>
+        <div class="c">  glimpse · screenshot "Northwind"</div>
+        <div class="c">  glimpse · draw box + note "16 pt gap here"</div>
+      </div>
+      <div class="mcp"><code>claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</code><button class="copy" type="button" data-copy="claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp">Copy</button></div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="st pad" id="s6">
+    <div class="st-head">
+      <div class="st-no">06</div>
+      <div><div class="kick">Station six · recordings</div><h2>Meetings</h2></div>
+      <p>Record the screen, or let Glimpse notice a call and keep an on-device transcript with speakers.</p>
+    </div>
+    <ul class="items wide">
+      <li><span class="k">⌥⇧⌘R</span><span class="cap">Record the screen<small>MP4 with camera bubble, mic and system audio</small></span></li>
+      <li><span class="k">⌃⌥M</span><span class="cap">Mute the mic<small>While recording</small></span></li>
+      <li><span class="k">8 apps</span><span class="cap">Call detection<small>Meet, Zoom, Teams, Slack, Discord, FaceTime, Webex, Tuple</small></span></li>
+      <li><span class="k">On-device</span><span class="cap">Transcript with speakers<small>Voice profiles never leave the Mac</small></span></li>
+    </ul>
+    <div class="split">
+      <figure class="feature"><img src="../img/meeting.webp" alt="Video call with the Glimpse meeting pill at 23:42 with mute, pause and stop" width="1100" height="700" loading="lazy"><figcaption><span><b>06</b> Meeting pill</span><span>23:42 · mute · pause · stop</span></figcaption></figure>
+      <figure class="feature"><img src="../img/recording.webp" alt="Recording a slide deck with a dashed area, camera bubble and control bar" width="1100" height="700" loading="lazy"><figcaption><span><b>06b</b> Screen recording</span><span>Camera bubble, 1:23</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="finale pad" id="install">
+    <div class="eyebrow">Now showing · v1.6.0</div>
+    <h2>Install Glimpse.</h2>
+    <dl class="credits">
+      <dt>Price</dt><dd>Free. Open source, MIT.</dd>
+      <dt>Runs on</dt><dd>macOS 14+, Apple silicon and Intel</dd>
+      <dt>Updates</dt><dd>Itself</dd>
+      <dt>Privacy</dt><dd>OCR, transcripts and voice profiles stay on the Mac</dd>
+      <dt>Scripts</dt><dd>glimpse:// URLs for Shortcuts, Raycast and scripts</dd>
+    </dl>
+    <div class="cmd"><code>curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button class="copy" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash">Copy</button></div>
+    <div class="links">
+      <a href="https://github.com/miladbeigi/glimpse/releases/latest">Latest release</a>
+      <a href="https://github.com/miladbeigi/glimpse">Source on GitHub</a>
+    </div>
+  </section>
+  <footer class="pad">Glimpse · MIT · macOS 14+</footer>
+</main>
+
+<aside class="toc" aria-label="Stations">
+  <h2>Stations</h2>
+  <nav>
+    <ol>
+      <li><a href="#s1" data-s="s1"><span class="n">01</span><span class="t">Capture</span><span class="c">7</span></a></li>
+      <li><a href="#s2" data-s="s2"><span class="n">02</span><span class="t">Mark up</span><span class="c">14 tools</span></a></li>
+      <li><a href="#s3" data-s="s3"><span class="n">03</span><span class="t">Hand off</span><span class="c">4</span></a></li>
+      <li><a href="#s4" data-s="s4"><span class="n">04</span><span class="t">Keep</span><span class="c">3</span></a></li>
+      <li><a href="#s5" data-s="s5"><span class="n">05</span><span class="t">Agents</span><span class="c">6</span></a></li>
+      <li><a href="#s6" data-s="s6"><span class="n">06</span><span class="t">Meetings</span><span class="c">rec</span></a></li>
+    </ol>
+    <a class="ins" href="#install"><span>Install</span><span>↓</span></a>
+  </nav>
+  <p class="fine">Free · MIT<br>macOS 14+</p>
+</aside>
+</div>
+<div class="tag">Design 02 · The Workbench</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc li a'));
+  function set(id){
+    links.forEach(function(a){
+      var on=a.dataset.s===id;
+      a.classList.toggle('on',on);
+      if(on&&window.innerWidth<=860){
+        var nav=a.closest('nav');
+        if(nav)nav.scrollTo({left:a.offsetLeft-16,behavior:'auto'});
+      }
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)set(e.target.id)});
+    },{rootMargin:'-40% 0px -55% 0px'});
+    ['s1','s2','s3','s4','s5','s6','install','top'].forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.textContent;
+      try{navigator.clipboard.writeText(b.dataset.copy).then(function(){b.textContent='Copied'}).catch(function(){b.textContent='Select it'})}catch(e){b.textContent='Select it'}
+      setTimeout(function(){b.textContent=t},1800);
+    });
+  });
+})();
+</script>
+</body>
+</html>
