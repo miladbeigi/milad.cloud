@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Glimpse: screenshots for macOS that make the point</title>
-  <meta name="description" content="Glimpse is a fast, native macOS menu bar app for screenshots, screen recordings and meeting notes: area, window and scrolling capture, an annotation editor, redaction, pinning, OCR, meeting recording with on-device transcription, and an MCP server so AI agents can take screenshots and search your meeting transcripts. Free and open source.">
+  <meta name="description" content="Glimpse is a fast, native macOS menu bar app for screenshots, screen recordings and meeting notes: area, window and scrolling capture, an annotation editor, redaction, pinning, OCR, a stack of your recent screenshots, meeting recording with on-device transcription, one-key sending to Claude Code, and an MCP server so AI agents can take screenshots, draw on them and search your meeting transcripts. Free and open source.">
   <link rel="canonical" href="https://milad.cloud/glimpse/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Glimpse: screenshots for macOS that make the point">
-  <meta property="og:description" content="Capture an area, a window or a whole scrolling page. Annotate, redact, pin, or record it with your camera and voice. Record meetings and get a transcript, made on your Mac. Free and open source.">
+  <meta property="og:description" content="Capture an area, a window or a whole scrolling page. Annotate, redact, pin, or record it with your camera and voice. Send it to Claude Code with one key. Record meetings and get a transcript, made on your Mac. Free and open source.">
   <meta property="og:url" content="https://milad.cloud/glimpse/">
   <meta property="og:image" content="https://milad.cloud/glimpse/img/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -26,6 +26,7 @@
       <nav class="nav__links" aria-label="Sections">
         <a class="hide-sm" href="#capture">Capture</a>
         <a class="hide-sm" href="#annotate">Annotate</a>
+        <a class="hide-sm" href="#recent">Recent</a>
         <a class="hide-sm" href="#record">Record</a>
         <a class="hide-sm" href="#meetings">Meetings</a>
         <a class="hide-sm" href="#agents">Agents</a>
@@ -40,13 +41,13 @@
       <div class="wrap hero__copy">
         <p class="eyebrow"><span class="dot"></span>Native macOS app · Free and open source</p>
         <h1>Screenshots that<br><span class="mq" id="mq">make the point.<i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i><span class="mq__size" id="mq-size">0 × 0</span></span></h1>
-        <p class="lede">Glimpse lives in your menu bar. Capture an area, a window or a whole scrolling page, mark it up, redact it, pin it above your work, or record your screen with your camera and voice. Record your calls, too, and get a transcript made on your Mac.</p>
+        <p class="lede">Glimpse lives in your menu bar. Capture an area, a window or a whole scrolling page, mark it up, redact it, pin it above your work, or record your screen with your camera and voice. Send a marked-up screenshot to your coding agent in one keystroke. Record your calls, too, and get a transcript made on your Mac.</p>
         <div class="hero__cta">
           <div class="cmd" id="hero-cmd">
             <span class="cmd__text" id="hero-cmd-text" data-text="curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash"><span class="p">$</span>curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</span>
             <button class="copy" type="button" data-copy="#hero-cmd-text"></button>
           </div>
-          <p class="cmd-note"><span data-release="miladbeigi/glimpse">v1.4.3</span> · macOS 14+ · Apple silicon and Intel · <a href="#install">Other ways to install</a></p>
+          <p class="cmd-note"><span data-release="miladbeigi/glimpse">v1.6.0</span> · macOS 14+ · Apple silicon and Intel · <a href="#install">Other ways to install</a></p>
         </div>
       </div>
 
@@ -133,9 +134,25 @@
         <div class="feature__copy rv">
           <p class="kicker">Quick Access Overlay</p>
           <h2>Your capture waits in the corner.</h2>
-          <p>Hover it for <b>Copy</b> and <b>Save</b>, or use the corner buttons to close, annotate, pin or copy its text. Drag it straight into Slack, Mail or Finder. Swipe it away, and bring it back with <kbd>⌥⇧⌘9</kbd> if you change your mind.</p>
+          <p>Hover it for <b>Copy</b> and <b>Save</b>, and a row of buttons to draw on it, keep it on screen, copy its text, move it to your recent screenshots or send it to your agent. Drag it straight into Slack, Mail or Finder. Swipe it away, and bring it back with <kbd>⌥⇧⌘9</kbd> if you change your mind.</p>
         </div>
-        <figure class="shot rv"><img src="img/overlay.webp" width="1100" height="640" alt="Two captures stacked in the bottom-right corner; hovering one shows Copy and Save buttons" loading="lazy"></figure>
+        <figure class="shot rv"><img src="img/overlay.webp" width="1100" height="640" alt="Two captures stacked in the bottom-right corner; hovering one shows Copy and Save, a close button, and buttons to draw, keep, copy text, show in recent screenshots and send" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="sec feature feature--flip" id="recent">
+      <div class="wrap feature__grid">
+        <div class="feature__copy rv">
+          <p class="kicker">Recent screenshots</p>
+          <h2>Your last 30 screenshots, one double-tap away.</h2>
+          <p>Double-tap the right <kbd>Shift</kbd> and your recent captures slide in at the edge of the screen, without taking focus from the app you're in. Click one to draw on it, select a few to copy, send or drag them into a chat, or step through them one after another. Your marks stay editable.</p>
+          <p><b>Stitch</b> joins the ones you pick into a single numbered image, arranged so an AI model shrinks it the least and reads every piece clearly.</p>
+          <p class="feature__meta"><kbd>⇧ ⇧</kbd> or <kbd>⌥⇧⌘0</kbd> show the stack</p>
+        </div>
+        <div class="recent__media">
+          <figure class="shot rv"><img src="img/recent.webp" width="1100" height="778" alt="The recent screenshots stack at the right edge of the screen: five cards, two selected and numbered, an agent's card labelled Claude, and a bar with Copy, Draw, Stitch, Send, Remove and Remove All" loading="lazy"></figure>
+          <figure class="shot shot--editor rv"><img src="img/stitch.webp" width="2067" height="931" alt="Three screenshots stitched into one image, each with a number badge from 1 to 3" loading="lazy"></figure>
+        </div>
       </div>
     </section>
 
@@ -144,10 +161,10 @@
         <header class="sec__head rv">
           <p class="kicker">Annotate</p>
           <h2>Arrows, steps, blur. Every mark stays editable.</h2>
-          <p>Select, move, resize, restyle or delete any annotation after you draw it. Pixelate and blur hide what shouldn't be shared. Each tool is one key away.</p>
+          <p>The arrow draws like a pencil: curve it around what's in the way, or keep it straight. Draw a box or an arrow and just start typing, and your note lands beside it. Select, move, resize, restyle or delete any mark after you draw it. Pixelate and blur hide what shouldn't be shared. Each tool is one key away.</p>
         </header>
         <figure class="shot shot--editor rv">
-          <img src="img/editor.webp" width="1330" height="762" alt="The Glimpse annotation editor: a dashboard with numbered steps, a highlighted subtitle, a red box, an arrow labelled Best month yet and blurred customer emails" loading="lazy">
+          <img src="img/editor.webp" width="1026" height="762" alt="The Glimpse annotation editor: a dashboard with numbered steps, a highlighted subtitle, a red box, a curved arrow from the note Best month yet to the tallest bar, and blurred customer emails" loading="lazy">
         </figure>
         <ul class="tools rv" id="tools" aria-label="Editor shortcuts">
           <li><kbd>V</kbd>Select</li><li><kbd>A</kbd>Arrow</li><li><kbd>L</kbd>Line</li><li><kbd>R</kbd>Rectangle</li><li><kbd>F</kbd>Filled</li><li><kbd>O</kbd>Ellipse</li><li><kbd>P</kbd>Pen</li><li><kbd>H</kbd>Highlighter</li><li><kbd>T</kbd>Text</li><li><kbd>N</kbd>Steps</li><li><kbd>X</kbd>Pixelate</li><li><kbd>B</kbd>Blur</li><li><kbd>S</kbd>Spotlight</li><li><kbd>C</kbd>Crop</li>
@@ -210,12 +227,25 @@
       </div>
     </section>
 
+    <section class="sec feature" id="send">
+      <div class="wrap feature__grid">
+        <div class="feature__copy rv">
+          <p class="kicker">Send to your agent</p>
+          <h2>Draw on it, press ⌘↩, and Claude sees it.</h2>
+          <p>Mark up what's wrong and send the screenshot straight to Claude Code or Codex, in a terminal, an editor or the Claude app. With several sessions open, a menu lists them by title, folder and app, the one you used last first. Glimpse's Claude Code plugin delivers it between turns, so nothing is typed into your terminal.</p>
+          <p>Your agent can draw back, in its own colour: it puts screenshots with its arrows, boxes and notes in your stack, or opens one with a question and waits for you to draw your answer.</p>
+          <p class="feature__meta">Install the plugin in <b>Settings › Agents</b>.</p>
+        </div>
+        <figure class="shot shot--editor rv"><img src="img/send.webp" width="830" height="580" alt="Sending a marked-up chart from the editor: a note asks why does Sep jump, and the Send menu lists three sessions: Revenue chart tooltips in Ghostty, Fix the churn calculation in Claude, and northwind-ios in Terminal" loading="lazy"></figure>
+      </div>
+    </section>
+
     <section class="sec" id="agents">
       <div class="wrap agents">
         <div class="agents__copy rv">
           <p class="kicker">For AI agents</p>
           <h2>Let your coding agent see the screen.</h2>
-          <p>Glimpse includes an <a href="https://modelcontextprotocol.io">MCP</a> server. Claude Code, Cursor and other agents can list windows, screenshot one even when it's covered, read text on-device, record short clips to check their own work, and search your meeting transcripts. It's off until you allow it in Settings, and recordings always show Glimpse's controls so you can stop them.</p>
+          <p>Glimpse includes an <a href="https://modelcontextprotocol.io">MCP</a> server. Claude Code, Cursor and other agents can list windows, screenshot one even when it's covered, read text on-device, record short clips to check their own work, draw on screenshots to show or ask you something, and search your meeting transcripts. It's off until you allow it in Settings, and recordings always show Glimpse's controls so you can stop them.</p>
           <div class="cmd">
             <span class="cmd__text" id="mcp-cmd"><span class="p">$</span>claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</span>
             <button class="copy" type="button" data-copy="#mcp-cmd"></button>
