@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Glimpse · The Desktop</title>
-<link rel="icon" href="../img/icon.png">
 <style>
 @font-face {
   font-family: 'Inter';
@@ -40,9 +39,17 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/1dc044f4824f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-display: swap;
   src: url(fonts/340e696a9550.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -58,528 +65,243 @@
 </style>
 <style>
 :root{
-  --ui:-apple-system,BlinkMacSystemFont,'Inter','Helvetica Neue',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
-  --ink:#1d1d1f;--ink2:#56565c;--ink3:#8a8a90;--win:#f5f5f7;--line:#dcdce0;--accent:#2f6bf2;
+  --ink:#1C1C1F; --mute:#6A6A73; --line:#E2E0DC; --paper:#F6F4F0; --win:#FBFBFC; --acc:#4B63F5;
+  --sans:"Inter",system-ui,-apple-system,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{font-family:var(--ui);color:var(--ink);font-size:14px;line-height:1.5;background:#20302e;overflow:hidden;-webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-button{font-family:inherit}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2{font-weight:800;letter-spacing:-.035em;line-height:1.02;margin:0}
+h1{font-size:clamp(36px,4.6vw,68px)}
+h2{font-size:clamp(30px,3.4vw,50px)}
+.num{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 14px}
+.line{color:#4C4C55;margin:16px 0 0;max-width:26em}
+kbd{font:600 14px/1 var(--mono);display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:7px;background:#fff;border:1px solid #D9D7D2;border-bottom-width:3px}
+.kk{display:flex;gap:5px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;padding:11px 20px;border-radius:9px;background:var(--acc);color:#fff;font:600 15px var(--sans);text-decoration:none;border:0;cursor:pointer}
+.ghost{font-weight:600;color:var(--mute);text-decoration:none}
 
-/* wallpaper: dusk over layered hills, all CSS */
-.wall{position:fixed;inset:0;overflow:hidden;background:
-  radial-gradient(60% 50% at 72% 30%,#f7d9a8 0,rgba(247,217,168,0) 70%),
-  linear-gradient(180deg,#9fb3c2 0%,#d9c3ae 42%,#e8b98c 58%,#c98a69 72%,#6f5a55 100%)}
-.wall .sun{position:absolute;left:68%;top:30%;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#fff4dc 0 55%,rgba(255,244,220,0) 72%);transform:translate(-50%,-50%)}
-.wall .h{position:absolute;border-radius:50%;left:-20%;right:-20%}
-.wall .h1{top:52%;height:70%;left:-30%;right:10%;background:linear-gradient(#7f9188,#5e7069);box-shadow:inset 0 30px 60px rgba(255,220,180,.25)}
-.wall .h2{top:58%;height:70%;left:25%;right:-40%;background:linear-gradient(#5a6e68,#3f524d);box-shadow:inset 0 30px 60px rgba(255,210,170,.18)}
-.wall .h3{top:68%;height:70%;left:-40%;right:30%;background:linear-gradient(#3b4f4a,#2a3b38)}
-.wall .h4{top:76%;height:70%;left:10%;right:-50%;background:linear-gradient(#2a3a37,#1b2725)}
-.wall .grain{position:absolute;inset:0;background-image:radial-gradient(rgba(0,0,0,.06) 1px,transparent 1px);background-size:3px 3px;mix-blend-mode:multiply}
+/* menu bar (also the phone nav) */
+.menubar{display:flex;align-items:center;gap:18px;height:34px;padding:0 16px;font:600 14px var(--sans);background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.5);position:relative;z-index:30}
+.menubar .me{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:auto}
+.menubar .me img{width:18px;height:18px}
+.menubar a.gh{font-weight:500;text-decoration:none}
+.menubar a.in{font-weight:600;text-decoration:none;padding:3px 10px;border-radius:6px;background:var(--acc);color:#fff}
 
-/* menu bar */
-.mb{position:fixed;top:0;left:0;right:0;height:28px;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:0 10px;
-  background:rgba(246,240,232,.55);backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6);font-size:13px;color:#1d1d1f;border-bottom:1px solid rgba(0,0,0,.06)}
-.mb .l,.mb .r{display:flex;align-items:center;gap:2px;height:100%}
-.mb .it{padding:2px 9px;border-radius:5px;cursor:default;white-space:nowrap}
-.mb .app{font-weight:700}
-.mb .gi{height:22px;padding:0 7px;border:0;background:none;border-radius:5px;display:flex;align-items:center;cursor:pointer;color:#1d1d1f}
-.mb .gi.on,.mb .gi:hover{background:rgba(0,0,0,.12)}
-.mb svg{display:block}
-.mb .clock{font-variant-numeric:tabular-nums}
+/* phone: plain sections */
+.desk{position:relative}
+.win{padding:56px 20px 0;max-width:720px;margin:0 auto}
+.win .tb{display:none}
+.win .body{display:block}
+.win figure{margin:28px 0 0}
+.win figure img{border-radius:12px;box-shadow:0 18px 40px -22px rgba(20,20,40,.45)}
+.win figure.bare img{border-radius:0;box-shadow:none}
+.hero-win{text-align:left}
+.hero-win .ic{width:64px;height:64px;margin-bottom:22px}
+.hero-win .sub{color:#4C4C55;margin:20px 0 0;font-size:18px}
+.cta{display:flex;align-items:center;gap:22px;margin-top:26px}
+.dock{display:none}
 
-/* dropdown menu */
-.menu{position:fixed;top:31px;z-index:950;width:300px;padding:5px;border-radius:11px;font-size:13px;
-  background:rgba(242,240,238,.94);backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);
-  box-shadow:0 0 0 .5px rgba(0,0,0,.25),0 14px 40px rgba(0,0,0,.28);display:none}
-.menu.open{display:block}
-.menu .hd{padding:6px 10px 4px;font-size:11px;font-weight:600;color:var(--ink3);display:flex;justify-content:space-between}
-.menu button{display:flex;width:100%;border:0;background:none;text-align:left;padding:4px 10px;border-radius:6px;color:var(--ink);font-size:13px;cursor:default;align-items:center;gap:8px}
-.menu button:hover,.menu button:focus-visible{background:var(--accent);color:#fff;outline:0}
-.menu button span{flex:1}
-.menu kbd{font-family:var(--ui);font-size:12.5px;color:var(--ink3);letter-spacing:.06em}
-.menu button:hover kbd,.menu button:focus-visible kbd{color:rgba(255,255,255,.85)}
-.menu hr{border:0;border-top:1px solid rgba(0,0,0,.1);margin:5px 10px}
-.menu .sub{position:relative}
-.menu .subm{position:absolute;right:100%;top:-5px;width:240px;margin-right:2px}
-.menu .sub:hover>.subm,.menu .sub:focus-within>.subm{display:block}
-.menu button[disabled]{color:var(--ink3)}
-.menu button[disabled]:hover{background:none;color:var(--ink3)}
+.sec{padding:96px 20px 0;max-width:1180px;margin:0 auto}
+.together{display:grid;gap:30px;align-items:center}
+.together figure{margin:0}
+.together img{border-radius:14px;box-shadow:0 24px 50px -26px rgba(20,20,40,.45)}
+.install{text-align:center;padding-bottom:110px}
+.install .ic{width:80px;height:80px;margin:0 auto 20px}
+.cmd{display:flex;max-width:860px;margin:28px auto 0;background:#1C1C1F;border-radius:12px;overflow:hidden;text-align:left}
+.cmd code{flex:1;min-width:0;padding:15px 18px;font:500 14px/1.5 var(--mono);color:#EEEEF2;white-space:nowrap;overflow-x:auto}
+.cmd code::before{content:"$ ";color:#8FA0FF}
+.cmd button{flex:none;border:0;border-left:1px solid #34343a;background:#2A2A30;color:#fff;font:600 14px var(--sans);padding:0 20px;cursor:pointer}
+.cmd button:hover{background:#36363d}
+.small{font:500 13px var(--mono);color:var(--mute);margin:20px 0 0}
+.links{display:flex;justify-content:center;gap:24px;margin-top:14px;font-weight:600}
+footer{border-top:1px solid var(--line);max-width:1180px;margin:0 auto;padding:20px 20px 70px;font:500 13px var(--mono);color:var(--mute)}
+.tag{position:fixed;right:14px;bottom:14px;z-index:80;font:600 11.5px var(--mono);background:var(--ink);color:#fff;padding:6px 10px;border-radius:6px}
 
-/* hint */
-.hint{position:fixed;top:40px;z-index:880;background:#fffbe9;color:#3d3420;font-size:13px;padding:9px 13px;border-radius:9px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:240px;transform:translateX(-50%)}
-.hint::before{content:"";position:absolute;top:-7px;left:50%;margin-left:-7px;border:7px solid transparent;border-top:0;border-bottom-color:#fffbe9}
-.hint b{font-weight:600}
-.hint.gone{display:none}
-@media (prefers-reduced-motion:no-preference){.hint{animation:bob 2.4s ease-in-out infinite}@keyframes bob{50%{margin-top:4px}}}
-
-/* desktop icons */
-.dicons{position:fixed;right:18px;top:150px;z-index:5;display:flex;flex-direction:column;gap:14px;align-items:center}
-.dicon{border:0;background:none;width:92px;text-align:center;color:#fff;font-size:12px;cursor:pointer;text-shadow:0 1px 3px rgba(0,0,0,.6);padding:4px;border-radius:6px}
-.dicon:focus-visible,.dicon:hover{background:rgba(255,255,255,.15);outline:0}
-.dicon .fi{width:56px;height:46px;margin:0 auto 4px;border-radius:6px;position:relative;background:linear-gradient(#7cc0f5,#4a9be6);box-shadow:0 2px 6px rgba(0,0,0,.3)}
-.dicon .fi::before{content:"";position:absolute;left:0;top:-6px;width:24px;height:10px;border-radius:4px 4px 0 0;background:#5fa9ec}
-.dicon .doc{width:42px;height:52px;margin:0 auto 4px;background:#fff;border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.3);position:relative;font-family:var(--mono);font-size:9px;color:#555;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px}
-.dicon .doc::after{content:"";position:absolute;right:0;top:0;border:7px solid transparent;border-right-color:#ddd;border-top-color:#ddd}
-
-/* windows */
-.win{position:absolute;z-index:10;background:var(--win);border-radius:12px;box-shadow:0 0 0 .5px rgba(0,0,0,.3),0 24px 60px rgba(0,0,0,.35),0 4px 12px rgba(0,0,0,.15);overflow:hidden;display:none;max-width:calc(100vw - 24px)}
-.win.open{display:flex;flex-direction:column;max-height:calc(100vh - 116px)}
-.win .tb{flex:none}.win .bd{overflow:auto;flex:1;min-height:0;overscroll-behavior:contain}
-.desk{position:fixed;inset:0;overflow:hidden}
-.win.focus{box-shadow:0 0 0 .5px rgba(0,0,0,.35),0 32px 80px rgba(0,0,0,.45),0 6px 14px rgba(0,0,0,.18)}
-.tb{height:38px;display:flex;align-items:center;gap:8px;padding:0 13px;cursor:grab;user-select:none;touch-action:none;background:linear-gradient(#ececee,#e3e3e6);border-bottom:1px solid #d0d0d4;position:relative}
-.tb:active{cursor:grabbing}
-.tl{display:flex;gap:8px}
-.tl i{width:12px;height:12px;border-radius:50%;background:#d4d4d8;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15)}
-.win.focus .tl i:nth-child(1){background:#ff5f57}.win.focus .tl i:nth-child(2){background:#febc2e}.win.focus .tl i:nth-child(3){background:#28c840}
-.tl .x{width:12px;height:12px;border-radius:50%;border:0;padding:0;background:#d4d4d8;cursor:pointer;position:relative}
-.win.focus .tl .x{background:#ff5f57}
-.tl .x:hover::after{content:"×";position:absolute;inset:0;font-size:11px;line-height:12px;color:#5a0d0a;font-weight:700}
-.tt{position:absolute;left:80px;right:80px;text-align:center;font-weight:600;font-size:13px;color:#4a4a50;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
-.bd{padding:18px 20px 20px}
-.bd h2{font-size:20px;margin:0 0 6px;letter-spacing:-.01em}
-.bd p{margin:0 0 10px;color:var(--ink2)}
-.bd .lead{font-size:15px;color:var(--ink)}
-.pic{background:#e4e4e8;margin:-18px -20px 14px;padding:16px;display:flex;justify-content:center;border-bottom:1px solid var(--line)}
-.pic img{display:block;max-width:100%;max-height:42vh;border-radius:6px}
-.keys{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0 2px}
-kbd.k{font-family:var(--ui);font-size:12px;background:#fff;border:1px solid #cfcfd4;border-bottom-width:2px;border-radius:5px;padding:1px 7px;color:var(--ink)}
-.rows{margin:6px 0 0;border-top:1px solid var(--line)}
-.rows div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
-.rows div span:last-child{font-family:var(--ui);color:var(--ink3);white-space:nowrap;letter-spacing:.05em}
-.rows div.hl{background:#e5edff;margin:0 -8px;padding:6px 8px;border-radius:5px;border-color:transparent}
-.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.btn{border:1px solid #c9c9ce;background:#fff;border-radius:6px;padding:4px 12px;font-size:13px;cursor:pointer;color:var(--ink);text-decoration:none}
-.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn:hover{filter:brightness(.96)}
-
-/* readme */
-.readme .bd{font-size:14.5px}
-.readme h1{font-size:30px;line-height:1.1;margin:2px 0 10px;letter-spacing:-.02em}
-.readme h1 small{display:block;font-size:13px;font-weight:500;color:var(--ink3);letter-spacing:0;margin-top:6px;font-family:var(--mono)}
-.loop{list-style:none;margin:12px 0;padding:0;counter-reset:s}
-.loop li{display:grid;grid-template-columns:28px 1fr;gap:4px 8px;padding:8px 0;border-top:1px solid var(--line);counter-increment:s}
-.loop li::before{content:counter(s);width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.loop b{font-weight:600}
-.loop a,.inl{color:var(--accent);text-decoration:none;cursor:pointer;border:0;background:none;padding:0;font:inherit}
-.loop a:hover,.inl:hover{text-decoration:underline}
-.readme .foot{font-family:var(--mono);font-size:11.5px;color:var(--ink3);margin-top:10px}
-
-/* terminal */
-.term{background:#1c1c1e;color:#e8e8ea}
-.term .tb{background:linear-gradient(#3a3a3c,#2f2f31);border-color:#111}
-.term .tt{color:#bdbdc2}
-.term .bd{font-family:var(--mono);font-size:12.5px;line-height:1.6}
-.term .c{color:#8e8e93}
-.term .pr{color:#5ad17a}
-.term .cmd{display:flex;gap:10px;align-items:flex-start;background:#2a2a2d;border-radius:8px;padding:10px 12px;margin:8px 0}
-.term .cmd code{flex:1;word-break:break-all;color:#fff}
-.term .cmd button{flex:none;border:1px solid #4a4a4e;background:#3a3a3c;color:#fff;border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer;font-family:var(--ui)}
-.term .cmd button:hover{background:#4a4a4e}
-.term a{color:#7fb0ff}
-.term ul{margin:4px 0 8px;padding-left:18px}
-.term li{margin:2px 0}
-
-/* settings mock */
-.pref{display:grid;grid-template-columns:150px 1fr;gap:0;margin:-18px -20px -20px}
-.pref nav{background:#e9e9ec;border-right:1px solid var(--line);padding:10px 8px;font-size:13px}
-.pref nav div{padding:4px 8px;border-radius:5px}
-.pref nav div.on{background:#d6d6db}
-.pref section{padding:16px 18px}
-.tog{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
-.tog i{width:30px;height:18px;border-radius:9px;background:#ccc;position:relative;flex:none}
-.tog i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3)}
-.tog i.on{background:#34c759}.tog i.on::after{left:14px}
-
-/* ocr mock */
-.ocr{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:12.5px;color:var(--ink);margin-bottom:10px}
-.ocr small{display:block;color:var(--ink3);font-family:var(--ui);font-size:11px;margin-bottom:4px}
-
-/* dock */
-.dock{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);z-index:800;display:flex;align-items:flex-end;gap:8px;padding:7px 9px;border-radius:20px;
-  background:rgba(255,255,255,.28);backdrop-filter:blur(26px) saturate(1.5);-webkit-backdrop-filter:blur(26px) saturate(1.5);box-shadow:0 0 0 .5px rgba(255,255,255,.4) inset,0 10px 30px rgba(0,0,0,.25)}
-.dk{position:relative;border:0;background:none;padding:0;cursor:pointer;width:56px;height:56px;transition:transform .15s}
-.dk:hover,.dk:focus-visible{transform:translateY(-6px) scale(1.08);outline:0}
-.dk .ic{width:56px;height:56px;border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.35)}
-.dk img{width:56px;height:56px;display:block}
-.dk .lbl{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:rgba(40,40,42,.85);color:#fff;font-size:12px;padding:3px 9px;border-radius:6px;white-space:nowrap;display:none}
-.dk:hover .lbl,.dk:focus-visible .lbl{display:block}
-.dk.run::after{content:"";position:absolute;bottom:-5px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:rgba(0,0,0,.6)}
-.dsep{width:1px;align-self:stretch;background:rgba(0,0,0,.18);margin:4px 2px}
-
-.tag{position:fixed;left:12px;bottom:12px;z-index:990;font-family:var(--mono);font-size:11px;background:rgba(20,20,22,.8);color:#fff;padding:5px 9px;border-radius:6px}
-.phone-head,.phone-menu{display:none}
-
-/* phones: no desktop, stacked cards */
-@media (max-width:760px){
-  body{overflow:auto;overflow-x:hidden;height:auto}
-  html{height:auto}
-  .mb .l .it:not(.app),.mb .clock,.dicons,.dock,.hint,.menu{display:none!important}
-  .mb{position:sticky}
-  .wall{position:fixed}
-  .desk{position:relative;inset:auto;overflow:visible;padding:12px 12px 70px;display:flex;flex-direction:column;gap:14px}
-  .win{position:relative!important;left:auto!important;top:auto!important;width:auto!important;display:block!important;max-width:none;max-height:none!important;z-index:auto!important}
-  .win .bd{overflow:visible}
-  .tl .x{pointer-events:none}
-  .tb{cursor:default}
-  .phone-head{display:block;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.35);padding:22px 4px 4px}
-  .phone-head h1{font-size:30px;line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
-  .phone-head p{margin:0;font-size:15px}
-  .phone-menu{display:block;background:rgba(240,238,236,.9);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:12px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-  .phone-menu .hd{padding:6px 10px;font-size:11px;font-weight:600;color:var(--ink3)}
-  .phone-menu a{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:15px;border-top:1px solid rgba(0,0,0,.06)}
-  .phone-menu a kbd{font-family:var(--ui);color:var(--ink3);font-size:13px}
-  .pic img{max-height:none}
-  .pref{grid-template-columns:1fr}
-  .pref nav{display:none}
-  .readme h1{font-size:24px}
+/* ===== desktop metaphor ===== */
+@media (min-width:900px){
+  .desk{height:100vh;min-height:660px;overflow:hidden;
+    background:
+      radial-gradient(60% 70% at 18% 20%,#F3D9C4 0,rgba(243,217,196,0) 70%),
+      radial-gradient(55% 60% at 85% 30%,#C9D3F2 0,rgba(201,211,242,0) 70%),
+      radial-gradient(70% 60% at 60% 100%,#D9CDEB 0,rgba(217,205,235,0) 70%),
+      linear-gradient(170deg,#E9E3DC,#DCDDE8)}
+  .menubar{position:absolute;top:0;left:0;right:0}
+  .win{position:absolute;left:50%;top:calc(50% - 30px);padding:0;margin:0;max-width:none;
+    transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px)));
+    background:var(--win);border-radius:14px;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 40px 90px -20px rgba(40,36,60,.45),0 10px 30px -10px rgba(40,36,60,.25);display:none;z-index:10}
+  .win.open{display:block}
+  .win.open.anim{animation:pop .28s cubic-bezier(.2,.8,.2,1) both}
+  .win .tb{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-bottom:1px solid #ECEBE8;cursor:grab;user-select:none;touch-action:none}
+  .win .tb:active{cursor:grabbing}
+  .win .tb i,.win .tb button{width:12px;height:12px;border-radius:50%;background:#DAD9D6;border:0;padding:0}
+  .win .tb button.x{background:#FF5F57;cursor:pointer}
+  .win .tb button.x:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  .win .tb span{flex:1;text-align:center;font:600 13px var(--sans);color:#55555d;margin-right:52px}
+  .hero-win{width:min(720px,80vw);text-align:center}
+  .hero-win .body{padding:44px 56px 46px}
+  .hero-win .ic{margin:0 auto 20px;width:72px;height:72px}
+  .hero-win .sub{margin:20px auto 0;max-width:32em}
+  .cta{justify-content:center}
+  .job{width:min(1160px,90vw)}
+  .job .body{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px;align-items:center;padding:30px 34px 30px 40px}
+  .job h2{font-size:clamp(28px,2.7vw,40px)}
+  .job figure{margin:0;display:flex;justify-content:center}
+  .job figure img{width:auto;max-height:calc(100vh - 260px)}
+  .dock{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:20;display:flex;align-items:flex-end;gap:10px;padding:9px 12px 7px;border-radius:22px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid rgba(255,255,255,.6);box-shadow:0 14px 40px -14px rgba(40,36,60,.4)}
+  .dock .sep{width:1px;align-self:stretch;margin:4px 4px 18px;background:rgba(0,0,0,.15)}
+  .app{appearance:none;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;color:var(--ink)}
+  .app .sq{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;box-shadow:0 4px 10px -3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .18s cubic-bezier(.2,.8,.2,1)}
+  .app .sq svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .app .sq img{width:56px;height:56px}
+  .app small{font:500 11px var(--sans);color:#3a3a42;white-space:nowrap}
+  .app .dot{width:4px;height:4px;border-radius:50%;background:transparent;margin-top:-2px}
+  .app[aria-pressed="true"] .dot{background:#3a3a42}
+  .app:hover .sq,.app:focus-visible .sq{transform:translateY(-6px) scale(1.06)}
+  .app:focus-visible{outline:none}
+  .a1{background:linear-gradient(160deg,#5B8CFF,#3456E8)}
+  .a2{background:linear-gradient(160deg,#FF7A6B,#E8344A)}
+  .a3{background:linear-gradient(160deg,#4FD18B,#169C5C)}
+  .a4{background:linear-gradient(160deg,#B67CFF,#7A3BF0)}
+  .together{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:5vw}
+  .sec{padding-top:140px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (min-width:900px) and (max-height:760px){
+  .hero-win .body{padding:30px 44px 32px}
+  .hero-win .ic{width:56px;height:56px;margin-bottom:14px}
+  .app .sq,.app .sq img{width:48px;height:48px}
+}
+@media (max-width:520px){
+  .menubar a.gh{display:none}
+  .cmd code{font-size:12.5px}
+}
+@keyframes pop{from{opacity:.3;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px) + 12px)) scale(.97)}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .win.open.anim{animation:none}
+  .app .sq{transition:none}
+}
 </style>
 </head>
 <body>
-<div class="wall" aria-hidden="true"><div class="sun"></div><div class="h h1"></div><div class="h h2"></div><div class="h h3"></div><div class="h h4"></div><div class="grain"></div></div>
-
-<div class="mb" role="menubar">
-  <div class="l"><span class="it app">Glimpse</span><span class="it">File</span><span class="it">Edit</span><span class="it">View</span><span class="it">Window</span><span class="it">Help</span></div>
-  <div class="r">
-    <button class="gi" id="gi" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Glimpse menu">
-      <svg width="18" height="16" viewBox="0 0 18 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5V2.5a1 1 0 0 1 1-1H5M13 1.5h2.5a1 1 0 0 1 1 1V5M16.5 11v2.5a1 1 0 0 1-1 1H13M5 14.5H2.5a1 1 0 0 1-1-1V11"/><circle cx="9" cy="8" r="2.2"/></svg>
-    </button>
-    <span class="it"><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0zM3.6 7a6.3 6.3 0 0 1 8.8 0l-1.3 1.3a4.5 4.5 0 0 0-6.2 0zM1.3 4.7a9.6 9.6 0 0 1 13.4 0l-1.3 1.3a7.8 7.8 0 0 0-10.8 0z"/></svg></span>
-    <span class="it"><svg width="24" height="12" viewBox="0 0 24 12"><rect x=".5" y=".5" width="20" height="11" rx="3" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/><rect x="21.5" y="4" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></span>
-    <span class="it clock" id="clock">Fri 20 Nov 9:41</span>
-  </div>
-</div>
-
-<div class="menu" id="menu" role="menu">
-  <div class="hd"><span>Glimpse</span><span>v1.6.0</span></div>
-  <button data-open="capture" data-hl="4"><span>Capture Area</span><kbd>⌥⇧⌘4</kbd></button>
-  <button data-open="capture" data-hl="5"><span>Capture Window</span><kbd>⌥⇧⌘5</kbd></button>
-  <button data-open="capture" data-hl="6"><span>Capture Scrolling</span><kbd>⌥⇧⌘6</kbd></button>
-  <button data-open="text"><span>Capture Text</span><kbd>⌥⇧⌘2</kbd></button>
-  <button data-open="capture" data-hl="3"><span>Capture Fullscreen</span><kbd>⌥⇧⌘3</kbd></button>
-  <button data-open="capture" data-hl="7"><span>Capture Previous Area</span><kbd>⌥⇧⌘7</kbd></button>
-  <button data-open="capture" data-hl="8"><span>Self-Timer</span><kbd>⌥⇧⌘8</kbd></button>
-  <hr>
-  <button data-open="record"><span>Record Screen</span><kbd>⌥⇧⌘R</kbd></button>
-  <div class="sub"><button data-open="meetings"><span>Meetings</span><kbd>▸</kbd></button>
-    <div class="menu subm">
-      <button data-open="meetings"><span>Record This Call</span></button>
-      <button data-open="meetings"><span>Open ~/Glimpse/Meetings</span></button>
-      <button data-open="meetings"><span>Speakers and Voice Profiles…</span></button>
-    </div>
-  </div>
-  <hr>
-  <button data-open="markup"><span>Open Editor…</span></button>
-  <button data-open="handoff"><span>Bring Back Last Capture</span><kbd>⌥⇧⌘9</kbd></button>
-  <button data-open="pin"><span>Pin to Screen</span></button>
-  <button data-open="recent"><span>Recent Screenshots</span><kbd>⌥⇧⌘0</kbd></button>
-  <button data-open="send"><span>Send to Claude…</span><kbd>⌘↩</kbd></button>
-  <hr>
-  <button data-open="agents"><span>Agents (MCP)…</span></button>
-  <button data-open="install"><span>Install / Update…</span></button>
-  <button data-open="settings"><span>Settings…</span><kbd>⌘,</kbd></button>
-  <hr>
-  <button data-open="readme"><span>About Glimpse</span></button>
-</div>
-
-<div class="hint" id="hint">Click the <b>Glimpse icon</b> in the menu bar to look around. Or try the Dock.</div>
-
-<div class="dicons">
-  <button class="dicon" data-open="readme" type="button"><div class="doc">.md</div>README.md</button>
-  <button class="dicon" data-open="meetings" type="button"><div class="fi"></div>Meetings</button>
-  <button class="dicon" data-open="install" type="button"><div class="doc">.sh</div>install.sh</button>
-</div>
 
 <main class="desk" id="desk">
-  <section class="win readme" id="w-readme" data-w="520" data-x="0.08" data-y="70">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">README.md</div></div>
-    <div class="bd">
-      <h1>Glimpse<small>v1.6.0 · free · MIT · macOS 14+</small></h1>
-      <p class="lead">One native macOS menu bar app for everything you show and tell from your screen. To people, and to your AI coding agent.</p>
-      <ol class="loop">
-        <li><div><b>Capture</b> an area, a window, a scrolling page or text. Or <a data-open="record">record</a> the screen, or a <a data-open="meetings">meeting</a>. <a data-open="capture">Open ›</a></div></li>
-        <li><div><b>Mark it up.</b> Arrows, boxes, steps, notes, blur. Every mark stays editable. <a data-open="markup">Open ›</a></div></li>
-        <li><div><b>Hand it off.</b> Copy, drag, pin, or press ⌘↩ to send it to Claude Code or Codex. <a data-open="handoff">Open ›</a></div></li>
-        <li><div><b>Keep and find it.</b> Double-tap right Shift for your last 30. Stitch several into one. <a data-open="recent">Open ›</a></div></li>
-      </ol>
-      <p>It works both ways: agents can use Glimpse too, through an <a class="inl" data-open="agents">MCP server</a> you switch on.</p>
-      <div class="foot">Private: OCR, transcripts and voice profiles stay on the Mac.</div>
+  <div class="menubar">
+    <a class="me" href="#desk"><img src="../img/icon.png" width="256" height="256" alt="">Glimpse</a>
+    <a class="gh" href="https://github.com/miladbeigi/glimpse">GitHub</a>
+    <a class="in" href="#install">Install</a>
+  </div>
+
+  <section class="win hero-win open" id="w0" aria-label="Glimpse">
+    <div class="tb"><button class="x" aria-label="Close window" data-close></button><i></i><i></i><span>Glimpse</span></div>
+    <div class="body">
+      <img class="ic" src="../img/icon.png" width="256" height="256" alt="Glimpse app icon">
+      <h1>Four tools in your Dock. Or one in your menu bar.</h1>
+      <p class="sub">Glimpse is a free Mac app for screenshots, screen recording, meeting notes, and showing your screen to your AI agent.</p>
+      <div class="cta"><a class="btn" href="#install">Install</a><a class="ghost" href="https://github.com/miladbeigi/glimpse">GitHub</a></div>
     </div>
   </section>
 
-  <section class="win term" id="w-install" data-w="540" data-x="0.5" data-y="150">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Install Glimpse · zsh</div></div>
-    <div class="bd">
-      <div class="c"># one line installs Glimpse into /Applications</div>
-      <div class="cmd"><code><span class="pr">$</span> curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash">Copy</button></div>
-      <div class="c"># macOS 14+, Apple silicon and Intel. Updates itself.</div>
-      <div class="c"># or download the app: <a href="https://github.com/miladbeigi/glimpse/releases/latest">releases/latest</a></div>
-      <div class="c"># source: <a href="https://github.com/miladbeigi/glimpse">github.com/miladbeigi/glimpse</a></div>
+  <section class="win job" id="w1" aria-label="Screenshots">
+    <div class="tb"><button class="x" aria-label="Close window" data-close></button><i></i><i></i><span>Screenshots</span></div>
+    <div class="body">
+      <div><p class="num">01 Screenshots</p><h2>Capture it. Mark it up. Share it.</h2><p class="line">Any area, window or scrolling page. Arrows, notes and blur stay editable.</p><div class="kk"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd></div></div>
+      <figure class="bare"><img src="../img/editor.webp" width="2052" height="1524" alt="Glimpse editor with numbered steps, a box and an arrow on a dashboard" loading="lazy"></figure>
     </div>
   </section>
 
-  <nav class="phone-menu" aria-label="Glimpse menu">
-    <div class="hd">Glimpse menu</div>
-    <a href="#w-capture"><span>Capture</span><kbd>⌥⇧⌘4</kbd></a>
-    <a href="#w-text"><span>Capture Text</span><kbd>⌥⇧⌘2</kbd></a>
-    <a href="#w-record"><span>Record Screen</span><kbd>⌥⇧⌘R</kbd></a>
-    <a href="#w-meetings"><span>Meetings</span><kbd>auto</kbd></a>
-    <a href="#w-markup"><span>Mark up</span><kbd>editor</kbd></a>
-    <a href="#w-handoff"><span>Bring Back Last</span><kbd>⌥⇧⌘9</kbd></a>
-    <a href="#w-pin"><span>Pin</span><kbd></kbd></a>
-    <a href="#w-send"><span>Send to Claude…</span><kbd>⌘↩</kbd></a>
-    <a href="#w-recent"><span>Recent Screenshots</span><kbd>⇧⇧</kbd></a>
-    <a href="#w-stitch"><span>Stitch</span><kbd></kbd></a>
-    <a href="#w-agents"><span>Agents (MCP)</span><kbd></kbd></a>
-    <a href="#w-settings"><span>Settings</span><kbd>⌘,</kbd></a>
+  <section class="win job" id="w2" aria-label="Recording">
+    <div class="tb"><button class="x" aria-label="Close window" data-close></button><i></i><i></i><span>Recording</span></div>
+    <div class="body">
+      <div><p class="num">02 Recording</p><h2>Show it with your face and voice.</h2><p class="line">Record your screen with a camera bubble, your mic and the system sound.</p><div class="kk"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>R</kbd></div></div>
+      <figure><img src="../img/recording.webp" width="1100" height="700" alt="Screen recording with a camera bubble and a control bar" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="win job" id="w3" aria-label="Meetings">
+    <div class="tb"><button class="x" aria-label="Close window" data-close></button><i></i><i></i><span>Meetings</span></div>
+    <div class="body">
+      <div><p class="num">03 Meetings</p><h2>Every call, written down.</h2><p class="line">Glimpse notices your calls and transcribes them on your Mac. Nothing leaves it.</p></div>
+      <figure><img src="../img/meeting.webp" width="1100" height="700" alt="Video call with the Glimpse meeting bar" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="win job" id="w4" aria-label="Your agent">
+    <div class="tb"><button class="x" aria-label="Close window" data-close></button><i></i><i></i><span>Your agent</span></div>
+    <div class="body">
+      <div><p class="num">04 Your agent</p><h2>Show your agent what you mean.</h2><p class="line">Press ⌘↩ to send a marked-up screenshot to Claude Code or Codex. It can look at your screen and draw back, too.</p><div class="kk"><kbd>⌘</kbd><kbd>↩</kbd></div></div>
+      <figure class="bare"><img src="../img/send.webp" width="1660" height="1160" alt="Editor with a note and a Send to menu listing agent sessions" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <nav class="dock" aria-label="Dock">
+    <button class="app" data-w="1" aria-pressed="false" aria-controls="w1"><span class="sq a1"><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg></span><small>Screenshots</small><i class="dot"></i></button>
+    <button class="app" data-w="2" aria-pressed="false" aria-controls="w2"><span class="sq a2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5" fill="#fff"/></svg></span><small>Recording</small><i class="dot"></i></button>
+    <button class="app" data-w="3" aria-pressed="false" aria-controls="w3"><span class="sq a3"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><small>Meetings</small><i class="dot"></i></button>
+    <button class="app" data-w="4" aria-pressed="false" aria-controls="w4"><span class="sq a4"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/><path d="M11.5 13.5L20 4"/></svg></span><small>Your agent</small><i class="dot"></i></button>
+    <span class="sep"></span>
+    <a class="app" href="#install"><span class="sq"><img src="../img/icon.png" width="256" height="256" alt=""></span><small>Install</small><i class="dot"></i></a>
   </nav>
-
-  <section class="win" id="w-capture" data-w="720">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Capture</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/selection.webp" alt="Area selection with dimmed screen, live size 535×242 and a magnifier"></div>
-      <h2>Capture</h2>
-      <p>The screen freezes while you choose. A magnifier and the live size help you land on the pixel.</p>
-      <div class="rows" id="caprows">
-        <div data-k="4"><span>Area</span><span>⌥⇧⌘4</span></div>
-        <div data-k="5"><span>Window, cut out cleanly</span><span>⌥⇧⌘5</span></div>
-        <div data-k="6"><span>Whole scrolling page</span><span>⌥⇧⌘6</span></div>
-        <div data-k="3"><span>Fullscreen</span><span>⌥⇧⌘3</span></div>
-        <div data-k="7"><span>Previous area, same rectangle</span><span>⌥⇧⌘7</span></div>
-        <div data-k="8"><span>Self-timer</span><span>⌥⇧⌘8</span></div>
-      </div>
-      <div class="btns"><button class="btn" data-open="text">Text and QR ›</button><button class="btn" data-open="record">Record ›</button><button class="btn" data-open="markup">Next: mark it up ›</button></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-text" data-w="440">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Capture Text</div></div>
-    <div class="bd">
-      <div class="ocr"><small>Copied to clipboard</small>Revenue overview<br>Last 12 months · updated just now<br>Revenue $482,910 · 12.4% vs last year</div>
-      <h2>Text, not pixels</h2>
-      <p>Select any area and get its text. OCR runs on the Mac. Point it at a QR code and you get the link.</p>
-      <div class="keys"><kbd class="k">⌥</kbd><kbd class="k">⇧</kbd><kbd class="k">⌘</kbd><kbd class="k">2</kbd></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-record" data-w="640">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Record Screen</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/recording.webp" alt="Recording a slide deck with a camera bubble and control bar at 1:23"></div>
-      <h2>Record to MP4</h2>
-      <p>An area or the whole screen, with a camera bubble, your mic and system audio. ⌃⌥M mutes the mic.</p>
-      <div class="keys"><kbd class="k">⌥</kbd><kbd class="k">⇧</kbd><kbd class="k">⌘</kbd><kbd class="k">R</kbd></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-meetings" data-w="620">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">~/Glimpse/Meetings</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/meeting.webp" alt="Video call with the Glimpse meeting pill at 23:42 with mute, pause and stop"></div>
-      <h2>Meetings, transcribed on the Mac</h2>
-      <p>Glimpse notices calls in Meet, Zoom, Teams, Slack, Discord, FaceTime, Webex and Tuple. Record, and you get a transcript with speakers.</p>
-      <p>Each meeting is a markdown file in ~/Glimpse/Meetings. Audio, transcripts and voice profiles never leave the Mac.</p>
-    </div>
-  </section>
-
-  <section class="win" id="w-markup" data-w="760">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Mark up</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/editor.webp" alt="Glimpse editor with numbered steps, a highlight, a red box, a curved arrow and blurred emails"></div>
-      <h2>Every mark stays editable</h2>
-      <p>Pencil-style curved arrows, boxes, numbered steps, highlighter, text, pixelate, blur, spotlight, crop. Type next to a box or arrow and the note lands beside it.</p>
-      <p style="margin-bottom:4px">One key per tool:</p>
-      <div class="keys"><kbd class="k">V</kbd><kbd class="k">A</kbd><kbd class="k">L</kbd><kbd class="k">R</kbd><kbd class="k">F</kbd><kbd class="k">O</kbd><kbd class="k">P</kbd><kbd class="k">H</kbd><kbd class="k">T</kbd><kbd class="k">N</kbd><kbd class="k">X</kbd><kbd class="k">B</kbd><kbd class="k">S</kbd><kbd class="k">C</kbd></div>
-      <div class="btns"><button class="btn" data-open="handoff">Next: hand it off ›</button></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-handoff" data-w="620">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Hand off</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/overlay.webp" alt="Two captures waiting in the screen corner with Copy and Save buttons"></div>
-      <h2>It waits in the corner</h2>
-      <p>Each capture waits in the Quick Access Overlay. Copy, save, or drag it into Slack, Mail or Finder. ⌥⇧⌘9 brings the last one back.</p>
-      <div class="btns"><button class="btn" data-open="pin">Pin it ›</button><button class="btn p" data-open="send">Send to Claude ›</button></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-pin" data-w="560">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Pin to Screen</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/pin.webp" alt="A cropped chart pinned above the dashboard"></div>
-      <h2>Pinned above everything</h2>
-      <p>Float a capture above every window while you work beside it.</p>
-    </div>
-  </section>
-
-  <section class="win" id="w-send" data-w="660">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Send to Claude…</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/send.webp" alt="Editor with the note why does Sep jump and a Send menu listing three sessions"></div>
-      <h2>Straight to your coding agent</h2>
-      <p>Press ⌘↩ to send a capture to Claude Code or Codex. With several sessions open, a menu lists them. The Claude Code plugin delivers it between turns.</p>
-      <div class="keys"><kbd class="k">⌘</kbd><kbd class="k">↩</kbd></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-recent" data-w="620">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Recent Screenshots</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/recent.webp" alt="Recent stack at the screen edge with five cards, two selected, and an action bar"></div>
-      <h2>Your last 30, one gesture away</h2>
-      <p>Double-tap right Shift and they slide in at the screen edge. Select several to copy, draw on, stitch or send.</p>
-      <div class="keys"><kbd class="k">⇧</kbd><kbd class="k">⇧</kbd><span style="color:var(--ink3);margin:0 6px">or</span><kbd class="k">⌥</kbd><kbd class="k">⇧</kbd><kbd class="k">⌘</kbd><kbd class="k">0</kbd></div>
-      <div class="btns"><button class="btn" data-open="stitch">Stitch ›</button></div>
-    </div>
-  </section>
-
-  <section class="win" id="w-stitch" data-w="720">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Stitch</div></div>
-    <div class="bd">
-      <div class="pic"><img src="../img/stitch.webp" alt="Three screenshots stitched into one image with number badges 1 to 3"></div>
-      <h2>Several shots, one image</h2>
-      <p>Stitch numbers each part and lays them out so an AI model shrinks the result the least.</p>
-    </div>
-  </section>
-
-  <section class="win term" id="w-agents" data-w="580">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Agents (MCP) · zsh</div></div>
-    <div class="bd">
-      <div class="c"># Glimpse works both ways. Off until you allow it.</div>
-      <div class="cmd"><code><span class="pr">$</span> claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</code><button type="button" data-copy="claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp">Copy</button></div>
-      <div class="c"># then Claude Code, Cursor and other MCP clients can:</div>
-      <ul>
-        <li>list windows and screenshot one, even when covered</li>
-        <li>read the text on screen</li>
-        <li>record short clips to check their own work</li>
-        <li>draw arrows, boxes and notes in their own colour</li>
-        <li>search your meeting transcripts</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="win" id="w-settings" data-w="560">
-    <div class="tb"><div class="tl"><button class="x" aria-label="Close"></button><i></i><i></i></div><div class="tt">Settings</div></div>
-    <div class="bd">
-      <div class="pref">
-        <nav><div>General</div><div>Shortcuts</div><div class="on">Agents</div><div>Meetings</div><div>Updates</div></nav>
-        <section>
-          <div class="tog"><span>MCP server for agents</span><i></i></div>
-          <div class="tog"><span>Notice calls and offer to record</span><i class="on"></i></div>
-          <div class="tog"><span>Update automatically</span><i class="on"></i></div>
-          <p style="margin-top:12px;font-size:13px">Agents get nothing until you switch the server on. Scripts, Shortcuts and Raycast can drive Glimpse with <code>glimpse://</code> URLs.</p>
-        </section>
-      </div>
-    </div>
-  </section>
 </main>
 
-<nav class="dock" aria-label="Dock">
-  <button class="dk" data-open="readme" type="button"><img src="../img/icon.png" alt=""><span class="lbl">Glimpse</span></button>
-  <div class="dsep"></div>
-  <button class="dk" data-open="capture" type="button"><span class="ic" style="background:linear-gradient(#5b8cff,#2f5fe0)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M4 10V5h5M21 5h5v5M26 20v5h-5M9 25H4v-5"/><rect x="10" y="10" width="10" height="10" rx="2" stroke-dasharray="3 3"/></svg></span><span class="lbl">Capture</span></button>
-  <button class="dk" data-open="markup" type="button"><span class="ic" style="background:linear-gradient(#ff7a6a,#e2453a)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 23c5-9 11-13 19-15"/><path d="M18 5l6 3-3 6"/></svg></span><span class="lbl">Mark up</span></button>
-  <button class="dk" data-open="handoff" type="button"><span class="ic" style="background:linear-gradient(#ffc457,#f39a1d)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l20-9-7 20-3-8z"/><path d="M15 18l10-12"/></svg></span><span class="lbl">Hand off</span></button>
-  <button class="dk" data-open="recent" type="button"><span class="ic" style="background:linear-gradient(#5fd38a,#24a45a)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"><rect x="7" y="4" width="16" height="10" rx="2"/><rect x="7" y="17" width="16" height="10" rx="2"/></svg></span><span class="lbl">Keep</span></button>
-  <button class="dk" data-open="agents" type="button"><span class="ic" style="background:linear-gradient(#3a3a3e,#1c1c1e)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5-5 5M15 21h8"/></svg></span><span class="lbl">Agents</span></button>
-  <div class="dsep"></div>
-  <button class="dk" data-open="install" type="button"><span class="ic" style="background:linear-gradient(#e9e9ec,#c9c9ce)"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#333" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5v14M9 13l6 6 6-6M7 25h16"/></svg></span><span class="lbl">Install</span></button>
-</nav>
+<section class="sec together" aria-label="Together">
+  <div><h2>One app. Everything in reach.</h2><p class="line">Double-tap Shift to bring back your last 30 captures, then copy, send or stitch them.</p><div class="kk"><kbd>⇧</kbd><kbd>⇧</kbd></div></div>
+  <figure><img src="../img/recent.webp" width="1100" height="778" alt="Recent captures stacked at the screen edge" loading="lazy"></figure>
+</section>
 
+<section class="sec install" id="install" aria-label="Install">
+  <img class="ic" src="../img/icon.png" width="256" height="256" alt="Glimpse app icon">
+  <h2>Get Glimpse.</h2>
+  <div class="cmd"><code id="inst">curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button id="copy" type="button">Copy</button></div>
+  <p class="small">Free and open source · macOS 14+ · Apple silicon and Intel</p>
+  <div class="links"><a href="https://github.com/miladbeigi/glimpse">GitHub</a><a href="https://github.com/miladbeigi/glimpse/releases/latest">Download</a></div>
+</section>
+
+<footer>v1.6.0</footer>
 <div class="tag">Design 10 · The Desktop</div>
 
 <script>
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const phone=matchMedia('(max-width:760px)');
-let z=20,cascade=0;
-const menu=$('#menu'),gi=$('#gi'),hint=$('#hint');
-
-function placeHint(){const r=gi.getBoundingClientRect();hint.style.left=Math.min(r.left+r.width/2,innerWidth-130)+'px';}
-function placeMenu(){const r=gi.getBoundingClientRect();menu.style.left=Math.max(8,Math.min(r.left,innerWidth-308))+'px';}
-function toggleMenu(open){
-  open=open===undefined?!menu.classList.contains('open'):open;
-  if(open){placeMenu();hint.classList.add('gone');}
-  menu.classList.toggle('open',open);gi.classList.toggle('on',open);gi.setAttribute('aria-expanded',open);
-  if(open)menu.querySelector('button').focus({preventScroll:true});
-}
-gi.addEventListener('click',e=>{e.stopPropagation();toggleMenu()});
-document.addEventListener('pointerdown',e=>{if(!menu.contains(e.target)&&e.target!==gi&&!gi.contains(e.target))toggleMenu(false)});
-
-function focusWin(w){$$('.win').forEach(x=>x.classList.remove('focus'));w.classList.add('focus');w.style.zIndex=++z;updateDock();}
-function clampWin(w){
-  const W=innerWidth,H=innerHeight,ww=w.offsetWidth;
-  let x=parseFloat(w.style.left)||0,y=parseFloat(w.style.top)||0;
-  x=Math.max(80-ww,Math.min(x,W-80));y=Math.max(30,Math.min(y,H-120));
-  w.style.left=x+'px';w.style.top=y+'px';
-}
-function openWin(id,hl){
-  const w=document.getElementById('w-'+id);if(!w)return;
-  toggleMenu(false);hint.classList.add('gone');
-  if(phone.matches){w.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});return;}
-  if(id==='capture')$$('#caprows div').forEach(d=>d.classList.toggle('hl',!!hl&&d.dataset.k===hl));
-  if(!w.classList.contains('open')){
-    const ww=Math.min(+w.dataset.w||600,innerWidth-24);w.style.width=ww+'px';
-    w.classList.add('open');
-    const h=w.offsetHeight,W=innerWidth,H=innerHeight;
-    let x,y;
-    if(w.dataset.x){x=W*+w.dataset.x;y=+w.dataset.y}
-    else{x=(W-ww)/2-120+cascade*34;y=Math.max(40,(H-h)/2-30)+cascade*26;cascade=(cascade+1)%6;}
-    y=Math.max(36,Math.min(y,H-96-h));
-    w.style.left=x+'px';w.style.top=y+'px';clampWin(w);
+(function(){
+  var wins=[].slice.call(document.querySelectorAll('.win')), apps=[].slice.call(document.querySelectorAll('.app[data-w]'));
+  var rm=matchMedia('(prefers-reduced-motion: reduce)');
+  function open(i){
+    wins.forEach(function(w,j){
+      w.classList.toggle('open',j===i);
+      w.classList.toggle('anim',j===i&&!rm.matches);
+      w.style.removeProperty('--dx');w.style.removeProperty('--dy');
+    });
+    apps.forEach(function(a){a.setAttribute('aria-pressed',+a.dataset.w===i?'true':'false')});
   }
-  focusWin(w);
-}
-$$('[data-open]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openWin(b.dataset.open,b.dataset.hl)}));
-
-$$('.win').forEach(w=>{
-  w.addEventListener('pointerdown',()=>{if(!phone.matches)focusWin(w)});
-  w.querySelector('.x').addEventListener('click',e=>{e.stopPropagation();w.classList.remove('open','focus');updateDock();});
-  const tb=w.querySelector('.tb');let sx,sy,ox,oy,drag=false;
-  tb.addEventListener('pointerdown',e=>{
-    if(phone.matches||e.button!==0||e.target.closest('.x'))return;
-    drag=true;sx=e.clientX;sy=e.clientY;ox=w.offsetLeft;oy=w.offsetTop;tb.setPointerCapture(e.pointerId);e.preventDefault();
+  apps.forEach(function(a){a.addEventListener('click',function(){var i=+a.dataset.w;open(wins[i].classList.contains('open')?0:i)})});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){
+    var w=b.closest('.win');if(w.id==='w0'){w.classList.remove('open');return}open(0);
+  })});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')open(0)});
+  /* drag by title bar */
+  wins.forEach(function(w){
+    var tb=w.querySelector('.tb'),sx,sy,ox,oy,on=false;
+    tb.addEventListener('pointerdown',function(e){
+      if(e.target.closest('button'))return;
+      on=true;sx=e.clientX;sy=e.clientY;
+      ox=parseFloat(w.style.getPropertyValue('--dx'))||0;oy=parseFloat(w.style.getPropertyValue('--dy'))||0;
+      w.classList.remove('anim');tb.setPointerCapture(e.pointerId);
+    });
+    tb.addEventListener('pointermove',function(e){
+      if(!on)return;
+      w.style.setProperty('--dx',(ox+e.clientX-sx)+'px');w.style.setProperty('--dy',(oy+e.clientY-sy)+'px');
+    });
+    tb.addEventListener('pointerup',function(){on=false});
   });
-  tb.addEventListener('pointermove',e=>{if(!drag)return;w.style.left=ox+e.clientX-sx+'px';w.style.top=oy+e.clientY-sy+'px';clampWin(w);});
-  const end=()=>{drag=false};tb.addEventListener('pointerup',end);tb.addEventListener('pointercancel',end);
-});
-
-const dockMap={readme:['readme'],capture:['capture','text','record','meetings'],markup:['markup'],handoff:['handoff','pin','send'],recent:['recent','stitch'],agents:['agents','settings'],install:['install']};
-function updateDock(){$$('.dk').forEach(d=>{const ids=dockMap[d.dataset.open]||[];d.classList.toggle('run',ids.some(i=>document.getElementById('w-'+i).classList.contains('open')))});}
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(menu.classList.contains('open')){toggleMenu(false);gi.focus();return}
-    const top=$$('.win.open').sort((a,b)=>(+b.style.zIndex||0)-(+a.style.zIndex||0))[0];if(top&&!phone.matches){top.classList.remove('open','focus');updateDock();}}
-  if(menu.classList.contains('open')&&(e.key==='ArrowDown'||e.key==='ArrowUp')){
-    const items=$$('#menu > button, #menu > .sub > button');const i=items.indexOf(document.activeElement);
-    items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus();e.preventDefault();}
-});
-
-$$('[data-copy]').forEach(b=>b.addEventListener('click',async e=>{
-  e.stopPropagation();
-  try{await navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied'}catch(err){b.textContent='Select it'}
-  setTimeout(()=>b.textContent='Copy',1600);
-}));
-
-function tick(){const d=new Date();$('#clock').textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}).replace(',','')+' '+d.toLocaleTimeString('en-GB',{hour:'numeric',minute:'2-digit'});}
-tick();setInterval(tick,20000);
-
-function init(){
-  if(phone.matches)return;
-  placeHint();
-  ['readme','install'].forEach(id=>openWin(id));
-  hint.classList.remove('gone');
-  focusWin($('#w-readme'));
-}
-init();
-addEventListener('resize',()=>{if(!phone.matches){placeHint();$$('.win.open').forEach(clampWin);if(!$$('.win.open').length&&!document.body.dataset.init)init();}});
-document.body.dataset.init=phone.matches?'':'1';
+  var b=document.getElementById('copy');
+  b.addEventListener('click',function(){
+    var t=document.getElementById('inst').textContent;
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)}).catch(function(){b.textContent='Select it'})}
+    catch(e){b.textContent='Select it'}
+  });
+})();
 </script>
 </body>
 </html>
