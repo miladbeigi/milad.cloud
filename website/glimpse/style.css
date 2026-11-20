@@ -276,7 +276,7 @@ kbd {
 .term__bar span { margin-left: auto; margin-right: auto; padding-right: 50px; font: 500 12px var(--mono); color: #9a9aab; }
 .term__body { margin: 0; padding: 18px 20px; min-height: 340px; font: 400 12.5px/1.65 var(--mono); white-space: pre-wrap; word-break: break-word; }
 .term--short .term__body { min-height: 0; }
-.meetings__media { display: grid; gap: 24px; min-width: 0; }
+.meetings__media, .recent__media { display: grid; gap: 24px; min-width: 0; }
 .term__body .u { color: #fff; }
 .term__body .d { color: #8b8ba0; }
 .term__body .t { color: #c4a7ff; }
