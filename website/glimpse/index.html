@@ -191,6 +191,14 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   .deck.ready .slide:not(.in) .core{transform:translate(-50%,-50%)!important}
   .progress,.dots button{transition:none}
 }
+
+/* Live scenes: animated recreations of each screenshot; they play while on screen. */
+.live-fig{margin:32px 0 0}
+.live-fig>.live{border-radius:12px;box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06)}
+@media (min-width:821px){
+  .split .shot.live-fig{margin:0}
+  .split .shot.live-fig>.live{width:min(100%,calc((100vh - clamp(156px,22vh,208px)) * var(--ar)));flex:none}
+}
 </style>
 </head>
 <body>
@@ -236,7 +244,108 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
       <p class="anim d2">Any area, window or scrolling page. Arrows, notes and blur stay editable.</p>
       <div class="keys anim d3"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd></div>
     </div>
-    <figure class="shot framed anim"><img src="img/editor.webp" width="2052" height="1524" alt="Glimpse editor with numbered steps, a red box and a curved arrow"></figure>
+    <figure class="shot live-fig anim" style="--ar:1822/1308">
+<style>
+.live-shot{aspect-ratio:1822/1308;width:100%;container-type:inline-size;position:relative;overflow:hidden;border-radius:1.4cqw;background:#dedee0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif;color:#14151a;line-height:1.2}
+.live-shot *{box-sizing:border-box;margin:0}
+.live-shot .Ld,.live-shot .Le,.live-shot .Lf,.live-shot .Lg{position:absolute;inset:0}
+.live-shot .Le{background:radial-gradient(120% 90% at 85% 100%,#a0507e 0,transparent 60%),linear-gradient(120deg,#33389e,#5a2d93 55%,#7a3f86);opacity:0}
+.live-shot .Lf svg{position:absolute;left:0;width:100%;display:block}
+.live-shot .Lh{top:0;height:3cqw;background:#efeff1}
+.live-shot .Li{top:3cqw;height:4.9cqw;background:#fbfbfc;border-bottom:1px solid #d9d9dc}
+.live-shot .Lj{top:67.1cqw;height:4.7cqw;background:#f5f5f6;border-top:1px solid #d9d9dc}
+.live-shot .Lk{position:absolute;left:2.14cqw;top:15.6cqw;width:95.7cqw;height:2.5cqw;background:#e9e9ec;border-radius:.8cqw .8cqw 0 0;opacity:0;display:flex;align-items:center;gap:.5cqw;padding-left:1cqw;font-size:.95cqw;color:#666}
+.live-shot .Lk i{width:.9cqw;height:.9cqw;border-radius:50%;background:#ff5f57}
+.live-shot .Lk i+i{background:#febc2e}.live-shot .Lk i+i+i{background:#28c840}
+.live-shot .Lk span{position:absolute;left:0;right:0;text-align:center}
+.live-shot .L0{position:absolute;left:50%;top:62.4cqw;transform:translateX(-50%);display:flex;gap:.9cqw;padding:.8cqw;border-radius:1.6cqw;background:rgba(255,255,255,.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);opacity:0}
+.live-shot .L0 i{width:4cqw;height:4cqw;border-radius:1cqw;background:var(--c);background-image:linear-gradient(rgba(255,255,255,.25),rgba(0,0,0,.1))}
+.live-shot .L7{position:absolute;left:2.14cqw;top:18.1cqw;width:95.7cqw;height:38.75cqw;overflow:hidden}
+.live-shot .Lt{position:absolute;inset:0;display:flex;background:#f3f4f8}
+.live-shot .L1{width:15.152cqw;background:#1c1e29;color:#c9cbd6;padding:1.914cqw 1.276cqw}
+.live-shot .L1 b{display:block;color:#fff;font-size:1.356cqw;margin-bottom:1.754cqw}.live-shot .L1 b span{color:#7c83ff}
+.live-shot .L1 p{padding:.638cqw .797cqw;margin-bottom:.558cqw;border-radius:.558cqw;font-size:1.117cqw}.live-shot .L1 p.xs-on{background:#2c2f40;color:#fff}
+.live-shot .L2{flex:1;padding:2.074cqw 2.393cqw 0}
+.live-shot .L3{display:flex;justify-content:space-between;align-items:flex-start}
+.live-shot .L3 h1{font-size:1.675cqw;font-weight:700;line-height:1.914cqw}
+.live-shot .Lt small{font-size:1.037cqw;color:#646777;display:block;margin-top:.399cqw;line-height:1.196cqw}
+.live-shot .L8{background:#4f5be8;color:#fff;font-weight:600;font-size:1.117cqw;padding:.718cqw 1.117cqw;border-radius:.558cqw}
+.live-shot .L4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.276cqw;margin-top:1.595cqw}
+.live-shot .L4 div{background:#fff;border-radius:.797cqw;padding:1.276cqw 1.435cqw;height:7.656cqw}
+.live-shot .L4 small{margin:0 0 .479cqw;font-size:.957cqw}.live-shot .L4 b{font-size:1.834cqw;display:block}
+.live-shot .Lt em{font-style:normal;font-size:.957cqw;color:#16a34a}.live-shot .L4 em.dn{color:#e11d48}
+.live-shot .L9{display:grid;grid-template-columns:45.856cqw 1fr;gap:1.276cqw;margin-top:1.435cqw}
+.live-shot .L5{background:#fff;border-radius:.797cqw;padding:1.276cqw 1.435cqw;height:19.938cqw}
+.live-shot .L5 h2{font-size:1.117cqw;font-weight:700;line-height:1.356cqw}
+.live-shot .L6{display:flex;align-items:flex-end;gap:.957cqw;height:13.558cqw;margin-top:1.117cqw}
+.live-shot .L6 i{flex:1;background:linear-gradient(#7c83ff,#5560ee);border-radius:.319cqw .319cqw 0 0}
+.live-shot .Ll{display:flex;gap:.957cqw;margin-top:.479cqw}.live-shot .Ll span{flex:1;text-align:center;font-size:.877cqw;color:#646777}
+.live-shot .Lm h2{margin-bottom:.638cqw}
+.live-shot .Lm p{display:flex;align-items:center;border-bottom:1px solid #eee;height:2.871cqw;font-size:1.117cqw}
+.live-shot .Lm p:last-child{border:0}
+.live-shot .Lt *{white-space:nowrap}.live-shot .Lm .n{min-width:8.294cqw;padding-right:.319cqw}.live-shot .Lm .e{flex:1;color:#555;font-size:1.037cqw;filter:blur(.33cqw)}
+.live-shot .Lm em{font-size:.877cqw;font-weight:600;padding:.16cqw .558cqw;border-radius:.718cqw;background:#dcfce7;color:#15803d}
+.live-shot .Lm em.p{background:#fef3c7;color:#b45309}
+.live-shot .Ln{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.live-shot .Ln *{transform-box:fill-box;transform-origin:center}
+.live-shot .Ln text{font-weight:700;fill:#fff;text-anchor:middle}
+.live-shot .Lo{transform-origin:left center!important}
+.live-shot .La{position:absolute;left:2.14cqw;top:18.1cqw;width:95.7cqw;height:38.75cqw;outline:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 160cqw rgba(8,8,20,.45);opacity:0}
+.live-shot .Lb{position:absolute;left:50%;top:100%;transform:translate(-50%,.7cqw);background:rgba(20,20,24,.92);color:#fff;font:600 1.15cqw/1 "JetBrains Mono",ui-monospace,Menlo,monospace;padding:.45cqw .7cqw;border-radius:.5cqw;white-space:nowrap}
+.live-shot .Lc{position:absolute;left:97.84cqw;top:56.85cqw;width:2.6cqw;height:2.6cqw;margin:-1.3cqw 0 0 -1.3cqw;opacity:0}
+.live-shot .Lg{background:#fff;opacity:0;pointer-events:none}
+.live-shot.play [style*="--a"]{animation:var(--a) 9s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes lsh-st{0%{opacity:0}3%,95%{opacity:1}100%{opacity:0}}
+@keyframes lsh-dk{0%,32.4%{opacity:1}32.6%,100%{opacity:0}}
+@keyframes lsh-ed{0%,32.4%{opacity:0}32.6%,100%{opacity:1}}
+@keyframes lsh-cap{0%,32.4%{border-radius:0 0 .8cqw .8cqw;box-shadow:0 2cqw 4cqw -1cqw rgba(0,0,0,.55);transform:none}32.6%{border-radius:0;box-shadow:none;transform:scale(.965)}40%{transform:none}}
+@keyframes lsh-cur{0%{left:76cqw;top:64cqw;opacity:0}4%{left:76cqw;top:64cqw;opacity:1}14%{left:2.14cqw;top:18.1cqw}15%{left:2.14cqw;top:18.1cqw;animation-timing-function:cubic-bezier(.45,.05,.25,1)}29%{left:97.84cqw;top:56.85cqw}32.4%{opacity:1}32.6%{opacity:0}}
+@keyframes lsh-sel{0%,10%{opacity:0;width:0;height:0}13%,15%{opacity:1;width:0;height:0;animation-timing-function:cubic-bezier(.45,.05,.25,1)}29%{width:95.7cqw;height:38.75cqw}32.4%{opacity:1}32.6%{opacity:0}}
+@keyframes lsh-lab{0%,15%{opacity:0}17%{opacity:1}}
+@keyframes lsh-fl{31.6%{opacity:0}32.6%{opacity:.9}37%{opacity:0}}
+@keyframes lsh-r{0%,40%{stroke-dashoffset:1}45%{stroke-dashoffset:0}}
+@keyframes lsh-a{0%,62%{stroke-dashoffset:1;opacity:0}62.1%{opacity:1}69%{stroke-dashoffset:0}}
+@keyframes lsh-hl{0%,49%{transform:scaleX(0)}53%{transform:none}}
+@keyframes lsh-bl{0%,73%{filter:none}78%{filter:blur(.33cqw)}}
+@keyframes lsh-b1{0%,45%{transform:scale(0)}46.8%{transform:scale(1.15)}48%,100%{transform:none}}
+@keyframes lsh-b2{0%,54%{transform:scale(0)}55.8%{transform:scale(1.15)}57%,100%{transform:none}}
+@keyframes lsh-no{0%,59%{transform:scale(0)}60.8%{transform:scale(1.15)}62%,100%{transform:none}}
+@keyframes lsh-ah{0%,69%{transform:scale(0)}70.2%{transform:scale(1.15)}71%,100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.live-shot.play *{animation:none!important}}
+</style>
+<div class="live live-shot" role="img" aria-label="A Northwind dashboard is selected, captured and marked up in the Glimpse editor with a box, numbered steps, an arrow note and blur.">
+<div class="Ld" style="--a:lsh-st">
+<div class="Le" style="--a:lsh-dk"></div>
+<div class="Lf" style="--a:lsh-ed">
+<svg class="Lh" viewBox="0 0 1822 55"><circle cx="31" cy="27" r="11" fill="#ff5f57"/><circle cx="70" cy="27" r="11" fill="#febc2e"/><circle cx="109" cy="27" r="11" fill="#28c840"/><text x="911" y="35" font-size="25" font-weight="600" fill="#333" text-anchor="middle">Glimpse – 2400 × 972</text></svg>
+<svg class="Li" viewBox="0 0 1822 89"><g fill="none" stroke="#3a3a3c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M45 31v25l6-6 5 10 4-2-5-10h8z" fill="#3a3a3c" stroke-width="2"/><path d="M97 26v36M428 26v36M698 26v36M910 26v36M1006 26v36M1528 26v36" stroke="#dcdcdf" stroke-width="2"/><rect x="119" y="17" width="54" height="54" rx="9" fill="#2f7cf6" stroke="none"/><path d="M136 54l19-19M142 34h14v14" stroke="#fff"/><path d="M196 55l16-21"/><rect x="248" y="34" width="29" height="21" rx="3"/><rect x="306" y="34" width="30" height="21" rx="3" fill="#3a3a3c"/><circle cx="379" cy="44" r="12"/><path d="M466 57l8-25 8 25M471 47h6"/><path d="M523 55l3-9 14-14 6 6-14 14zM521 60h24"/><text x="592" y="55" font-size="29" fill="#3a3a3c" stroke="none" text-anchor="middle">Aa</text><circle cx="650" cy="44" r="12"/><text x="650" y="50" font-size="16" fill="#3a3a3c" stroke="none" text-anchor="middle">1</text><path d="M733 32h24v24h-24z" stroke-width="2"/><path d="M733 32h6v6h-6zM745 32h6v6h-6zM739 38h6v6h-6zM751 38h6v6h-6zM733 44h6v6h-6zM745 44h6v6h-6zM739 50h6v6h-6zM751 50h6v6h-6z" fill="#3a3a3c" stroke="none"/><path d="M804 31c-6 9-9 14-9 18a9 9 0 0 0 18 0c0-4-3-9-9-18z" fill="#3a3a3c"/><path d="M856 31h12v9l-2 4v13h-8v-13l-2-4z" fill="#3a3a3c" stroke-width="2"/><path d="M950 30v22h22M944 36h22v22"/><path d="M1484 57l16-16m-4-4 8 8" stroke="#666"/></g><circle cx="1045" cy="44" r="17" fill="none" stroke="#2f7cf6" stroke-width="3"/><circle cx="1045" cy="44" r="13" fill="#e5484d"/><circle cx="1094" cy="44" r="13" fill="#f0952e"/><circle cx="1143" cy="44" r="13" fill="#f4d23a"/><circle cx="1192" cy="44" r="13" fill="#4cc05c"/><circle cx="1240" cy="44" r="13" fill="#2f7cf6"/><circle cx="1289" cy="44" r="13" fill="#a050de"/><circle cx="1338" cy="44" r="13" fill="#161616"/><circle cx="1386" cy="44" r="12.5" fill="#fff" stroke="#d0d0d4"/><rect x="1402" y="28" width="75" height="32" rx="4" fill="#d42a2a"/><rect x="1597" y="24" width="40" height="40" rx="7" fill="#dbe7fb"/><g fill="#3a3a3c"><circle cx="1570" cy="44" r="3"/><circle cx="1617" cy="44" r="5"/><circle cx="1664" cy="44" r="5.5"/><circle cx="1710" cy="44" r="7.5"/><circle cx="1757" cy="44" r="10"/></g></svg>
+<svg class="Lj" viewBox="0 0 1822 86"><g fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round"><circle cx="36" cy="42" r="10"/><path d="M43 49l7 7M31 42h10"/><circle cx="160" cy="42" r="10"/><path d="M167 49l7 7M155 42h10M160 37v10"/><path d="M387 34l20 20M387 34h8M387 34v8M407 54h-8M407 54v-8"/><path d="M552 40h-14l5-5m-5 5 5 5M538 40h12a7 7 0 0 1 0 14h-4M572 40h14l-5-5m5 5-5 5M586 40h-12a7 7 0 0 0 0 14h4" stroke="#aaa"/></g><g font-size="25" fill="#444"><text x="76" y="53">75%</text><text x="200" y="53">2,400 × 972 px</text><text x="428" y="53">Resize</text></g><g fill="#e6e6e8"><rect x="820" y="22" width="52" height="42" rx="7"/><rect x="899" y="24" width="112" height="40" rx="6"/><rect x="1035" y="24" width="137" height="40" rx="6"/><rect x="1198" y="24" width="132" height="40" rx="6"/></g><rect x="1354" y="24" width="326" height="40" rx="6" fill="#2f7cf6"/><rect x="1706" y="24" width="92" height="40" rx="6" fill="#2f7cf6"/><g fill="none" stroke="#444" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M840 52l-5-9a2 2 0 0 1 4-2l3 4v-12a2 2 0 0 1 4 0v8-10a2 2 0 0 1 4 0v10-8a2 2 0 0 1 4 0v14c0 5-3 7-7 7h-3z"/><path d="M924 32h10M926 32v8l-4 5h14l-4-5v-8M929 45v11"/><path d="M1059 36h-4v20h14v-4M1061 31h10l5 5v16h-15z"/><path d="M1218 41v13h20v-13M1228 31v17m-5-5 5 5 5-5"/><path d="M1373 42l26-10-8 26-5-10z" stroke="#fff"/></g><g font-size="25"><text x="946" y="53" fill="#333">Pin</text><text x="1084" y="53" fill="#333">Copy</text><text x="1246" y="53" fill="#333">Save</text><text x="1416" y="53" fill="#fff">Send to Claude Code</text><text x="1752" y="53" fill="#fff" text-anchor="middle">Done</text></g></svg>
+</div>
+<div class="Lk" style="--a:lsh-dk"><i></i><i></i><i></i><span>Northwind</span></div>
+<div class="L0" style="--a:lsh-dk"><i style="--c:#1e90ff"></i><i style="--c:#ffb800"></i><i style="--c:#6670f5"></i><i style="--c:#30b350"></i><i style="--c:#2a2a2e"></i><i style="--c:#f5a020"></i></div>
+<div class="L7" style="--a:lsh-cap"><div class="Lt">
+<div class="L1"><b>North<span>wind</span></b><p class="xs-on">Dashboard</p><p>Customers</p><p>Orders</p><p>Reports</p><p>Settings</p></div>
+<div class="L2">
+<div class="L3"><div><h1>Revenue overview</h1><small>Last 12 months · updated just now</small></div><span class="L8">Export report</span></div>
+<div class="L4"><div><small>Revenue</small><b>$482,910</b><em>▲ 12.4% vs last year</em></div><div><small>New customers</small><b>1,284</b><em>▲ 8.1%</em></div><div><small>Churn rate</small><b>2.3%</b><em class="dn">▲ 0.4%</em></div><div><small>Avg. order</small><b>$86.40</b><em>▲ 3.2%</em></div></div>
+<div class="L9"><div class="L5"><h2>Monthly revenue</h2><div class="L6"><i style="height:42%"></i><i style="height:54%"></i><i style="height:48%"></i><i style="height:62%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:66%"></i><i style="height:79%"></i><i style="height:75%"></i><i style="height:86%"></i><i style="height:92%"></i><i style="height:100%"></i></div>
+<div class="Ll"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span></div></div>
+<div class="L5 Lm"><h2>Recent customers</h2>
+<p><span class="n">Ava Thompson</span><span class="e" style="--a:lsh-bl">ava.t@example.com</span><em>Paid</em></p>
+<p><span class="n">Liam Carter</span><span class="e" style="--a:lsh-bl">liam@example.com</span><em class="p">Pending</em></p>
+<p><span class="n">Sofia Nguyen</span><span class="e" style="--a:lsh-bl">sofia.n@example.com</span><em>Paid</em></p>
+<p><span class="n">Noah Patel</span><span class="e" style="--a:lsh-bl">noah.p@example.com</span><em>Paid</em></p>
+<p><span class="n">Mia Rossi</span><span class="e" style="--a:lsh-bl">mia@example.com</span><em class="p">Pending</em></p></div></div>
+</div></div>
+<svg class="Ln" viewBox="0 0 1200 486"><rect class="Lo" style="--a:lsh-hl" x="220" y="57" width="222" height="19" fill="#f5d90a" opacity=".38"/><path class="Lu" style="--a:lsh-r" d="M214 89H451Q455 89 455 93V199Q455 203 451 203H214Q210 203 210 199V93Q210 89 214 89Z" pathLength="1" stroke-dasharray="1 1" fill="none" stroke="#e5484d" stroke-width="3.6"/><path class="Lv" style="--a:lsh-a" d="M466 286Q640 182 745 251" pathLength="1" stroke-dasharray="1 1" fill="none" stroke="#e5484d" stroke-width="4" stroke-linecap="round"/><g class="Lp" style="--a:lsh-ah"><polygon points="757,258 735,256 746,239" fill="#e5484d"/></g><g class="Lq" style="--a:lsh-no"><rect x="263" y="273" width="198" height="38" rx="7" fill="#e5484d" stroke="#fff" stroke-width="1.5"/><text x="362" y="300" font-size="25">Best month yet</text></g><g class="Lr" style="--a:lsh-b1"><circle cx="212" cy="90" r="14" fill="#e5484d" stroke="#fff" stroke-width="2.5"/><text x="212" y="96" font-size="17">1</text></g><g class="Ls" style="--a:lsh-b2"><circle cx="1049" cy="30" r="14" fill="#2f7cf6" stroke="#fff" stroke-width="2.5"/><text x="1049" y="36" font-size="17">2</text></g></svg>
+</div>
+<div class="La" style="--a:lsh-sel"><span class="Lb" style="--a:lsh-lab">1200 × 486</span></div>
+<svg class="Lc" style="--a:lsh-cur" viewBox="0 0 26 26"><path d="M13 1v9M13 16v9M1 13h9M16 13h9" stroke="#fff" stroke-width="3.2"/><path d="M13 1v9M13 16v9M1 13h9M16 13h9" stroke="#111" stroke-width="1.4"/></svg>
+<div class="Lg" style="--a:lsh-fl"></div>
+</div>
+</div>
+<script>(function(){document.querySelectorAll('.live-shot').forEach(function(r){if(r.dataset.lsb)return;r.dataset.lsb=1;var s=r.querySelector('.La'),l=r.querySelector('.Lb'),f=0,F='1200 × 486';function t(){var W=r.getBoundingClientRect().width,b=s.getBoundingClientRect(),k=1200/(W*.957),w=Math.min(1200,Math.round(b.width*k/2)*2),h=Math.min(486,Math.round(b.height*k/2)*2);l.textContent=w+' × '+h;f=requestAnimationFrame(t)}function u(){var p=r.classList.contains('play')&&!matchMedia('(prefers-reduced-motion: reduce)').matches;if(p&&!f)f=requestAnimationFrame(t);if(!p&&f){cancelAnimationFrame(f);f=0;l.textContent=F}}new MutationObserver(u).observe(r,{attributes:true,attributeFilter:['class']});u()})})();</script>
+</figure>
   </div>
 </section>
 
@@ -248,7 +357,137 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
       <p class="anim d2">Record your screen with a camera bubble, your mic and the system sound.</p>
       <div class="keys anim d3"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>R</kbd></div>
     </div>
-    <figure class="shot anim"><img src="img/recording.webp" width="1100" height="700" alt="Recording a slide deck with a camera bubble and a control bar"></figure>
+    <figure class="shot live-fig anim" style="--ar:11/7">
+<style>
+.live-rec{--e:cubic-bezier(.2,.7,.2,1);position:relative;width:100%;aspect-ratio:11/7;container-type:inline-size;overflow:hidden;border-radius:1.2cqw;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif;color:#111;
+background:radial-gradient(60% 70% at 100% 100%,#f0a2c6 0,transparent 70%),radial-gradient(55% 60% at 0 0,#5a7df0 0,transparent 75%),linear-gradient(125deg,#6878ef 0%,#9a6cea 45%,#b977df 70%,#e797c9 100%)}
+.live-rec *{box-sizing:border-box}
+.live-rec .ol{position:absolute;left:7.64cqw;top:4.55cqw;width:79.64cqw;height:50.82cqw;border:1px dashed #1f6cf2;z-index:3;pointer-events:none}
+.live-rec .win{position:absolute;left:8.18cqw;top:5.09cqw;width:78.55cqw;height:49.73cqw;border-radius:.9cqw;background:#f2f2f4;box-shadow:0 1.6cqw 4cqw rgba(40,20,90,.35),0 0 0 1px rgba(0,0,0,.08);overflow:hidden}
+.live-rec .tb{position:absolute;left:0;top:0;right:0;height:3.45cqw;background:#ececee;border-bottom:1px solid #dcdcdf;font-size:.95cqw;font-weight:600;color:#333;display:flex;align-items:center;justify-content:center}
+.live-rec .tl{position:absolute;left:1.27cqw;top:1.27cqw;display:flex;gap:.73cqw}
+.live-rec .tl i{width:.9cqw;height:.9cqw;border-radius:50%;background:#ff5f57}
+.live-rec .tl i+i{background:#febc2e}.live-rec .tl i+i+i{background:#28c840}
+.live-rec .sb{position:absolute;left:0;top:3.45cqw;bottom:0;width:12.45cqw;background:#f5f5f7;border-right:1px solid #e1e1e4}
+.live-rec .th{position:absolute;left:1.36cqw;width:9.64cqw;height:5.91cqw;background:#fff;border-radius:.6cqw;box-shadow:0 .1cqw .3cqw rgba(0,0,0,.07);outline:.15cqw solid transparent;outline-offset:-.05cqw}
+.live-rec .th:before{content:"";position:absolute;left:1cqw;top:.9cqw;width:5.3cqw;height:.3cqw;border-radius:.2cqw;background:#d4d4d8}
+.live-rec .th b{position:absolute;bottom:1cqw;width:.85cqw;background:#86b9f8;border-radius:.1cqw}
+.live-rec .th.xr-on{outline-color:#2f86f6}
+.live-rec .cd{position:absolute;left:15cqw;top:5.64cqw;width:61cqw;height:41.82cqw;background:#fff;border-radius:.7cqw;box-shadow:0 .2cqw .8cqw rgba(0,0,0,.06)}
+.live-rec h4{position:absolute;left:3.55cqw;top:2.9cqw;margin:0;font-size:2.36cqw;font-weight:700;letter-spacing:-.03cqw;color:#111}
+.live-rec .sub{position:absolute;left:3.55cqw;top:6.35cqw;font-size:1.15cqw;color:#555}
+.live-rec .bdg{position:absolute;left:45.36cqw;top:3.18cqw;width:12cqw;height:4.55cqw;border-radius:.7cqw;background:#e2f6e7;display:flex;align-items:center;justify-content:center;gap:.6cqw;color:#1ea34d;font-weight:700;font-size:2cqw}
+.live-rec .bdg small{font-size:.9cqw}
+.live-rec .gl{position:absolute;left:3.64cqw;width:53.7cqw;height:1px;background:#efeff1}
+.live-rec .br{position:absolute;bottom:4.92cqw;width:3.27cqw;background:#a9d0fb;border-radius:.2cqw .2cqw 0 0;transform-origin:50% 100%}
+.live-rec .br.dk{background:#0a84ff}
+.live-rec .lb{position:absolute;top:38.2cqw;font-size:.95cqw;color:#666;transform:translateX(-50%)}
+.live-rec .cam{position:absolute;left:10.36cqw;top:35.64cqw;width:16.91cqw;height:16.91cqw;border-radius:50%;border:.32cqw solid #f4f4f6;z-index:4;background:url(img/recording.webp) 12.72% 75.96%/611.1% auto no-repeat #333;box-shadow:0 .8cqw 2cqw rgba(0,0,0,.3)}
+.live-rec .xr-bar{position:absolute;left:31.45cqw;top:56.91cqw;width:31.9cqw;height:3.82cqw;border-radius:1.91cqw;background:#262628;box-shadow:0 .6cqw 1.6cqw rgba(30,10,60,.35),inset 0 0 0 1px rgba(255,255,255,.1);z-index:4;color:#fff}
+.live-rec .xr-bar>*{position:absolute;top:50%;transform:translateY(-50%)}
+.live-rec .gp{left:.85cqw;width:.36cqw;height:1.2cqw;border-left:1px solid #666;border-right:1px solid #666}
+.live-rec .dot{left:2.73cqw;width:.9cqw;height:.9cqw;border-radius:50%;background:#ff3b30}
+.live-rec .tm{left:4.36cqw;font:600 1.18cqw/1 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.live-rec .mt{left:8.18cqw;height:1.2cqw;display:flex;align-items:flex-end;gap:.18cqw}
+.live-rec .mt i{width:.27cqw;height:100%;border-radius:.1cqw;background:#30d158;transform-origin:50% 100%}
+.live-rec .mt i:nth-child(1){transform:scaleY(.5)}.live-rec .mt i:nth-child(2){transform:scaleY(.7)}.live-rec .mt i:nth-child(3){transform:scaleY(.85)}
+.live-rec .mt i:nth-child(4),.live-rec .mt i:nth-child(5){background:#5a5a5e}
+.live-rec .dv{left:11.2cqw;width:1px;height:2cqw;background:#444}
+.live-rec .xr-bar svg{width:1.45cqw;height:1.45cqw;fill:none;stroke:#e8e8ea;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.live-rec .stp{left:25cqw;width:6.1cqw;height:2.36cqw;border-radius:1.2cqw;background:#ff3b30;display:flex;align-items:center;justify-content:center;gap:.45cqw;font-size:1.1cqw;font-weight:600}
+.live-rec .stp:before{content:"";width:.8cqw;height:.8cqw;border-radius:.15cqw;background:#fff}
+.live-rec .cdn{position:absolute;left:47.46cqw;top:29.96cqw;width:9cqw;height:9cqw;margin:-4.5cqw 0 0 -4.5cqw;border-radius:2cqw;background:rgba(22,22,26,.82);box-shadow:0 1cqw 3cqw rgba(0,0,0,.35);z-index:5;opacity:0}
+.live-rec .cdn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:5.4cqw;font-weight:700;opacity:0}
+.live-rec .dim{position:absolute;left:8.18cqw;top:5.09cqw;width:78.55cqw;height:49.73cqw;border-radius:.9cqw;background:rgba(10,10,20,.28);z-index:3;opacity:0;pointer-events:none}
+.live-rec .xr-cur{position:absolute;left:15cqw;top:20.7cqw;width:1.7cqw;z-index:6;opacity:0;filter:drop-shadow(0 .1cqw .2cqw rgba(0,0,0,.35))}
+.live-rec .xr-cur svg{display:block;width:100%;height:auto}
+/* play */
+.live-rec.play .cdn{animation:rc-cdn 8s linear infinite}
+.live-rec.play .cdn span{animation:rc-n 8s var(--e) infinite both}
+.live-rec.play .cdn span:nth-child(2){animation-delay:.6s}
+.live-rec.play .cdn span:nth-child(3){animation-delay:1.2s}
+.live-rec.play .dim{animation:rc-cdn 8s linear infinite}
+.live-rec.play.rec .dot{animation:rc-pulse 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:no-preference){.live-rec.play:not(.rec) .dot{background:#6e6e73}.live-rec.play:not(.rec) .mt i{transform:scaleY(.25);transition:transform .3s}}
+.live-rec.play.rec .mt i{animation:rc-m .7s ease-in-out infinite alternate}
+.live-rec.play.rec .mt i:nth-child(2){animation-duration:.53s;animation-delay:-.2s}
+.live-rec.play.rec .mt i:nth-child(3){animation-duration:.61s;animation-delay:-.4s}
+.live-rec.play.rec .mt i:nth-child(4){animation-name:rc-m2;animation-duration:.47s}
+.live-rec.play.rec .mt i:nth-child(5){animation-name:rc-m2;animation-duration:.83s;animation-delay:-.3s}
+.live-rec.play .xr-cur{animation:rc-cur 8s var(--e) infinite}
+.live-rec.play .xr-cur svg{animation:rc-clk 8s ease infinite;transform-origin:10% 10%}
+.live-rec.play .t1{animation:rc-s1 8s step-end infinite}
+.live-rec.play .t2{animation:rc-s2 8s step-end infinite}
+.live-rec.play .br{animation:rc-bar 8s var(--e) infinite both;animation-delay:calc(var(--i)*.05s)}
+.live-rec.play .cam{animation:rc-nod 8s ease-in-out infinite}
+@keyframes rc-cdn{0%,20%{opacity:1}23%,100%{opacity:0}}
+@keyframes rc-n{0%{opacity:0;transform:scale(1.4)}3%{opacity:1;transform:scale(1)}6.5%{opacity:1;transform:scale(1)}7.5%,100%{opacity:0;transform:scale(.85)}}
+@keyframes rc-pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,59,48,.6)}50%{opacity:.55;box-shadow:0 0 0 .4cqw rgba(255,59,48,0)}}
+@keyframes rc-m{0%{transform:scaleY(.25)}100%{transform:scaleY(1)}}
+@keyframes rc-m2{0%{transform:scaleY(.2)}100%{transform:scaleY(.6)}}
+@keyframes rc-cur{0%,36%{opacity:0;transform:translate(32cqw,10cqw)}39%{opacity:1;transform:translate(32cqw,10cqw)}51%{opacity:1;transform:translate(0,0)}60%{opacity:1;transform:translate(0,0)}64%,100%{opacity:0;transform:translate(.5cqw,.5cqw)}}
+@keyframes rc-clk{0%,52%{transform:scale(1)}53%{transform:scale(.82)}55%,100%{transform:scale(1)}}
+@keyframes rc-s1{0%{outline-color:#2f86f6}52.5%,100%{outline-color:transparent}}
+@keyframes rc-s2{0%{outline-color:transparent}52.5%,100%{outline-color:#2f86f6}}
+@keyframes rc-bar{0%,52.5%{transform:scaleY(var(--p))}53.5%{transform:scaleY(.02)}66%,100%{transform:scaleY(1)}}
+@keyframes rc-nod{0%,70%{transform:none}74%{transform:translateY(.35cqw) scale(1.012) rotate(-1deg)}78%{transform:translateY(-.1cqw) scale(1.004)}82%{transform:translateY(.25cqw) scale(1.01) rotate(.6deg)}87%,100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.live-rec.play *,.live-rec.play *:before{animation:none!important;transition:none!important}.live-rec.play .t2{outline-color:#2f86f6}}
+</style>
+<div class="live live-rec" role="img" aria-label="Glimpse recording a Q3 Product Review slide deck with a camera bubble and a control bar showing the timer and mic level.">
+<div class="win">
+<div class="tb"><div class="tl"><i></i><i></i><i></i></div>Q3 Product Review</div>
+<div class="sb">
+<div class="th t1" style="top:1.45cqw"><b style="left:1cqw;height:1cqw"></b><b style="left:2.2cqw;height:1.3cqw"></b><b style="left:3.4cqw;height:1.1cqw"></b><b style="left:4.6cqw;height:2.1cqw"></b></div>
+<div class="th t2 xr-on" style="top:8.9cqw"><b style="left:1cqw;height:1.5cqw"></b><b style="left:2.2cqw;height:1.1cqw"></b><b style="left:3.4cqw;height:2cqw"></b><b style="left:4.6cqw;height:.9cqw"></b></div>
+<div class="th" style="top:16.36cqw"><b style="left:1cqw;height:1cqw"></b><b style="left:2.2cqw;height:2.1cqw"></b><b style="left:3.4cqw;height:1cqw"></b><b style="left:4.6cqw;height:1.5cqw"></b></div>
+<div class="th" style="top:23.82cqw"><b style="left:1cqw;height:1.8cqw"></b><b style="left:2.2cqw;height:1.2cqw"></b><b style="left:3.4cqw;height:1.6cqw"></b><b style="left:4.6cqw;height:2.2cqw"></b></div>
+<div class="th" style="top:31.27cqw"></div>
+</div>
+<div class="cd">
+<h4>Weekly active users</h4><div class="sub">Up 38% since the redesign shipped in July</div>
+<div class="bdg">+38%<small>vs. Q2</small></div>
+<i class="gl" style="top:15.18cqw"></i><i class="gl" style="top:22.18cqw"></i><i class="gl" style="top:29.36cqw"></i><i class="gl" style="top:36.9cqw"></i>
+<i class="br" style="--i:0;--p:.9;left:5.18cqw;height:6.73cqw"></i>
+<i class="br" style="--i:1;--p:.6;left:10.44cqw;height:8.27cqw"></i>
+<i class="br" style="--i:2;--p:1.1;left:15.71cqw;height:7.64cqw"></i>
+<i class="br" style="--i:3;--p:.55;left:20.97cqw;height:10.18cqw"></i>
+<i class="br" style="--i:4;--p:.7;left:26.24cqw;height:11.64cqw"></i>
+<i class="br" style="--i:5;--p:.5;left:31.5cqw;height:11.18cqw"></i>
+<i class="br" style="--i:6;--p:.45;left:36.76cqw;height:14.82cqw"></i>
+<i class="br dk" style="--i:7;--p:.5;left:42.03cqw;height:17.09cqw"></i>
+<i class="br dk" style="--i:8;--p:.35;left:47.29cqw;height:18.91cqw"></i>
+<i class="br dk" style="--i:9;--p:.4;left:52.56cqw;height:21.55cqw"></i>
+<span class="lb" style="left:6cqw">May</span><span class="lb" style="left:16.2cqw">Jun</span><span class="lb" style="left:26.2cqw">Jul</span><span class="lb" style="left:36.2cqw">Aug</span><span class="lb" style="left:46.4cqw">Sep</span>
+</div>
+</div>
+<div class="dim"></div>
+<div class="ol"></div>
+<div class="cdn"><span>3</span><span>2</span><span>1</span></div>
+<div class="cam"></div>
+<div class="xr-cur"><svg viewBox="0 0 16 24"><path d="M1 1v19l4.6-4.4 3 7 3-1.3-3-6.8H15z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+<div class="xr-bar">
+<i class="gp"></i><i class="dot"></i><span class="tm">1:23</span>
+<span class="mt"><i></i><i></i><i></i><i></i><i></i></span><i class="dv"></i>
+<svg style="left:12.75cqw" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12" stroke-width="3"/></svg>
+<svg style="left:16.05cqw" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4.5h4.5"/></svg>
+<svg style="left:19.3cqw" viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="13" height="11" rx="2" fill="#e8e8ea"/><path d="M16 10.5l5-3v9l-5-3z" fill="#e8e8ea"/></svg>
+<svg style="left:22.55cqw" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10.5 11v5M13.5 11v5"/></svg>
+<span class="stp">Stop</span>
+</div>
+</div>
+<script>(function(){
+var L=8000,S=1800,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.live-rec').forEach(function(r){
+if(r._rc)return;r._rc=1;var tm=r.querySelector('.tm'),t0=0,iv=0;
+function f(s){return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+function tick(){if(!r.classList.contains('play')){stop();return}
+var e=(performance.now()-t0)%L,on=e>=S;if(r.classList.contains('rec')!==on)r.classList.toggle('rec',on);
+var t=on?f(Math.floor((e-S)/1000)):'0:00';if(tm.textContent!==t)tm.textContent=t}
+function stop(){clearInterval(iv);iv=0;r.classList.remove('rec');tm.textContent='1:23'}
+function chk(){var p=r.classList.contains('play');if(p&&!iv&&!rm){t0=performance.now();tm.textContent='0:00';iv=setInterval(tick,100)}else if(!p&&iv)stop()}
+new MutationObserver(chk).observe(r,{attributes:true,attributeFilter:['class']});chk()});
+})();</script>
+</figure>
   </div>
 </section>
 
@@ -259,7 +498,116 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
       <h2 class="anim">Every call, <em>written down.</em></h2>
       <p class="anim d2">Glimpse notices your calls and transcribes them on your Mac. Nothing leaves it.</p>
     </div>
-    <figure class="shot anim"><img src="img/meeting.webp" width="1100" height="700" alt="Video call with the Glimpse meeting bar running"></figure>
+    <figure class="shot live-fig anim" style="--ar:1100/700">
+<style>
+.live-meet{position:relative;width:100%;aspect-ratio:1100/700;container-type:inline-size;overflow:hidden;background:#7a6fe0 url(img/meeting.webp) 0 0/100% 100% no-repeat;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.live-meet *{box-sizing:border-box}
+.live-meet .mt-patch{position:absolute;left:34.545%;top:87.143%;width:30.909%;height:12.857%;background:linear-gradient(90deg,#875cd6,#8b5bd0 25%,#925fcc 50%,#9b66c9 75%,#a76dc5);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.live-meet .mt-patch:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#9c67ed,#a76ceb 25%,#af70e5 50%,#b978e2 75%,#c57fdd);-webkit-mask:linear-gradient(transparent,rgba(0,0,0,.45) 13%,rgba(0,0,0,.8) 22%,#000 33%);mask:linear-gradient(transparent,rgba(0,0,0,.45) 13%,rgba(0,0,0,.8) 22%,#000 33%)}
+.live-meet .mt-pill{position:absolute;left:37.364%;top:88.143%;width:25.273%;height:6%;border-radius:999px;background:#1e1e20;box-shadow:0 0 0 1px rgba(255,255,255,.07) inset,0 .9cqw 2.4cqw rgba(30,10,60,.35)}
+.live-meet .mt-pill>*{position:absolute;top:50%;transform:translateY(-50%)}
+.live-meet .mt-grip{left:2.6%;width:.55cqw;height:1cqw;background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 1px,transparent 1px .19cqw)}
+.live-meet .mt-dot{left:10.7%;width:.9cqw;height:.9cqw;border-radius:50%;background:#e5484d}
+.live-meet .mt-time{left:17%;font-size:1.36cqw;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.live-meet .mt-lv{left:32.6%;height:1.3cqw;display:flex;align-items:flex-end;gap:.18cqw}
+.live-meet .mt-lv i{width:.26cqw;border-radius:.1cqw;background:#3fcf6a;transform-origin:50% 100%}
+.live-meet .mt-lv i:nth-child(1){height:42%}.live-meet .mt-lv i:nth-child(2){height:58%}.live-meet .mt-lv i:nth-child(3){height:74%}
+.live-meet .mt-lv i:nth-child(4){height:88%;background:#5c5c60}.live-meet .mt-lv i:nth-child(5){height:100%;background:#4a4a4e}
+.live-meet .mt-div{left:44.2%;width:1px;height:2cqw;background:rgba(255,255,255,.14)}
+.live-meet .mt-pill svg{width:1.4cqw;height:1.4cqw;fill:none;stroke:#e9e9ec;stroke-width:2;stroke-linecap:round}
+.live-meet .mt-mic{left:49.7%}.live-meet .mt-pause{left:62.7%}
+.live-meet .mt-stop{left:73%;width:23.5%;height:66%;border-radius:999px;background:#f2484b;display:flex;align-items:center;justify-content:center;gap:.5cqw;font-size:1.18cqw;font-weight:700}
+.live-meet .mt-stop:before{content:"";width:.8cqw;height:.8cqw;border-radius:.15cqw;background:#fff}
+.live-meet .mt-card{position:absolute;right:1.4%;top:2.2%;width:27.5%;padding:1.1cqw;border-radius:1.3cqw;background:rgba(32,32,35,.94);box-shadow:0 0 0 1px rgba(255,255,255,.09) inset,0 1.2cqw 3cqw rgba(0,0,0,.45);display:flex;align-items:center;gap:.9cqw;opacity:0}
+.live-meet .mt-ic{flex:none;width:3cqw;height:3cqw;border-radius:.7cqw;background:url(img/icon.png) 50% 50%/128% no-repeat}
+.live-meet .mt-tx{flex:1;min-width:0;line-height:1.3}
+.live-meet .mt-tx b{display:block;font-size:1.16cqw;font-weight:600;white-space:nowrap}
+.live-meet .mt-tx span{display:block;font-size:1.02cqw;color:#9a9aa2;white-space:nowrap}
+.live-meet .mt-rec{flex:none;display:flex;align-items:center;gap:.45cqw;padding:.55cqw 1cqw;border-radius:.75cqw;background:#f2484b;font-size:1.06cqw;font-weight:600}
+.live-meet .mt-rec:before{content:"";width:.6cqw;height:.6cqw;border-radius:50%;background:#fff}
+.live-meet .mt-cur{position:absolute;left:94.2%;top:6.6%;width:1.7cqw;opacity:0;filter:drop-shadow(0 .15cqw .3cqw rgba(0,0,0,.4))}
+.live-meet .mt-pan{position:absolute;left:64.6%;top:29%;width:32.6%;border-radius:1.2cqw;background:#121214;min-height:19.6cqw;box-shadow:0 0 0 1px rgba(255,255,255,.09) inset,0 1.6cqw 4cqw rgba(0,0,0,.5);overflow:hidden}
+.live-meet .mt-hd{display:flex;align-items:center;gap:.7cqw;padding:1cqw 1.3cqw;border-bottom:1px solid rgba(255,255,255,.07);font:500 1.05cqw "JetBrains Mono",ui-monospace,Menlo,monospace;color:#d6d6da}
+.live-meet .mt-hd:before{content:"";width:.6cqw;height:.6cqw;border-radius:50%;background:#e5484d}
+.live-meet .mt-lock{margin-left:auto;display:flex;align-items:center;gap:.35cqw;padding:.3cqw .7cqw;border-radius:999px;background:rgba(255,178,36,.13);color:#ffb224;font:600 .92cqw -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif}
+.live-meet .mt-lock svg{width:.9cqw;height:.9cqw;fill:none;stroke:currentColor;stroke-width:2.4}
+.live-meet .mt-bd{padding:.6cqw 1.3cqw 1.2cqw}
+.live-meet .mt-ln{display:flex;gap:.9cqw;padding:.55cqw 0;font-size:1.12cqw;line-height:1.45;color:#c9c9ce}
+.live-meet .mt-ln em{flex:none;font:400 .95cqw/1.7 "JetBrains Mono",ui-monospace,Menlo,monospace;color:#6c6c74;font-style:normal}
+.live-meet .mt-ln b{font-weight:600;color:#fff}
+.live-meet .mt-ln .h{color:transparent}
+.live-meet .mt-ln.pend{visibility:hidden}
+.live-meet .mt-ln .xm-c{display:none;width:.12cqw;height:1.1em;margin-right:-.12cqw;vertical-align:-.18em;background:#ffb224}
+.live-meet.play .mt-ln.xm-on .xm-c{display:inline-block}
+.live-meet.play .mt-card{animation:mt-card 9s cubic-bezier(.2,.7,.2,1) infinite}
+.live-meet.play .mt-rec{animation:mt-press 9s ease infinite}
+.live-meet.play .mt-cur{animation:mt-cur 9s cubic-bezier(.2,.7,.2,1) infinite}
+.live-meet.play .mt-pill{animation:mt-pill 9s cubic-bezier(.2,.7,.2,1) infinite}
+.live-meet.play .mt-pan{animation:mt-pan 9s cubic-bezier(.2,.7,.2,1) infinite}
+.live-meet.play .mt-lock{animation:mt-lock 9s cubic-bezier(.2,.7,.2,1) infinite}
+.live-meet.play .mt-lv i{animation:mt-lv .7s ease-in-out infinite alternate}
+.live-meet.play .mt-lv i:nth-child(2){animation-duration:.52s;animation-delay:-.2s}
+.live-meet.play .mt-lv i:nth-child(3){animation-duration:.63s;animation-delay:-.4s}
+.live-meet.play .mt-lv i:nth-child(4){animation-duration:.47s;animation-delay:-.1s}
+.live-meet.play .mt-lv i:nth-child(5){animation-duration:.58s;animation-delay:-.3s}
+@keyframes mt-card{0%,4%{opacity:0;transform:translateX(30%)}10%,25%{opacity:1;transform:none}30%,100%{opacity:0;transform:translateX(30%)}}
+@keyframes mt-press{0%,20.5%,24%,100%{transform:none;filter:none}21.5%,23%{transform:scale(.92);filter:brightness(.82)}}
+@keyframes mt-cur{0%,10%{opacity:0;transform:translate(-160%,420%)}12%{opacity:1;transform:translate(-160%,420%)}20%{transform:none}21.5%{transform:scale(.85)}23%,26%{opacity:1;transform:none}30%,100%{opacity:0;transform:none}}
+@keyframes mt-pill{0%,26.5%{opacity:0;transform:translateY(40%) scale(.96)}32%,94.5%{opacity:1;transform:none}99%,100%{opacity:0;transform:translateY(20%)}}
+@keyframes mt-pan{0%,33%{opacity:0;transform:translateX(8%)}39%,94.5%{opacity:1;transform:none}99%,100%{opacity:0;transform:translateX(4%)}}
+@keyframes mt-lock{0%,82%{opacity:0;transform:scale(.6)}85.5%,94.5%{opacity:1;transform:none}99%,100%{opacity:0}}
+@keyframes mt-lv{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.live-meet.play *{animation:none!important}.live-meet.play .mt-card,.live-meet.play .mt-cur{opacity:0}.live-meet.play .mt-ln .xm-c{display:none!important}}
+</style>
+<div class="live live-meet" role="img" aria-label="Glimpse detects a video call, starts recording with its floating meeting bar, and types a live transcript that stays on the Mac.">
+  <div class="mt-patch"></div>
+  <div class="mt-pan">
+    <div class="mt-hd">Weekly-sync.md<span class="mt-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>On this Mac</span></div>
+    <div class="mt-bd">
+      <div class="mt-ln"><em>0:02</em><span><b>Ava Thompson:</b> <span class="t">Revenue is up 12% on last year.</span></span></div>
+      <div class="mt-ln"><em>0:04</em><span><b>Liam Carter:</b> <span class="t">Churn ticked up. Can we check before Friday?</span></span></div>
+      <div class="mt-ln"><em>0:06</em><span><b>Ava Thompson:</b> <span class="t">I'll send the list today.</span></span></div>
+    </div>
+  </div>
+  <div class="mt-pill">
+    <span class="mt-grip"></span><span class="mt-dot"></span><span class="mt-time">0:06</span>
+    <span class="mt-lv"><i></i><i></i><i></i><i></i><i></i></span><span class="mt-div"></span>
+    <svg class="mt-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>
+    <svg class="mt-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke-width="3.4"/></svg>
+    <span class="mt-stop">Stop</span>
+  </div>
+  <div class="mt-card"><span class="mt-ic"></span><span class="mt-tx"><b>Call detected · Record?</b><span>Product Weekly Sync</span></span><span class="mt-rec">Record</span></div>
+  <svg class="mt-cur" viewBox="0 0 20 26"><path d="M2 2v19l5-4.6 3.3 7.4 3.4-1.5-3.3-7.2H17z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</div>
+<script>
+(function(){
+  var L=9,T0=2.4,TY=[[3.7,4.7],[5,6.3],[6.6,7.3]];
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('.live-meet').forEach(function(root){
+    if(root.dataset.mt)return;root.dataset.mt=1;
+    var time=root.querySelector('.mt-time'),lines=[].slice.call(root.querySelectorAll('.mt-ln')),id=0,start=0;
+    lines.forEach(function(ln){var t=ln.querySelector('.t');ln._s=t.textContent;t.innerHTML='<span class="v"></span><i class="xm-c"></i><span class="h"></span>';ln._v=t.firstChild;ln._h=t.lastChild;});
+    function setLine(ln,n){var s=ln._s;ln._v.textContent=s.slice(0,n);ln._h.textContent=s.slice(n);}
+    function rest(){time.textContent='0:06';lines.forEach(function(ln){setLine(ln,ln._s.length);ln.classList.remove('xm-on','pend');});}
+    function tick(){
+      var e=((performance.now()-start)/1000)%L;
+      time.textContent='0:0'+Math.max(0,Math.min(9,Math.floor(e-T0)));
+      var cur=-1;
+      lines.forEach(function(ln,i){var a=TY[i][0],b=TY[i][1],p=Math.max(0,Math.min(1,(e-a)/(b-a)));setLine(ln,Math.round(p*ln._s.length));ln.classList.toggle('pend',e<a-.25);if(e>=a&&e<b+.4&&(i==2||e<TY[i+1][0]))cur=i;});
+      lines.forEach(function(ln,i){ln.classList.toggle('xm-on',i===cur);});
+    }
+    function sync(){
+      var on=root.classList.contains('play')&&!(rm&&rm.matches);
+      if(on&&!id){start=performance.now();tick();id=setInterval(tick,50);}
+      else if(!on&&id){clearInterval(id);id=0;rest();}
+    }
+    rest();
+    new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['class']});
+    sync();
+  });
+})();
+</script>
+</figure>
   </div>
 </section>
 
@@ -271,7 +619,125 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
       <p class="anim d2">Press ⌘↩ to send a marked-up screenshot to Claude Code or Codex. It can look at your screen and draw back, too.</p>
       <div class="keys anim d3"><kbd>⌘</kbd><kbd>↩</kbd></div>
     </div>
-    <figure class="shot framed anim"><img src="img/send.webp" width="1660" height="1160" alt="Editor with a note and a Send menu listing agent sessions"></figure>
+    <figure class="shot live-fig anim" style="--ar:1660/1160">
+<style>
+.live-agent{position:relative;width:100%;aspect-ratio:1660/1160;container-type:inline-size;overflow:hidden}
+.live-agent svg{position:absolute;inset:0;width:100%;height:100%;display:block;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif}
+.live-agent .mo{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+.live-agent .tb{fill:none;stroke:#3a3a3c;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.live-agent .ct{text-anchor:middle}
+.live-agent :is(.mn,.tk,.k,.hl,.xa-cur,.ah,.nt,.tm,.tl,.ob,.ol,.toast,.sb){transform-box:fill-box;transform-origin:center}
+.live-agent .ar{stroke-dasharray:340;stroke-dashoffset:0}
+.live-agent .ob{stroke-dasharray:720}
+.live-agent :is(.tm,.ob,.ol,.toast,.tk,.xa-cur,.tl,.dn){opacity:0}
+.live-agent .mn{transform-origin:80% 100%}
+.live-agent .bl{animation:la-blink 1s steps(1) infinite}
+.live-agent.play :is(.ar,.ah,.nt,.tk,.k,.sb,.mn,.hl,.r1,.r2,.xa-cur,.toast,.tm,.tl,.ob,.ol,.dn){animation:10s cubic-bezier(.2,.7,.2,1) infinite both}.live-agent.play .ar{animation-name:la-ar}.live-agent.play .ah{animation-name:la-ah}.live-agent.play .nt{animation-name:la-nt}.live-agent.play .tk{animation-name:la-tk}.live-agent.play .k{animation-name:la-kp}.live-agent.play .sb{animation-name:la-sb}.live-agent.play .mn{animation-name:la-mn}.live-agent.play .hl{animation-name:la-hl}.live-agent.play .r1{animation-name:la-r1}.live-agent.play .r2{animation-name:la-r2}.live-agent.play .xa-cur{animation-name:la-cur}.live-agent.play .toast{animation-name:la-to}.live-agent.play .tm{animation-name:la-tm}.live-agent.play .tl{animation-name:la-tl}.live-agent.play .ob{animation-name:la-ob}.live-agent.play .ol{animation-name:la-ol}.live-agent.play .dn{animation-name:la-dn}
+@keyframes la-ar{0%,4%{stroke-dashoffset:340;opacity:1}14%,94%{stroke-dashoffset:0;opacity:1}98%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes la-ah{0%,13%{opacity:0}15%,94%{opacity:1}98%,100%{opacity:0}}
+@keyframes la-nt{0%,14%{opacity:0;transform:scale(.9)}17%,94%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes la-tk{0%,26%{opacity:0;transform:translateY(14px)}28.5%,34%{opacity:1;transform:none}37%,100%{opacity:0;transform:translateY(-6px)}}
+@keyframes la-kp{0%,30.5%,33%,100%{transform:none;fill:#fff}31.5%,32.2%{transform:translateY(4px);fill:#e4e4e8}}
+@keyframes la-sb{0%,31%,36%,100%{filter:none}32%,34%{filter:brightness(.82)}}
+@keyframes la-mn{0%,33.5%{opacity:0;transform:scale(.94) translateY(16px)}37%,46.5%{opacity:1;transform:none}49%,100%{opacity:0;transform:scale(.97)}}
+@keyframes la-hl{0%,39%{transform:translateY(76px)}42.5%,44%{transform:none;fill:#3d84f5}45%{fill:#2a6de0}46.5%,100%{transform:none;fill:#3d84f5}}
+@keyframes la-r1{0%,39.5%{fill:#1d1d1f}42%,100%{fill:#fff}}
+@keyframes la-r2{0%,39.5%{fill:#fff}42%,100%{fill:#1d1d1f}}
+@keyframes la-cur{0%,35%{opacity:0;transform:translate(150px,190px)}37%{opacity:1;transform:translate(150px,190px)}43%,44%{opacity:1;transform:none}45%{transform:scale(.86)}46%{opacity:1;transform:none}49%,100%{opacity:0;transform:none}}
+@keyframes la-to{0%,48.5%{opacity:0;transform:translateY(24px)}51%,61%{opacity:1;transform:none}64%,100%{opacity:0;transform:translateY(-8px)}}
+@keyframes la-tm{0%,56%{opacity:0;transform:translateX(120px)}61%,94%{opacity:1;transform:none}98%,100%{opacity:0;transform:none}}
+@keyframes la-tl{0%,62%{opacity:0;transform:translateY(8px)}64.5%,100%{opacity:1;transform:none}}
+@keyframes la-ob{0%,80%{opacity:0;stroke-dashoffset:720}81%{opacity:1;stroke-dashoffset:720}87%,94%{opacity:1;stroke-dashoffset:0}98%,100%{opacity:0;stroke-dashoffset:0}}
+@keyframes la-ol{0%,86%{opacity:0;transform:translateY(8px)}88.5%,94%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes la-dn{0%,87%{opacity:0}89%,100%{opacity:1}}
+@keyframes la-blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.live-agent.play *,.live-agent .bl{animation:none!important}}
+</style>
+<div class="live live-agent" role="img" aria-label="Glimpse sends a marked-up chart screenshot to a Claude Code session, and Claude replies and draws a box back on the chart.">
+<svg viewBox="0 0 1660 1160" aria-hidden="true">
+<defs>
+<filter id="la-sh" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dy="18" stdDeviation="16" flood-opacity=".28"/></filter>
+<filter id="la-sm" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dy="12" stdDeviation="14" flood-opacity=".22"/></filter>
+<clipPath id="la-w"><rect x="33" y="30" width="1594" height="1098" rx="22"/></clipPath>
+<clipPath id="la-i"><rect x="73" y="396" width="1513" height="427"/></clipPath>
+<clipPath id="la-b"><rect x="96" y="396" width="873" height="326"/></clipPath>
+<linearGradient id="la-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c83ff"/><stop offset="1" stop-color="#5560ee"/></linearGradient>
+</defs>
+<rect x="33" y="30" width="1594" height="1098" rx="22" fill="#fff" filter="url(#la-sh)"/>
+<g clip-path="url(#la-w)">
+<rect x="33" y="30" width="1594" height="150" fill="#f6f6f7"/>
+<circle cx="65" cy="59" r="12" fill="#ff5f57"/><circle cx="105" cy="59" r="12" fill="#febc2e"/><circle cx="145" cy="59" r="12" fill="#28c840"/>
+<text x="830" y="66" class="ct" font-size="26" font-weight="600" fill="#3a3a3c">Glimpse – 1990 × 562</text>
+<rect x="57" y="106" width="56" height="56" rx="9" fill="#3b82f6"/><path d="M79 120v28l7-7 5 10 4-2-5-10h10z" fill="#fff"/>
+<g class="tb"><path d="M172 145l22-22m-14 0h14v14M232 145l22-22"/><rect x="288" y="122" width="30" height="24" rx="3"/><circle cx="423" cy="134" r="14"/><path d="M512 147l8-26 8 26M570 147h22M572 141l14-20 6 5-14 19z"/><circle cx="701" cy="134" r="14"/><rect x="785" y="123" width="28" height="22" rx="2"/><path d="M858 122c-6 9-9 13-9 17a9 9 0 0 0 18 0c0-4-3-8-9-17zM913 121h10v8l-2 4v14h-6v-14l-2-4zM1009 120v24h24M1001 128h24v24"/><path d="M472 112v44M750 112v44M968 112v44M1067 112v44" stroke="#d8d8dc"/></g>
+<rect x="348" y="122" width="30" height="24" rx="3" fill="#3a3a3c"/><path d="M785 123h7v7h-7zM799 123h7v7h-7zM792 130h7v7h-7zM806 130h7v7h-7zM785 137h7v8h-7zM799 137h7v8h-7z" fill="#3a3a3c"/>
+<text x="641" y="145" class="ct" font-size="30" fill="#3a3a3c">Aa</text><text x="701" y="142" class="ct" font-size="19" font-weight="600" fill="#3a3a3c">1</text>
+<circle cx="1106" cy="134" r="21" fill="none" stroke="#3b82f6" stroke-width="3"/>
+<circle cx="1106" cy="134" r="16" fill="#e5453b"/><circle cx="1157" cy="134" r="16" fill="#f0943a"/><circle cx="1207" cy="134" r="16" fill="#f5d33c"/><circle cx="1257" cy="134" r="16" fill="#5cc15b"/><circle cx="1307" cy="134" r="16" fill="#2f7cf6"/><circle cx="1357" cy="134" r="16" fill="#a95ae0"/><circle cx="1407" cy="134" r="16" fill="#111"/><circle cx="1457" cy="134" r="16" fill="#fff" stroke="#cfcfd4" stroke-width="2"/>
+<rect x="1476" y="116" width="76" height="36" rx="5" fill="#d63a2f"/><path d="M1559 151l18-18m-4-6l8 8" stroke="#3a3a3c" stroke-width="3" stroke-linecap="round"/>
+<rect x="33" y="180" width="1594" height="860" fill="#dedee0"/><path d="M33 180.5h1594" stroke="#d2d2d6"/>
+<g clip-path="url(#la-i)">
+<rect x="73" y="396" width="1513" height="427" fill="#f3f4f8"/>
+<rect x="96" y="380" width="873" height="393" rx="14" fill="#fff"/><rect x="995" y="380" width="545" height="393" rx="14" fill="#fff"/>
+<text x="123" y="439" font-size="22" font-weight="700" fill="#14151a">Monthly revenue</text>
+<g clip-path="url(#la-b)" fill="url(#la-g)"><rect x="123" y="614" width="52" height="116" rx="6"/><rect x="193" y="583" width="52" height="147" rx="6"/><rect x="263" y="599" width="52" height="131" rx="6"/><rect x="333" y="563" width="52" height="167" rx="6"/><rect x="403" y="573" width="52" height="157" rx="6"/><rect x="473" y="542" width="52" height="188" rx="6"/><rect x="543" y="552" width="52" height="178" rx="6"/><rect x="613" y="519" width="52" height="211" rx="6"/><rect x="683" y="529" width="52" height="201" rx="6"/><rect x="753" y="501" width="52" height="229" rx="6"/><rect x="823" y="486" width="52" height="244" rx="6"/><rect x="893" y="465" width="52" height="265" rx="6"/></g>
+<g class="ct" font-size="17" fill="#646777"><text x="149" y="748">Oct</text><text x="219" y="748">Nov</text><text x="289" y="748">Dec</text><text x="359" y="748">Jan</text><text x="429" y="748">Feb</text><text x="499" y="748">Mar</text><text x="569" y="748">Apr</text><text x="639" y="748">May</text><text x="709" y="748">Jun</text><text x="779" y="748">Jul</text><text x="849" y="748">Aug</text><text x="919" y="748">Sep</text></g>
+<text x="1022" y="439" font-size="22" font-weight="700" fill="#14151a">Recent customers</text>
+<g font-size="21" fill="#14151a"><text x="1022" y="490">Ava Thompson</text><text x="1022" y="545">Liam Carter</text><text x="1022" y="599">Sofia Nguyen</text><text x="1022" y="654">Noah Patel</text><text x="1022" y="708">Mia Rossi</text></g>
+<g font-size="19" fill="#555"><text x="1180" y="489">ava.t@example.com</text><text x="1180" y="544">liam@example.com</text><text x="1180" y="598">sofia.n@example.com</text><text x="1180" y="653">noah.p@example.com</text><text x="1180" y="707">mia@example.com</text></g>
+<path d="M1022 510.5h490M1022 565.5h490M1022 619.5h490M1022 674.5h490" stroke="#eee"/>
+<g font-size="16" font-weight="600" class="ct"><g id="la-pd"><rect x="1456" y="469" width="56" height="26" rx="13" fill="#dcfce7"/><text x="1484" y="488" fill="#15803d">Paid</text></g><g id="la-pn"><rect x="1426" y="524" width="86" height="26" rx="13" fill="#fef3c7"/><text x="1469" y="543" fill="#b45309">Pending</text></g><use href="#la-pd" y="109"/><use href="#la-pd" y="164"/><use href="#la-pn" y="163"/></g>
+</g>
+<path class="ar" d="M582 480C690 452 810 458 872 480" fill="none" stroke="#e0453a" stroke-width="7" stroke-linecap="round"/>
+<path class="ah" d="M906 492l-40-26-6 36z" fill="#e0453a" stroke="#e0453a" stroke-width="4" stroke-linejoin="round"/>
+<g class="nt"><rect x="196" y="452" width="374" height="56" rx="12" fill="#e0453a" stroke="#fff" stroke-width="2"/><text class="la-note" x="208" y="494" font-size="35" font-weight="700" fill="#fff">why does Sep jump?</text></g>
+<rect class="ob" x="881" y="451" width="76" height="282" rx="6" fill="none" stroke="#D97757" stroke-width="6"/>
+<g class="ol"><rect x="878" y="408" width="98" height="36" rx="7" fill="#D97757"/><text x="927" y="433" class="ct" font-size="20" font-weight="700" fill="#fff">Claude</text></g>
+<rect x="33" y="1040" width="1594" height="88" fill="#f7f7f8"/><path d="M33 1040.5h1594" stroke="#dcdce0"/>
+<g class="tb"><circle cx="70" cy="1082" r="10"/><path d="M77 1089l9 9M65 1082h10"/><circle cx="198" cy="1082" r="10"/><path d="M205 1089l9 9M193 1082h10M198 1077v10M430 1074l20 20M430 1074v9m0-9h9M450 1094v-9m0 9h-9"/><path d="M584 1078l8-7m-8 7l8 7m-8-7h14a8 8 0 0 1 0 16M636 1078l-8-7m8 7l-8 7m8-7h-14a8 8 0 0 0 0 16" stroke="#b5b5ba"/></g>
+<g font-size="22" fill="#555"><text x="113" y="1091">76%</text><text x="241" y="1091">1,990 × 562 px</text><text x="474" y="1092" font-size="24">Resize</text></g>
+<g fill="#e8e8eb"><rect x="740" y="1060" width="54" height="46" rx="9"/><rect x="822" y="1062" width="114" height="42" rx="8"/><rect x="962" y="1062" width="140" height="42" rx="8"/><rect x="1128" y="1062" width="135" height="42" rx="8"/></g>
+<path d="M758 1094v-14a3 3 0 0 1 6 0v6-12a3 3 0 0 1 6 0v12-9a3 3 0 0 1 6 0v12c0 6-4 9-9 9h-2c-4 0-6-2-8-5" class="tb"/>
+<g font-size="24" fill="#333" class="ct"><text x="879" y="1092">Pin</text><text x="1032" y="1092">Copy</text><text x="1195" y="1092">Save</text></g>
+<g class="sb"><rect x="1289" y="1062" width="192" height="42" rx="8" fill="#2f7cf6"/><path d="M1306 1083l32-13-12 32-5-14z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><text x="1352" y="1092" font-size="24" fill="#fff">Send to…</text></g>
+<rect x="1507" y="1062" width="94" height="42" rx="8" fill="#2f7cf6"/><text x="1554" y="1092" class="ct" font-size="24" fill="#fff">Done</text>
+<g class="toast"><rect x="380" y="954" width="466" height="54" rx="27" fill="#1d1d20" fill-opacity=".92"/><circle cx="412" cy="981" r="12" fill="#34c759"/><path d="M406 981l4 4 8-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="436" y="989" font-size="22" fill="#fff">Sent to <tspan font-weight="600">Revenue chart tooltips</tspan></text></g>
+<g class="tk"><g class="k"><rect x="1325" y="960" width="58" height="58" rx="11" fill="#fff" stroke="#c8c8cd" stroke-width="2" filter="url(#la-sm)"/><text x="1354" y="999" class="ct" font-size="30" fill="#1d1d1f">⌘</text></g><g class="k"><rect x="1393" y="960" width="58" height="58" rx="11" fill="#fff" stroke="#c8c8cd" stroke-width="2" filter="url(#la-sm)"/><text x="1422" y="999" class="ct" font-size="30" fill="#1d1d1f">↩</text></g></g>
+<g class="mn"><rect x="830" y="582" width="660" height="295" rx="18" fill="#f9f9fb" stroke="#000" stroke-opacity=".1" filter="url(#la-sm)"/>
+<text x="862" y="627" font-size="21" font-weight="500" fill="#9a9aa0">Send to</text>
+<rect class="hl" x="840" y="640" width="640" height="76" rx="10" fill="#3d84f5"/>
+<rect x="861" y="662" width="32" height="32" rx="7" fill="#111"/><text x="866" y="682" class="mo" font-size="13" fill="#fff">&gt;_</text>
+<rect x="861" y="738" width="32" height="32" rx="7" fill="#D97757"/><path d="M877 744v20M867 754h20M870 747l14 14M884 747l-14 14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+<rect x="861" y="814" width="32" height="32" rx="7" fill="#111"/><text x="866" y="834" class="mo" font-size="13" fill="#fff">&gt;_</text>
+<g class="r1" fill="#fff"><text x="909" y="672" font-size="26">Revenue chart tooltips</text><text x="909" y="702" font-size="21" fill-opacity=".85">Claude Code · ~/code/northwind · Ghostty</text><path d="M1452 670v8h-20m6-6l-6 6 6 6" fill="none" stroke="#fff" stroke-width="2.6"/></g>
+<g class="r2" fill="#1d1d1f"><text x="909" y="748" font-size="26">Fix the churn calculation</text></g>
+<g font-size="21" fill="#8a8a90"><text x="909" y="779">Claude Code · ~/code/northwind-api · Claude</text><text x="909" y="855">Codex · ~/code/northwind-ios · Terminal</text><text x="1441" y="766" font-size="24" class="ct">2</text><text x="1441" y="842" font-size="24" class="ct">3</text></g>
+<text x="909" y="824" font-size="26" fill="#1d1d1f">northwind-ios</text></g>
+<g class="xa-cur"><path d="M1318 676v34l8-8 6 13 6-3-6-12h11z" fill="#111" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></g>
+<g class="tm"><rect x="992" y="206" width="610" height="808" rx="16" fill="#18181b" filter="url(#la-sh)"/><path d="M992 222a16 16 0 0 1 16-16h578a16 16 0 0 1 16 16v28H992z" fill="#242428"/>
+<circle cx="1018" cy="228" r="7" fill="#4a4a50"/><circle cx="1040" cy="228" r="7" fill="#4a4a50"/><circle cx="1062" cy="228" r="7" fill="#4a4a50"/><text x="1297" y="234" class="ct" font-size="17" fill="#8e8e94">Revenue chart tooltips</text>
+<g class="mo" font-size="21"><g class="tl"><text x="1022" y="300" fill="#7a7a80">&gt;</text><rect x="1046" y="272" width="62" height="40" rx="4" fill="#f3f4f8"/><path d="M1052 308h6v-10h-6zM1062 308h6v-14h-6zM1072 308h6v-12h-6zM1082 308h6v-18h-6zM1092 308h6v-24h-6z" fill="#6b72f7"/><path d="M1054 283q20-6 34 2" stroke="#e0453a" stroke-width="2.4" fill="none"/><text x="1122" y="300" fill="#e8e8ea">Screenshot from Glimpse</text></g>
+<text x="1022" y="372" fill="#D97757">●</text><text x="1050" y="372" fill="#e8e8ea"><tspan class="la-r" x="1050">Sep is the first full month after the</tspan><tspan class="la-r" x="1050" dy="32">redesign. I'll add that to the tooltip.</tspan></text>
+<text x="1050" y="442" class="dn" fill="#7a7a80" font-size="19">⎿ Marked the Sep bar on your screen</text>
+<path d="M1012 930.5h570M1012 990.5h570" stroke="#3a3a40"/><text x="1022" y="968" fill="#7a7a80">&gt;</text><rect class="bl" x="1046" y="949" width="12" height="25" fill="#cfcfd4"/></g></g>
+</g>
+</svg>
+</div>
+<script>(function(){
+var R=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('.live-agent:not([data-la])').forEach(function(el){
+el.setAttribute('data-la','1');
+var note=el.querySelector('.la-note'),rs=el.querySelectorAll('.la-r'),NT=note.textContent,L=[rs[0].textContent,rs[1].textContent],raf=0,t0=0;
+function full(){note.textContent=NT;rs[0].textContent=L[0];rs[1].textContent=L[1]}
+function tick(now){if(!el.classList.contains('play')){raf=0;full();return}
+var t=((now-t0)/1000)%10,n=Math.max(0,Math.min(NT.length,Math.round((t-1.6)*20)));
+note.textContent=t>9?NT:NT.slice(0,n);
+var m=Math.max(0,Math.round((t-6.6)*55)),a=L[0].length;
+rs[0].textContent=L[0].slice(0,m);rs[1].textContent=m>a?L[1].slice(0,m-a):'';
+raf=requestAnimationFrame(tick)}
+function sync(){if(el.classList.contains('play')&&!(R&&R.matches)){if(!raf){t0=performance.now();raf=requestAnimationFrame(tick)}}else{if(raf)cancelAnimationFrame(raf);raf=0;full()}}
+new MutationObserver(sync).observe(el,{attributes:true,attributeFilter:['class']});sync()})})();</script>
+</figure>
   </div>
 </section>
 
@@ -282,7 +748,131 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
       <p class="anim d2">Double-tap Shift to bring back your last 30 captures, then copy, send or stitch them.</p>
       <div class="keys anim d3"><kbd>⇧</kbd><kbd>⇧</kbd></div>
     </div>
-    <figure class="shot anim"><img src="img/recent.webp" width="1100" height="778" alt="Recent captures stacked at the screen edge"></figure>
+    <figure class="shot live-fig anim" style="--ar:1100/778">
+<style>
+.live-stack{--e:cubic-bezier(.2,.7,.2,1);--sel:#2a7cf7;--cl:#d97757;position:relative;width:100%;aspect-ratio:1100/778;container-type:inline-size;overflow:hidden;border-radius:1.2cqw;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter Tight",system-ui,sans-serif;color:#111;
+background:radial-gradient(60% 70% at 100% 0,#c779dc 0,transparent 70%),radial-gradient(55% 60% at 0 0,#5a78f0 0,transparent 75%),linear-gradient(115deg,#6578ef 0%,#8f69ea 45%,#ad73e2 75%,#cf86d6 100%)}
+.live-stack *{box-sizing:border-box}
+.live-stack .win{position:absolute;left:4.55cqw;top:21.64cqw;width:120cqw;height:56cqw;border-radius:1.1cqw;background:#f3f4f7;box-shadow:0 1.6cqw 4cqw rgba(30,15,80,.4),0 0 0 1px rgba(0,0,0,.12);overflow:hidden;z-index:1}
+.live-stack .side{position:absolute;left:0;top:0;bottom:0;width:21.45cqw;background:#1d1e27}
+.live-stack .logo{position:absolute;left:1.82cqw;top:2.9cqw;font-size:1.82cqw;font-weight:700;color:#fff}
+.live-stack .logo span{color:#8b8df7}
+.live-stack .nv{position:absolute;left:1.82cqw;top:7.45cqw;display:flex;flex-direction:column;gap:.73cqw}
+.live-stack .xs-nav{width:17.8cqw;height:3.64cqw;line-height:3.64cqw;padding-left:1.1cqw;border-radius:.6cqw;font-size:1.6cqw;color:#c9cad3}
+.live-stack .xs-nav.xs-on{background:#2c2e3a;color:#fff}
+.live-stack .h1{position:absolute;left:24.82cqw;top:2.7cqw;font-size:2.36cqw;font-weight:700}
+.live-stack .h2{position:absolute;left:24.82cqw;top:6.2cqw;font-size:1.5cqw;color:#555}
+.live-stack .kp,.live-stack .ch,.live-stack .rc{position:absolute;background:#fff;border-radius:.9cqw;box-shadow:0 .1cqw .4cqw rgba(0,0,0,.05)}
+.live-stack .kp{top:10.18cqw;width:25.45cqw;height:10.73cqw;padding:2.1cqw 0 0 2cqw;font-size:1.45cqw;color:#555}
+.live-stack .kp b{display:block;margin:.4cqw 0 .3cqw;font-size:2.55cqw;color:#111}
+.live-stack .kp i{font-style:normal;font-size:1.35cqw;color:#1f9d4a}
+.live-stack .ch{left:24.82cqw;top:22.9cqw;width:62.7cqw;height:40cqw}
+.live-stack .rc{left:89.36cqw;top:22.9cqw;width:36cqw;height:40cqw}
+.live-stack .ct{position:absolute;left:2cqw;top:2cqw;font-size:1.64cqw;font-weight:700}
+.live-stack .br{position:absolute;bottom:15.45cqw;width:3.82cqw;border-radius:.3cqw .3cqw 0 0;background:linear-gradient(#7c80f8,#5b5ee8)}
+.live-stack .br b{position:absolute;top:100%;left:-.6cqw;width:5cqw;margin-top:.75cqw;text-align:center;font-size:1.3cqw;font-weight:400;font-style:normal;color:#555}
+.live-stack .rw{position:absolute;left:2cqw;top:5.5cqw;font-size:1.55cqw;line-height:4cqw}
+.live-stack .xs-c{position:absolute;left:75.2cqw;width:21.3cqw;border-radius:.75cqw;overflow:hidden;background:#fff;box-shadow:0 .5cqw 1.6cqw rgba(20,10,50,.4),0 0 0 1px rgba(255,255,255,.4);z-index:3}
+.live-stack .im{width:100%;height:100%;background-repeat:no-repeat}
+.live-stack .hd{height:2.4cqw;padding-left:1cqw;line-height:2.6cqw;font-size:1cqw;font-weight:700}
+.live-stack .ca{top:4.6cqw;height:8.5cqw}
+.live-stack .ca .im{background-image:url(img/recording.webp);background-size:127.17% auto;background-position:38.3% 15.73%}
+.live-stack .cb{top:14.2cqw;height:9.4cqw}
+.live-stack .cb .im{background-image:url(img/meeting.webp);background-size:127.31% auto;background-position:50% 12.5%}
+.live-stack .cc{top:24.7cqw;height:15.24cqw}
+.live-stack .cu{height:12.84cqw;background-image:url(img/stitch.webp);background-size:293.19% auto;background-position:93.25% 23.72%;background-repeat:no-repeat}
+.live-stack .cd{top:41.04cqw;height:7cqw;background:#1c1c1e}
+.live-stack .ks{width:100%;height:2.65cqw;background:url(img/stitch.webp) 62.15% 94.11%/109.37% auto no-repeat #fff}
+.live-stack .cd .ks{margin-top:2.17cqw}
+.live-stack .ce{top:49.14cqw;height:9.71cqw}
+.live-stack .ce .hd{height:2cqw;line-height:2.2cqw;font-size:.9cqw}
+.live-stack .ce .im{height:7.71cqw;background-image:url(img/stitch.webp);background-size:187.06% auto;background-position:7.8% 21.66%}
+.live-stack .xs-mk{position:absolute;left:56%;top:30%;width:28%;height:42%;border:.2cqw solid var(--cl);border-radius:.3cqw}
+.live-stack .mt{position:absolute;left:42%;top:12%;padding:.15cqw .5cqw;border-radius:.3cqw;background:var(--cl);color:#fff;font-size:.75cqw;font-weight:700}
+.live-stack .chip{position:absolute;left:.6cqw;bottom:.6cqw;display:flex;align-items:center;gap:.45cqw;padding:.3cqw .7cqw;border-radius:1cqw;background:rgba(28,28,30,.88);color:#fff;font-size:.85cqw;font-weight:600}
+.live-stack .chip:before{content:"";width:.65cqw;height:.65cqw;border-radius:50%;background:var(--cl)}
+.live-stack .sl,.live-stack .rg{position:absolute;inset:0;border-radius:inherit}
+.live-stack .rg{box-shadow:inset 0 0 0 .3cqw var(--sel)}
+.live-stack .nb{position:absolute;right:.5cqw;top:.5cqw;width:1.75cqw;height:1.75cqw;border-radius:50%;background:var(--sel);color:#fff;font-size:1.05cqw;font-weight:700;font-style:normal;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 .15cqw #fff}
+.live-stack .cs{top:4.6cqw;height:18.76cqw;padding:.7cqw;background:#e6e8ed;z-index:4;opacity:0}
+.live-stack .cs .ks{border-radius:.3cqw;position:relative}
+.live-stack .p2{position:relative;margin-top:.7cqw;border-radius:.4cqw;overflow:hidden}
+.live-stack .p2 .hd{height:2.2cqw;line-height:2.4cqw;padding-left:2cqw}
+.live-stack .p2 .cu{height:12cqw}
+.live-stack .sn{position:absolute;left:-.35cqw;top:-.35cqw;width:1.3cqw;height:1.3cqw;border-radius:50%;background:#111;color:#fff;font-size:.8cqw;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 .14cqw #fff;z-index:1}
+.live-stack .p2 .sn{left:.25cqw;top:.25cqw}
+.live-stack .xs-bar{position:absolute;left:75.2cqw;top:60.2cqw;width:21.3cqw;height:4.6cqw;padding:0 .4cqw;border-radius:1cqw;background:rgba(30,30,33,.94);box-shadow:0 .6cqw 1.6cqw rgba(20,10,50,.4);display:flex;align-items:center;z-index:5}
+.live-stack .ab{flex:1;height:3.7cqw;border-radius:.6cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3cqw;color:#9b9ba1;font-size:.8cqw}
+.live-stack .ab svg{width:1.5cqw;height:1.5cqw;fill:none;stroke:#ededef;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.live-stack .xs-keys{position:absolute;left:38cqw;top:56cqw;display:flex;gap:1.2cqw;transform:translateX(-50%);z-index:6;opacity:0}
+.live-stack .k{position:relative;width:6.6cqw;height:6.6cqw;border-radius:1.1cqw;background:linear-gradient(#fdfdfe,#e6e6ea);box-shadow:0 .35cqw 0 #b4b4bc,0 .9cqw 2cqw rgba(20,10,50,.35);display:flex;align-items:center;justify-content:center;font-size:2.8cqw;color:#222}
+.live-stack .k small{position:absolute;left:.8cqw;bottom:.6cqw;font-size:.85cqw;color:#666}
+.live-stack .xs-hud{position:absolute;left:38cqw;top:8.2cqw;display:flex;align-items:center;gap:.9cqw;padding:1.1cqw 1.9cqw 1.1cqw 1.3cqw;border-radius:1.5cqw;background:rgba(26,26,29,.88);box-shadow:0 1cqw 3cqw rgba(20,10,50,.35);color:#fff;font-size:1.55cqw;font-weight:600;white-space:nowrap;transform:translateX(-50%);z-index:6;opacity:0}
+.live-stack .xs-hud svg{width:2cqw;height:2cqw}
+.live-stack .xs-cur{position:absolute;left:-.2cqw;top:-.15cqw;width:1.75cqw;z-index:7;opacity:0;filter:drop-shadow(0 .1cqw .2cqw rgba(0,0,0,.35))}
+.live-stack .xs-cur svg{display:block;width:100%;height:auto;transform-origin:10% 5%}
+.live-stack.play .xs-keys{animation:ls-keys 9s linear infinite}
+.live-stack.play .k{animation:ls-k 9s ease infinite both}
+.live-stack.play .k2{animation-delay:.36s}
+.live-stack.play .ca{animation:ls-a 9s var(--e) infinite}
+.live-stack.play .cb{animation:ls-b 9s var(--e) infinite}
+.live-stack.play .cc{animation:ls-c 9s var(--e) infinite}
+.live-stack.play .cd{animation:ls-d 9s var(--e) infinite}
+.live-stack.play .ce{animation:ls-e 9s var(--e) infinite}
+.live-stack.play .cs{animation:ls-s 9s var(--e) infinite}
+.live-stack.play .sl{animation:ls-r 9s ease infinite both}
+.live-stack.play .cc .sl{animation-delay:.63s}
+.live-stack.play .xs-bar{animation:ls-bar 9s var(--e) infinite}
+.live-stack.play .st{animation:ls-st 9s ease infinite}
+.live-stack.play .xs-hud{animation:ls-hud 9s var(--e) infinite}
+.live-stack.play .xs-cur{animation:ls-cur 9s var(--e) infinite}
+.live-stack.play .xs-cur svg{animation:ls-clk 9s ease infinite}
+@keyframes ls-keys{0%,4%{opacity:0;transform:translate(-50%,1cqw)}6%,16%{opacity:1;transform:translate(-50%,0)}19%,100%{opacity:0;transform:translate(-50%,0)}}
+@keyframes ls-k{0%,6%{filter:brightness(.82);transform:none}7%{filter:none;transform:translateY(.3cqw);box-shadow:0 .05cqw 0 #b4b4bc,0 0 0 .35cqw #ffb224,0 .5cqw 1.4cqw rgba(20,10,50,.3)}9.5%,100%{filter:none;transform:none}}
+@keyframes ls-a{0%,16%{translate:28cqw}22%,63%{translate:0}69%,86%{translate:0 19.86cqw}91%,100%{translate:28cqw 19.86cqw}}
+@keyframes ls-b{0%,18%{translate:28cqw}24%,63%{translate:0}69%,87%{translate:0 19.86cqw}92%,100%{translate:28cqw 19.86cqw}}
+@keyframes ls-c{0%,20%{opacity:1;translate:28cqw}26%,55%{opacity:1;translate:0;scale:1}60%,100%{opacity:0;translate:-2cqw 4.8cqw;scale:.8}}
+@keyframes ls-d{0%,22%{opacity:1;translate:28cqw}28%,55%{opacity:1;translate:0;scale:1}60%,100%{opacity:0;translate:-2cqw -7.6cqw;scale:.8}}
+@keyframes ls-e{0%,24%{translate:28cqw}30%,63%{translate:0}69%,88%{translate:0 -4.58cqw}93%,100%{translate:28cqw -4.58cqw}}
+@keyframes ls-s{0%,56.5%{opacity:0;translate:-2cqw 22.39cqw;scale:.82}61.5%,63%{opacity:1;translate:0 22.39cqw;scale:1}69%,85%{opacity:1;translate:0}90%,100%{opacity:1;translate:28cqw}}
+@keyframes ls-r{0%,38.3%{opacity:0}39%,100%{opacity:1}}
+@keyframes ls-bar{0%,46.5%{opacity:0;transform:translateY(1.2cqw)}49.5%,54.5%{opacity:1;transform:none}57.5%,100%{opacity:0;transform:translateY(.6cqw)}}
+@keyframes ls-st{0%,50.5%{background:#0000}51.5%,55%{background:rgba(255,255,255,.16)}56%,100%{background:#0000}}
+@keyframes ls-hud{0%,64%{opacity:0;transform:translate(-50%,-1cqw) scale(.96)}66.5%,80%{opacity:1;transform:translate(-50%,0)}83%,100%{opacity:0;transform:translate(-50%,0) scale(.98)}}
+@keyframes ls-cur{0%,31%{opacity:0;translate:58cqw 40cqw}33%{opacity:1;translate:58cqw 40cqw}37%,40%{translate:86cqw 44.6cqw}44%,47%{translate:86cqw 32cqw}51%,55%{opacity:1;translate:85.8cqw 62.4cqw}57.5%,100%{opacity:0;translate:85.8cqw 62.4cqw}}
+@keyframes ls-clk{0%,37.6%{scale:1}38.2%{scale:.8}39%,44.6%{scale:1}45.2%{scale:.8}46%,51.6%{scale:1}52.2%{scale:.8}53%,100%{scale:1}}
+@media (prefers-reduced-motion:reduce){.live-stack.play *{animation:none!important}}
+</style>
+<div class="live live-stack" role="img" aria-label="Glimpse's recent captures stacked at the right edge of the screen, two selected and stitched into one image.">
+<div class="win">
+<div class="side"><div class="logo">North<span>wind</span></div>
+<div class="nv"><div class="xs-nav xs-on">Dashboard</div><div class="xs-nav">Customers</div><div class="xs-nav">Orders</div><div class="xs-nav">Reports</div><div class="xs-nav">Settings</div></div></div>
+<div class="h1">Revenue overview</div><div class="h2">Last 12 months · updated just now</div>
+<div class="kp" style="left:24.82cqw">Revenue<b>$482,910</b><i>▲ 12.4% vs last year</i></div>
+<div class="kp" style="left:52.1cqw">New customers<b>1,284</b><i>▲ 8.1%</i></div>
+<div class="kp" style="left:79.4cqw">Churn rate<b>2.3%</b><i style="color:#d4294a">▲ 0.4%</i></div>
+<div class="ch"><div class="ct">Monthly revenue</div>
+<i class="br" style="left:2cqw;height:8cqw"><b>Oct</b></i><i class="br" style="left:7.18cqw;height:10.45cqw"><b>Nov</b></i><i class="br" style="left:12.36cqw;height:9.27cqw"><b>Dec</b></i><i class="br" style="left:17.54cqw;height:11.9cqw"><b>Jan</b></i><i class="br" style="left:22.72cqw;height:11.27cqw"><b>Feb</b></i><i class="br" style="left:27.9cqw;height:13.55cqw"><b>Mar</b></i><i class="br" style="left:33.08cqw;height:12.73cqw"><b>Apr</b></i><i class="br" style="left:38.26cqw;height:15.18cqw"><b>May</b></i><i class="br" style="left:43.44cqw;height:14.36cqw"><b>Jun</b></i><i class="br" style="left:48.62cqw;height:15.9cqw"><b>Jul</b></i><i class="br" style="left:53.8cqw;height:17.27cqw"><b>Aug</b></i><i class="br" style="left:58.98cqw;height:18.64cqw"><b>Sep</b></i></div>
+<div class="rc"><div class="ct">Recent customers</div><div class="rw">Ava Thompson<br>Liam Carter<br>Sofia Nguyen<br>Noah Patel<br>Mia Rossi</div></div>
+</div>
+<div class="xs-c ca"><div class="im"></div></div>
+<div class="xs-c cb"><div class="im"></div></div>
+<div class="xs-c cc"><div class="hd">Recent customers</div><div class="cu"></div><i class="sl"><i class="rg"></i><b class="nb">2</b></i></div>
+<div class="xs-c cd"><div class="ks"></div><i class="sl"><i class="rg"></i><b class="nb">1</b></i></div>
+<div class="xs-c ce"><div class="hd">Monthly revenue</div><div class="im"></div><i class="xs-mk"></i><span class="mt">uneven gaps</span><span class="chip">Claude · spacing</span></div>
+<div class="xs-c cs"><div class="ks"><span class="sn">1</span></div><div class="p2"><span class="sn">2</span><div class="hd">Recent customers</div><div class="cu"></div></div></div>
+<div class="xs-bar">
+<div class="ab"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>⌘C</div>
+<div class="ab"><svg viewBox="0 0 24 24"><path d="M12 3l-6 17M12 3l6 17M8.5 13h7"/></svg>↩</div>
+<div class="ab st"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.2"/><rect x="13" y="4" width="7" height="7" rx="1.2"/><rect x="4" y="13" width="7" height="7" rx="1.2"/><rect x="13" y="13" width="7" height="7" rx="1.2"/></svg>⌘S</div>
+<div class="ab"><svg viewBox="0 0 24 24"><path d="M21 3L3 10.5l7.5 3L13.5 21zM10.5 13.5L21 3"/></svg>⌘↩</div>
+<div class="ab"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10.5 11v5M13.5 11v5"/></svg>⌘⌫</div>
+</div>
+<div class="xs-keys"><div class="k k1">⇧<small>shift</small></div><div class="k k2">⇧<small>shift</small></div></div>
+<div class="xs-hud"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#30d158"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Stitched 2 and copied</div>
+<div class="xs-cur"><svg viewBox="0 0 16 24"><path d="M1 1v19l4.6-4.4 3 7 3-1.3-3-6.8H15z" fill="#111" stroke="#fff" stroke-width="1.4"/></svg></div>
+</div>
+</figure>
   </div>
 </section>
 
@@ -371,6 +961,12 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   var start=0,h=location.hash.slice(1);
   slides.forEach(function(s,i){if(s.id===h)start=i});
   if(mq.matches && start){deck.scrollLeft=start*deck.clientWidth}
+
+  // Live scenes play only while they're on screen.
+  if('IntersectionObserver' in window){
+    var lv=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('play',e.isIntersecting&&e.intersectionRatio>=0.5)})},{threshold:[0,0.5]});
+    document.querySelectorAll('.live').forEach(function(el){lv.observe(el)});
+  }
   mark(start);
   if(mq.matches)deck.classList.add('ready');
 })();
