@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Glimpse Site Proposals</title>
-<meta name="robots" content="noindex">
 <style>
 @font-face {
   font-family: 'Inter';
@@ -82,24 +82,24 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 <body>
 <div class="wrap">
   <header>
-    <h1>Ten ways to tell the Glimpse story</h1>
-    <p>Each proposal leads with the big picture first: one app in the menu bar for capturing, marking up, handing off and keeping what's on your screen, for people and for your coding agent. Open one to see the full page; every page works on a phone too.</p>
+    <h1>Glimpse, ten looks</h1>
+    <p>Round 2. Every page tells the same short story: four tools you use, one app in the menu bar. Only the look changes.</p>
   </header>
   <ul class="grid" id="grid"></ul>
 </div>
 
 <script>
 const designs = [
-  ["01", "the-loop", "The Loop", "A ring diagram of the loop (capture, mark up, hand off, keep) opens the page; four chapters follow it."],
-  ["02", "workbench", "The Workbench", "Dark, cinematic stations with a running table of contents, like walking along a bench of tools."],
-  ["03", "a-day", "A Day with Glimpse", "One working day from 9:41 to 17:30, each moment showing what you press and what you get."],
-  ["04", "keynote", "Keynote", "A slide deck as a website: one idea per full-screen slide, arrow keys to move."],
-  ["05", "one-app", "One App Instead of Four", "Four jobs that usually take four tools fold into one menu bar icon, then show how they connect."],
-  ["06", "conversation", "The Conversation", "The page is a chat between you and your agent, passing screenshots back and forth."],
-  ["07", "map", "The Map", "The whole product on one board, grouped by job; click any tile for the detail."],
-  ["08", "blueprint", "Blueprint", "An exploded technical drawing with callouts to every part, then numbered drawing sheets."],
-  ["09", "keyboard", "The Keyboard", "The shortcuts are the navigation: press a key and the stage shows that feature."],
-  ["10", "desktop", "The Desktop", "The page is a Mac desktop: open the Glimpse menu and features open as windows."],
+  ["01", "the-loop", "The Loop", "Light Swiss grid. The four jobs sit on a ring around the icon."],
+  ["02", "workbench", "The Workbench", "Dark and cinematic. Each job is a spotlit scene."],
+  ["03", "a-day", "Daylight", "Keynote rhythm in daylight colours, from morning white to dusk."],
+  ["04", "keynote", "Keynote", "Seven full-screen slides on a dark stage. Arrow keys to move."],
+  ["05", "one-app", "Keynote Light", "Keynote restraint on white, like a product page."],
+  ["06", "conversation", "Paper", "Quiet paper and ink, each job a printed card."],
+  ["07", "map", "Four Tiles", "One board of four tiles opens the page; each leads to its job."],
+  ["08", "blueprint", "Blueprint", "The icon drawn on blueprint paper, four leader lines to four jobs."],
+  ["09", "keyboard", "Four Keys", "Four big keycaps; press one to show that job."],
+  ["10", "desktop", "The Desktop", "A calm Mac desktop; the Dock opens each job as a window."],
 ];
 const grid = document.getElementById("grid");
 for (const [n, slug, name, idea] of designs) {

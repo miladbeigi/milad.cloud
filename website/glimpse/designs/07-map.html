@@ -4,424 +4,227 @@
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glimpse · The Map</title>
+<title>Glimpse · Four Tiles</title>
 <style>
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Geist';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(fonts/35babd4308ee.woff2) format('woff2');
+  src: url(fonts/9d846db84c50.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Geist';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(fonts/35babd4308ee.woff2) format('woff2');
+  src: url(fonts/9d846db84c50.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Geist';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(fonts/35babd4308ee.woff2) format('woff2');
+  src: url(fonts/9d846db84c50.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Geist';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(fonts/35babd4308ee.woff2) format('woff2');
+  src: url(fonts/9d846db84c50.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(fonts/340e696a9550.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
+  font-family: 'Geist Mono';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(fonts/340e696a9550.woff2) format('woff2');
+  src: url(fonts/0e04bb6e7b54.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'JetBrains Mono';
+  font-family: 'Geist Mono';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-display: swap;
-  src: url(fonts/340e696a9550.woff2) format('woff2');
+  src: url(fonts/0e04bb6e7b54.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
 <style>
 :root{
-  --paper:#f3f5f4; --sheet:#ffffff; --ink:#132235; --ink2:#4a5868; --ink3:#8b96a1;
-  --line:rgba(19,34,53,.14); --fine:rgba(19,34,53,.06);
-  --red:#d9472b; --redsoft:rgba(217,71,43,.08);
-  --sans:"Inter Tight",system-ui,-apple-system,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --bg:#EDF0F4; --paper:#F7F8FA; --grid:#DCE2EA; --ink:#0E1B38; --mute:#5D6880; --line:#C9D1DC; --acc:#E5432A;
+  --sans:"Geist",system-ui,-apple-system,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{background:var(--paper);color:var(--ink)}
-body{margin:0;font:16px/1.5 var(--sans);background:var(--paper);color:var(--ink);overflow-x:hidden;
-  background-image:linear-gradient(var(--fine) 1px,transparent 1px),linear-gradient(90deg,var(--fine) 1px,transparent 1px);
-  background-size:24px 24px}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:400 18px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;background-position:-1px -1px}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-img{display:block;max-width:100%}
-.wrap{max-width:1400px;margin:0 auto;padding:0 32px}
-kbd{font:500 12px/1 var(--mono);display:inline-flex;align-items:center;gap:1px;padding:5px 7px;border:1px solid var(--ink);
-  border-bottom-width:2px;border-radius:4px;background:var(--sheet);color:var(--ink);white-space:nowrap}
-.mono{font-family:var(--mono)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+kbd{font:600 13px/1 var(--mono);display:inline-flex;align-items:center;gap:3px;padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);letter-spacing:.04em}
 
-/* top bar */
-.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;text-decoration:none}
+/* nav */
+nav{display:flex;align-items:center;gap:20px;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;text-decoration:none;margin-right:auto}
 .brand img{width:28px;height:28px}
-.top nav{display:flex;gap:22px;font-size:14px;color:var(--ink2)}
-.top nav a{text-decoration:none}
-.top nav a:hover{color:var(--red)}
+nav .gh{font-size:15px;text-decoration:none;color:var(--mute)}
+nav .gh:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;padding:11px 18px;border-radius:8px;background:var(--ink);color:#fff;font:600 15px var(--sans);text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--acc)}
+nav .btn{padding:8px 14px;font-size:14px}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;padding:44px 0 30px;align-items:end}
-.hero h1{font-size:clamp(34px,4.4vw,60px);line-height:1.02;letter-spacing:-.025em;margin:0 0 16px;font-weight:700}
-.hero h1 em{font-style:normal;color:var(--red)}
-.hero p{margin:0;font-size:18px;color:var(--ink2);max-width:46ch}
-.legend{border:1px solid var(--ink);background:var(--sheet);padding:16px 18px;font-size:13px}
-.legend h2{font:700 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;display:flex;justify-content:space-between}
-.legend ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
-.legend li{display:flex;gap:8px;align-items:baseline}
-.legend li b{font:700 11px var(--mono);color:var(--red);min-width:14px}
-.legend .key{display:flex;gap:16px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);color:var(--ink2);flex-wrap:wrap}
-.sw{display:inline-block;width:14px;height:10px;border:1px solid var(--ink);margin-right:6px;vertical-align:-1px}
-.sw.img{background:repeating-linear-gradient(45deg,var(--ink3) 0 2px,transparent 2px 5px)}
-.sw.ag{background:var(--red);border-color:var(--red)}
+.hero{padding:48px 0 96px}
+h1,h2{font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0}
+h1{font-size:clamp(40px,6.4vw,92px);max-width:13em}
+h1 span{color:var(--acc)}
+.sub{color:var(--mute);font-size:clamp(17px,1.5vw,20px);max-width:36em;margin:24px 0 0}
+.cta{display:flex;align-items:center;gap:22px;margin:30px 0 0}
+.cta .gh{font-weight:500;text-decoration:none;border-bottom:1px solid var(--line)}
+.cta .gh:hover{border-color:var(--ink)}
 
-/* board */
-.boardwrap{position:relative;padding:22px 0 0}
-.ruler{display:flex;justify-content:space-between;font:500 10px var(--mono);color:var(--ink3);padding:0 2px 6px;letter-spacing:.1em}
-.board{background:var(--sheet);border:1px solid var(--ink);padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;position:relative}
-.board::before{content:"";position:absolute;inset:6px;border:1px solid var(--fine);pointer-events:none}
-.region{position:relative;border:1px dashed var(--line);padding:30px 10px 10px}
-.rlab{position:absolute;top:-1px;left:-1px;display:flex;align-items:center;gap:10px;font:700 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;padding:6px 10px}
-.rlab span{color:#ffb4a4;font-weight:500}
-.rnote{position:absolute;top:6px;right:10px;font:400 11px var(--mono);color:var(--ink3)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:66px;gap:8px;grid-auto-flow:dense}
-.t{all:unset;box-sizing:border-box;cursor:pointer;position:relative;grid-column:span var(--c,1);grid-row:span var(--r,1);
-  border:1px solid var(--line);background:var(--sheet);padding:9px 10px;display:flex;flex-direction:column;justify-content:space-between;gap:4px;min-width:0;overflow:hidden;transition:border-color .15s,box-shadow .15s}
-.t:hover,.t:focus-visible{border-color:var(--red);box-shadow:0 0 0 1px var(--red)}
-.t:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.t b{font-weight:600;font-size:14px;line-height:1.15}
-.t i{font-style:normal;font-size:12px;color:var(--ink2);line-height:1.25}
-.t kbd{align-self:flex-start;font-size:11px;padding:4px 6px}
-.t.w{flex-direction:row;align-items:center;justify-content:flex-start;gap:12px}
-.t.w>div{display:flex;flex-direction:column;gap:2px;min-width:0}
-.t.pic{padding:0;background:#e9edf0}
-.t.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.t.pic .cap{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;background:rgba(255,255,255,.94);border-top:1px solid var(--line)}
-.t.pic .cap b{font-size:15px}
-.t.pic .num{position:absolute;top:8px;left:8px;font:700 10px/1 var(--mono);background:var(--ink);color:#fff;padding:4px 5px}
-.t .open{position:absolute;top:8px;right:9px;font:500 10px var(--mono);color:var(--ink3)}
-.t:hover .open{color:var(--red)}
-.keys{display:flex;flex-wrap:wrap;gap:4px}
-.keys kbd{font-size:11px;padding:3px 5px;min-width:20px;justify-content:center}
+.board{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:52px}
+.tile{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;border-radius:14px;background:var(--paper);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.tile .cap{position:absolute;display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 6px 6px 12px;font:600 14px var(--sans)}
+.tile .cap b{font:600 12px var(--mono);color:var(--acc);font-weight:600}
+.tile .cap kbd{padding:5px 7px;font-size:12px}
+.tile .cap.nokey{padding-right:12px}
+.tile:hover{border-color:var(--ink)}
+.t1 .cap{left:14px;top:14px}.t2 .cap{right:14px;top:14px}.t3 .cap{left:14px;bottom:14px}.t4 .cap{right:14px;bottom:14px}
+.tile img{transform:scale(1.22)}.tile:hover img{transform:scale(1.26)}
+.t1 img{object-position:40% 50%;transform-origin:30% 55%}
+.t2 img{object-position:50% 50%;transform-origin:30% 60%}
+.t3 img{object-position:50% 40%;transform-origin:50% 45%}
+.t4 img{object-position:60% 55%;transform-origin:60% 55%}
+.hub{position:absolute;left:50%;top:50%;width:clamp(76px,10vw,128px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:28%;background:var(--bg);padding:10px;box-shadow:0 0 0 1px var(--line);pointer-events:none}
+.hub img{width:100%}
 
-.agents{grid-column:1/-1;border-color:var(--red);border-style:solid;background:var(--redsoft)}
-.agents .rlab{background:var(--red)}
-.agents .rlab span{color:#ffe1d9}
-.agents .grid{grid-template-columns:repeat(8,1fr)}
-.agents .t{border-color:rgba(217,71,43,.35)}
-.agents .t kbd{border-color:var(--red);color:var(--red)}
+/* job bands */
+.band{border-top:1px solid var(--line);padding:96px 0;scroll-margin-top:0}
+.band .head{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:48px}
+.label{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+.label i{font-style:normal;color:var(--mute)}
+h2{font-size:clamp(34px,4.2vw,58px)}
+.band p.line{color:var(--mute);font-size:clamp(17px,1.4vw,20px);margin:16px 0 0;max-width:30em}
+.band .keyrow{margin-top:20px}
+.shot{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(12px,3vw,40px);display:flex;justify-content:center}
+.shot img{border-radius:10px;max-height:760px;width:auto}
+.shot.bare img{border-radius:0}
+.band.together{background:var(--paper)}
+.band.together .shot{background:var(--bg)}
 
-.compass{position:absolute;right:-1px;bottom:-30px;font:500 10px var(--mono);color:var(--ink3);display:flex;gap:14px;align-items:center}
-.scalebar{display:inline-block;width:60px;height:6px;border:1px solid var(--ink3);background:linear-gradient(90deg,var(--ink3) 50%,transparent 50%)}
+/* install */
+.install{border-top:1px solid var(--line);padding:120px 0 96px}
+.install .ico{width:72px;margin-bottom:28px}
+.cmd{display:flex;max-width:860px;margin:36px 0 18px;border:1px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--paper)}
+.cmd code{flex:1;min-width:0;padding:16px 18px;font:500 14px/1.5 var(--mono);white-space:nowrap;overflow-x:auto}
+.cmd button{flex:none;border:0;border-left:1px solid var(--ink);background:var(--ink);color:#fff;font:600 14px var(--sans);padding:0 20px;cursor:pointer}
+.cmd button:hover{background:var(--acc)}
+.small{font:500 14px var(--mono);color:var(--mute);margin:0}
+.links{display:flex;gap:24px;margin-top:28px;font-weight:600}
+.links a{text-decoration:none;border-bottom:2px solid var(--acc)}
+footer{padding:28px 0 72px;font:500 13px var(--mono);color:var(--mute)}
+.tag{position:fixed;right:14px;bottom:14px;z-index:20;font:600 11.5px var(--mono);color:#fff;background:var(--ink);padding:6px 10px;border-radius:6px}
 
-/* fit + install */
-.fit{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;padding:72px 0 40px;align-items:start}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:600 20px var(--sans);margin:0 0 14px}
-.flow span{border:1px solid var(--ink);padding:6px 12px;background:var(--sheet)}
-.flow i{font-style:normal;color:var(--red);font-family:var(--mono)}
-.fit>div,.board>.region{min-width:0}
-.fit p{color:var(--ink2);margin:0 0 10px;max-width:52ch}
-.install h2{font:700 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
-.cmd{display:flex;align-items:stretch;border:1px solid var(--ink);background:var(--ink);color:#e9eef3;margin-bottom:12px}
-.cmd code{flex:1;min-width:0;font:13px/1.5 var(--mono);padding:12px 14px;overflow-x:auto;white-space:nowrap}
-.cmd button{all:unset;cursor:pointer;font:600 12px var(--mono);padding:0 16px;background:var(--red);color:#fff;flex:none}
-.cmd button:focus-visible{outline:2px solid #fff;outline-offset:-4px}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;font:12px var(--mono);color:var(--ink2)}
-.facts span{border:1px solid var(--line);padding:4px 8px;background:var(--sheet)}
-.links{display:flex;gap:18px;margin-top:16px;font-weight:600}
-.links a{text-decoration:none;border-bottom:1px solid var(--red)}
-footer{border-top:1px solid var(--line);padding:22px 0 70px;font:12px var(--mono);color:var(--ink3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* drawer */
-.scrim{position:fixed;inset:0;background:rgba(19,34,53,.35);z-index:40;display:none}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--sheet);z-index:41;border-left:1px solid var(--ink);
-  transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;visibility:hidden}
-.open-d body{overflow:hidden}
-.open-d .scrim{display:block}
-.open-d .drawer{transform:none;visibility:visible}
-.dhead{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font:700 11px var(--mono);letter-spacing:.14em;text-transform:uppercase}
-.dhead .rg{color:var(--red)}
-.dhead button,.dnav button{all:unset;cursor:pointer;font:500 12px var(--mono);border:1px solid var(--ink);padding:6px 10px;letter-spacing:0;text-transform:none}
-.dhead button:focus-visible,.dnav button:focus-visible{outline:2px solid var(--red)}
-.dbody{overflow:auto;padding:22px 22px 30px;flex:1}
-.dbody h3{font-size:30px;line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}
-.dbody .dk{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.dbody p{color:var(--ink2);margin:0 0 12px}
-.dbody figure{margin:18px 0 0;border:1px solid var(--line);background:var(--paper);padding:10px}
-.dbody figure img{width:100%;height:auto}
-.dbody figcaption{font:11px var(--mono);color:var(--ink3);margin-top:8px}
-.dbody table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
-.dbody td{border-bottom:1px solid var(--line);padding:6px 4px}
-.dbody pre{background:var(--ink);color:#e9eef3;padding:12px;font:12px/1.5 var(--mono);overflow:auto;white-space:pre-wrap;word-break:break-all;margin:12px 0}
-.dnav{display:flex;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--line)}
-
-.tag{position:fixed;left:12px;bottom:12px;z-index:50;font:600 11px var(--mono);background:var(--ink);color:#fff;padding:6px 9px;letter-spacing:.04em}
-
-@media (max-width:1100px){
-  .hero{grid-template-columns:1fr}
-  .board{grid-template-columns:minmax(0,1fr)}
-  .agents .grid{grid-template-columns:repeat(4,1fr)}
-  .fit{grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){
+  .wrap{padding:0 48px}
+  .band .head{grid-template-columns:220px 1fr;align-items:start}
+  .band .head .label{padding-top:14px}
+  .board{gap:16px}
+  .tile .cap{font-size:16px}
 }
-@media (max-width:640px){
-  .wrap{padding:0 16px}
-  .top nav{display:none}
-  .hero{padding:28px 0 18px;gap:22px}
-  .hero p{font-size:16px}
-  .legend ol{grid-template-columns:1fr}
-  .ruler{display:none}
-  .board{padding:10px;gap:22px}
-  .region{padding:36px 8px 8px}
-  .rnote{top:auto;bottom:auto;position:static;display:block;margin:-6px 0 8px}
-  .grid,.agents .grid{grid-template-columns:1fr;grid-auto-rows:auto}
-  .t{grid-column:auto;grid-row:auto;min-height:54px}
-  .t:not(.pic){flex-direction:row;align-items:center;justify-content:flex-start;gap:12px}
-  .t:not(.pic) kbd{align-self:center}
-  .t.pic{aspect-ratio:16/10}
-  .t.keyset{flex-direction:column;align-items:flex-start}
-  .compass{display:none}
-  .fit{padding:48px 0 24px;gap:28px}
-  .flow{font-size:16px}
-  .dbody h3{font-size:24px}
+@media (max-width:600px){
+  .hero{padding:36px 0 64px}
+  .board{margin-top:44px;gap:8px}
+  .tile{aspect-ratio:4/5;border-radius:10px}
+  .t1 .cap,.t3 .cap{left:6px}.t2 .cap,.t4 .cap{right:6px}.t1 .cap,.t2 .cap{top:6px}.t3 .cap,.t4 .cap{bottom:6px}
+  .tile .cap{max-width:calc(100% - 12px);flex-wrap:wrap;gap:4px 6px;padding:6px 8px;font-size:12.5px}
+  .tile .cap kbd{font-size:11px;padding:4px 5px}
+  .hub{border-radius:24%;padding:6px}
+  .band{padding:64px 0}
+  .band .head{margin-bottom:28px}
+  .shot{border-radius:12px}
+  .cmd{flex-direction:column}
+  .cmd button{border-left:0;padding:12px}
+  .install{padding:80px 0 64px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tile img{transition:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="top">
-    <a class="brand" href="#"><img src="../img/icon.png" alt="">Glimpse</a>
-    <nav><a href="#map">Map</a><a href="#fit">How it fits</a><a href="#install">Install</a><a href="https://github.com/miladbeigi/glimpse">GitHub</a></nav>
-  </header>
+<nav>
+  <a class="brand" href="#top"><img src="../img/icon.png" width="256" height="256" alt="">Glimpse</a>
+  <a class="gh" href="https://github.com/miladbeigi/glimpse">GitHub</a>
+  <a class="btn" href="#install">Install</a>
+</nav>
 
-  <section class="hero">
-    <div>
-      <h1>Everything you show and tell from your screen. <em>One menu bar app.</em></h1>
-      <p>Glimpse captures, marks up, hands off and keeps what is on your Mac, for the people you work with and for your AI coding agent. The whole product is on the map below. Click any tile.</p>
-    </div>
-    <aside class="legend" aria-label="Map legend">
-      <h2><span>Legend</span><span class="mono" style="color:var(--ink3)">v1.6.0</span></h2>
-      <ol>
-        <li><b>A</b>Capture what is on screen</li>
-        <li><b>B</b>Mark it up, every mark editable</li>
-        <li><b>C</b>Hand it off to people or agents</li>
-        <li><b>D</b>Keep it and find it again</li>
-        <li style="grid-column:1/-1"><b>E</b>Agents: your AI can use all four</li>
-      </ol>
-      <div class="key"><span><i class="sw img"></i>major feature</span><span><kbd style="font-size:10px;padding:2px 4px">⌘</kbd> shortcut</span><span><i class="sw ag"></i>agent route</span></div>
-    </aside>
-  </section>
+<header class="hero" id="top">
+  <h1>Four tools in your Dock. <span>Or one in your menu bar.</span></h1>
+  <p class="sub">Glimpse is a free Mac app for screenshots, screen recording, meeting notes, and showing your screen to your AI agent.</p>
+  <div class="cta"><a class="btn" href="#install">Install</a><a class="gh" href="https://github.com/miladbeigi/glimpse">GitHub</a></div>
 
-  <section class="boardwrap" id="map" aria-label="Product map">
-    <div class="ruler" aria-hidden="true"><span>A</span><span>·</span><span>·</span><span>·</span><span>B</span><span>·</span><span>·</span><span>·</span><span>N 0°</span></div>
-    <div class="board">
-
-      <div class="region" aria-labelledby="rA">
-        <div class="rlab" id="rA">A · Capture <span>9</span></div>
-        <div class="rnote">screen, video, meetings</div>
-        <div class="grid">
-          <button class="t pic" style="--c:2;--r:3" data-id="area"><img src="../img/selection.webp" alt="Area selection with live size and magnifier" style="object-position:38% 45%"><span class="num">A1</span><span class="cap"><b>Area</b><kbd>⌥⇧⌘4</kbd></span></button>
-          <button class="t pic" style="--c:2;--r:2" data-id="record"><img src="../img/recording.webp" alt="Screen recording with camera bubble" style="object-position:50% 60%"><span class="num">A2</span><span class="cap"><b>Record</b><kbd>⌥⇧⌘R</kbd></span></button>
-          <button class="t" data-id="window"><kbd>⌥⇧⌘5</kbd><b>Window</b></button>
-          <button class="t" data-id="scroll"><kbd>⌥⇧⌘6</kbd><b>Scrolling</b></button>
-          <button class="t pic" style="--c:2;--r:2" data-id="meet"><img src="../img/meeting.webp" alt="Meeting recording pill over a video call" style="object-position:50% 30%"><span class="num">A3</span><span class="cap"><b>Meetings</b><kbd>auto</kbd></span></button>
-          <button class="t" data-id="text"><kbd>⌥⇧⌘2</kbd><b>Text · OCR</b></button>
-          <button class="t" data-id="full"><kbd>⌥⇧⌘3</kbd><b>Fullscreen</b></button>
-          <button class="t" data-id="prev"><kbd>⌥⇧⌘7</kbd><b>Previous area</b></button>
-          <button class="t" data-id="timer"><kbd>⌥⇧⌘8</kbd><b>Self-timer</b></button>
-        </div>
-      </div>
-
-      <div class="region" aria-labelledby="rB">
-        <div class="rlab" id="rB">B · Mark up <span>14 tools</span></div>
-        <div class="rnote">every mark stays editable</div>
-        <div class="grid">
-          <button class="t pic" style="--c:4;--r:3" data-id="editor"><img src="../img/editor.webp" alt="Editor with steps, box, curved arrow and blur" style="object-position:50% 52%"><span class="num">B1</span><span class="cap"><b>Editor</b><kbd>click a capture</kbd></span></button>
-          <button class="t keyset" style="--c:4" data-id="keys"><b>One key per tool</b><span class="keys"><kbd>V</kbd><kbd>A</kbd><kbd>L</kbd><kbd>R</kbd><kbd>F</kbd><kbd>O</kbd><kbd>P</kbd><kbd>H</kbd><kbd>T</kbd><kbd>N</kbd><kbd>X</kbd><kbd>B</kbd><kbd>S</kbd><kbd>C</kbd></span></button>
-          <button class="t" data-id="arrow"><kbd>A</kbd><b>Curved arrows</b></button>
-          <button class="t" data-id="steps"><kbd>N</kbd><b>Numbered steps</b></button>
-          <button class="t" data-id="notes"><kbd>T</kbd><b>Notes that follow</b></button>
-          <button class="t" data-id="blur"><kbd>B</kbd><b>Blur · pixelate</b></button>
-        </div>
-      </div>
-
-      <div class="region" aria-labelledby="rC">
-        <div class="rlab" id="rC">C · Hand off <span>6</span></div>
-        <div class="rnote">to people, or to your agent</div>
-        <div class="grid">
-          <button class="t pic" style="--c:2;--r:3" data-id="send"><img src="../img/send.webp" alt="Send menu listing three agent sessions" style="object-position:72% 70%"><span class="num">C1</span><span class="cap"><b>Send to agent</b><kbd>⌘↩</kbd></span></button>
-          <button class="t pic" style="--c:2;--r:2" data-id="overlay"><img src="../img/overlay.webp" alt="Two captures waiting in the screen corner" style="object-position:90% 85%"><span class="num">C2</span><span class="cap"><b>Overlay</b><kbd>corner</kbd></span></button>
-          <button class="t" data-id="drag"><kbd>drag</kbd><b>Into any app</b></button>
-          <button class="t" data-id="last"><kbd>⌥⇧⌘9</kbd><b>Bring back last</b></button>
-          <button class="t pic" style="--c:2;--r:2" data-id="pin"><img src="../img/pin.webp" alt="A chart pinned above the dashboard" style="object-position:60% 40%"><span class="num">C3</span><span class="cap"><b>Pin</b><kbd>above all</kbd></span></button>
-          <button class="t w" style="--c:2" data-id="plugin"><kbd>plugin</kbd><div><b>Claude Code plugin</b><i>arrives between turns</i></div></button>
-          <button class="t w" style="--c:2" data-id="sessions"><kbd>menu</kbd><div><b>Several sessions</b><i>pick which one gets it</i></div></button>
-        </div>
-      </div>
-
-      <div class="region" aria-labelledby="rD">
-        <div class="rlab" id="rD">D · Keep <span>6</span></div>
-        <div class="rnote">last 30 captures, all meetings</div>
-        <div class="grid">
-          <button class="t pic" style="--c:2;--r:3" data-id="recent"><img src="../img/recent.webp" alt="Recent stack at the screen edge" style="object-position:92% 50%"><span class="num">D1</span><span class="cap"><b>Recent stack</b><kbd>⇧ ⇧</kbd></span></button>
-          <button class="t pic" style="--c:2;--r:2" data-id="stitch"><img src="../img/stitch.webp" alt="Three screenshots stitched with number badges" style="object-position:40% 50%"><span class="num">D2</span><span class="cap"><b>Stitch</b><kbd>⌘S</kbd></span></button>
-          <button class="t" data-id="stack0"><kbd>⌥⇧⌘0</kbd><b>Open stack</b></button>
-          <button class="t" data-id="last30"><kbd>30</kbd><b>Last 30 kept</b></button>
-          <button class="t w" style="--c:2" data-id="notesmd"><kbd>.md</kbd><div><b>Meeting notes</b><i>~/Glimpse/Meetings</i></div></button>
-          <button class="t w" style="--c:2" data-id="speakers"><kbd>A · B</kbd><div><b>Transcripts with speakers</b><i>made on the Mac</i></div></button>
-          <button class="t w" style="--c:4" data-id="private"><kbd>local</kbd><div><b>Private by default</b><i>OCR, transcripts and voice profiles never leave the Mac</i></div></button>
-        </div>
-      </div>
-
-      <div class="region agents" aria-labelledby="rE">
-        <div class="rlab" id="rE">E · Agents <span>both ways · off until you allow it</span></div>
-        <div class="grid">
-          <button class="t w" style="--c:2" data-id="mcp"><kbd>mcp</kbd><div><b>MCP server</b><i>Claude Code, Cursor and others</i></div></button>
-          <button class="t" data-id="ag-win"><kbd>list_windows</kbd><b>See any window</b></button>
-          <button class="t" data-id="ag-read"><kbd>read_text</kbd><b>Read text</b></button>
-          <button class="t" data-id="ag-rec"><kbd>start_recording</kbd><b>Record clips</b></button>
-          <button class="t" data-id="ag-draw"><kbd>ask_user</kbd><b>Draw to ask you</b></button>
-          <button class="t" data-id="ag-meet"><kbd>meeting_search</kbd><b>Search meetings</b></button>
-          <button class="t" data-id="url"><kbd>glimpse://</kbd><b>URLs for scripts</b></button>
-        </div>
-      </div>
-
-      <div class="compass" aria-hidden="true"><span>scale: one key per move</span><span class="scalebar"></span><span>34 places</span></div>
-    </div>
-  </section>
-
-  <section class="fit" id="fit">
-    <div>
-      <div class="flow" aria-label="Capture, then mark up, then hand off, then keep"><span>Capture</span><i>→</i><span>Mark up</span><i>→</i><span>Hand off</span><i>→</i><span>Keep</span></div>
-      <p>Each step is a key or two, and each one hands to the next. A capture waits in the corner, opens in the editor, goes to a person or an agent, and lands in the recent stack.</p>
-      <p>Your agent can travel the same roads. Through MCP it can capture, read, record and draw, and it shows up in your stack in its own colour.</p>
-    </div>
-    <div class="install" id="install">
-      <h2>Install</h2>
-      <div class="cmd"><code id="c1">curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button data-copy="c1">Copy</button></div>
-      <h2>Connect your agent</h2>
-      <div class="cmd"><code id="c2">claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</code><button data-copy="c2">Copy</button></div>
-      <div class="facts"><span>Free</span><span>MIT</span><span>macOS 14+</span><span>Apple silicon + Intel</span><span>updates itself</span><span>v1.6.0</span></div>
-      <div class="links"><a href="https://github.com/miladbeigi/glimpse/releases/latest">Download v1.6.0</a><a href="https://github.com/miladbeigi/glimpse">Source on GitHub</a></div>
-    </div>
-  </section>
-
-  <footer><span>Glimpse · open source, MIT</span><span>Drawn at 1:1. Northwind is a made-up dashboard.</span></footer>
+  <div class="board">
+    <a class="tile t1" href="#screenshots"><img src="../img/editor.webp" width="2052" height="1524" alt="Editor with a red box and an arrow"><span class="cap"><b>01</b>Screenshots <kbd>⌥⇧⌘4</kbd></span></a>
+    <a class="tile t2" href="#recording"><img src="../img/recording.webp" width="1100" height="700" alt="Recording with a camera bubble"><span class="cap"><b>02</b>Recording <kbd>⌥⇧⌘R</kbd></span></a>
+    <a class="tile t3" href="#meetings"><img src="../img/meeting.webp" width="1100" height="700" alt="A video call being transcribed"><span class="cap nokey"><b>03</b>Meetings</span></a>
+    <a class="tile t4" href="#agent"><img src="../img/send.webp" width="1660" height="1160" alt="Send menu listing agent sessions"><span class="cap"><b>04</b>Your agent <kbd>⌘↩</kbd></span></a>
+    <div class="hub"><img src="../img/icon.png" width="256" height="256" alt="Glimpse icon"></div>
+  </div>
+</header>
 </div>
 
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dt" tabindex="-1">
-  <div class="dhead"><span class="rg" id="dr"></span><button id="dclose" aria-label="Close">Close · Esc</button></div>
-  <div class="dbody" id="db"></div>
-  <div class="dnav"><button id="dprev">← Previous</button><button id="dnext">Next →</button></div>
-</aside>
+<section class="band" id="screenshots"><div class="wrap">
+  <div class="head"><p class="label">01 <i>Screenshots</i></p><div><h2>Capture it. Mark it up. Share it.</h2><p class="line">Any area, window or scrolling page. Arrows, notes and blur stay editable.</p><div class="keyrow"><kbd>⌥⇧⌘4</kbd></div></div></div>
+  <figure class="shot bare"><img src="../img/editor.webp" width="2052" height="1524" alt="Glimpse editor with numbered steps, a red box and a curved arrow" loading="lazy"></figure>
+</div></section>
 
-<div class="tag">Design 07 · The Map</div>
+<section class="band" id="recording"><div class="wrap">
+  <div class="head"><p class="label">02 <i>Recording</i></p><div><h2>Show it with your face and voice.</h2><p class="line">Record your screen with a camera bubble, your mic and the system sound.</p><div class="keyrow"><kbd>⌥⇧⌘R</kbd></div></div></div>
+  <figure class="shot"><img src="../img/recording.webp" width="1100" height="700" alt="Recording a slide deck with a camera bubble and a control bar" loading="lazy"></figure>
+</div></section>
+
+<section class="band" id="meetings"><div class="wrap">
+  <div class="head"><p class="label">03 <i>Meetings</i></p><div><h2>Every call, written down.</h2><p class="line">Glimpse notices your calls and transcribes them on your Mac. Nothing leaves it.</p></div></div>
+  <figure class="shot"><img src="../img/meeting.webp" width="1100" height="700" alt="Video call with the Glimpse meeting pill" loading="lazy"></figure>
+</div></section>
+
+<section class="band" id="agent"><div class="wrap">
+  <div class="head"><p class="label">04 <i>Your agent</i></p><div><h2>Show your agent what you mean.</h2><p class="line">Press ⌘↩ to send a marked-up screenshot to Claude Code or Codex. It can look at your screen and draw back, too.</p><div class="keyrow"><kbd>⌘↩</kbd></div></div></div>
+  <figure class="shot bare"><img src="../img/send.webp" width="1660" height="1160" alt="Editor with a note and a Send menu listing three sessions" loading="lazy"></figure>
+</div></section>
+
+<section class="band together" id="together"><div class="wrap">
+  <div class="head"><p class="label"><i>Together</i></p><div><h2>One app. Everything in reach.</h2><p class="line">Double-tap Shift to bring back your last 30 captures, then copy, send or stitch them.</p><div class="keyrow"><kbd>⇧ ⇧</kbd></div></div></div>
+  <figure class="shot"><img src="../img/recent.webp" width="1100" height="778" alt="Recent captures stacked at the screen edge" loading="lazy"></figure>
+</div></section>
+
+<section class="install" id="install"><div class="wrap">
+  <img class="ico" src="../img/icon.png" width="256" height="256" alt="Glimpse icon">
+  <h2>Get Glimpse.</h2>
+  <div class="cmd"><code id="cmd">curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button type="button" id="copy">Copy</button></div>
+  <p class="small">Free and open source · macOS 14+ · Apple silicon and Intel</p>
+  <div class="links"><a href="https://github.com/miladbeigi/glimpse">GitHub</a><a href="https://github.com/miladbeigi/glimpse/releases/latest">Download</a></div>
+</div></section>
+
+<footer><div class="wrap">v1.6.0</div></footer>
+<div class="tag">Design 07 · Four Tiles</div>
 
 <script>
-const D={
-area:{r:"A · Capture",t:"Area",k:["⌥⇧⌘4"],img:"selection.webp",p:["The screen freezes while you choose, so menus and hover states stay put. A magnifier shows the pixels under the cursor and a label shows the live size.","Let go and the capture waits in the corner, ready to copy, save, mark up or send."]},
-record:{r:"A · Capture",t:"Record",k:["⌥⇧⌘R","⌃⌥M mute"],img:"recording.webp",p:["Record an area or the whole screen to MP4. Add a camera bubble, your mic and system audio.","A small control bar shows the time. ⌃⌥M mutes the mic while you talk."]},
-meet:{r:"A · Capture",t:"Meetings",k:["auto"],img:"meeting.webp",p:["Glimpse notices calls in Meet, Zoom, Teams, Slack, Discord, FaceTime, Webex and Tuple and offers to record.","A pill shows the time with mute, pause and stop. You get an on-device transcript with speakers, saved as markdown in ~/Glimpse/Meetings."]},
-window:{r:"A · Capture",t:"Window",k:["⌥⇧⌘5"],p:["Pick a window and get it cut out cleanly, without the clutter behind it."]},
-scroll:{r:"A · Capture",t:"Scrolling capture",k:["⌥⇧⌘6"],p:["Capture a whole page that scrolls, as one tall image."]},
-text:{r:"A · Capture",t:"Text · OCR · QR",k:["⌥⇧⌘2"],p:["Select an area and copy the text in it. QR codes are read too. Recognition runs on the Mac."]},
-full:{r:"A · Capture",t:"Fullscreen",k:["⌥⇧⌘3"],p:["The whole screen in one keypress."]},
-prev:{r:"A · Capture",t:"Previous area",k:["⌥⇧⌘7"],p:["Capture the same area again. Useful for before and after shots."]},
-timer:{r:"A · Capture",t:"Self-timer",k:["⌥⇧⌘8"],p:["A countdown before the capture, for menus and states that vanish when you touch the keyboard."]},
-editor:{r:"B · Mark up",t:"Editor",k:["V","A","L","R","F","O","P","H","T","N","X","B","S","C"],img:"editor.webp",p:["Every capture opens in an editor where each mark stays editable. Move, recolour or delete an arrow long after you drew it.","Pencil-style curved arrows, boxes, numbered steps, highlighter, text, pixelate, blur, spotlight and crop. Type a note and it lands beside the box or arrow it belongs to."]},
-keys:{r:"B · Mark up",t:"One key per tool",k:[],img:"editor.webp",html:"<table>"+[["V","Select"],["A","Arrow"],["L","Line"],["R","Rectangle"],["F","Filled rectangle"],["O","Ellipse"],["P","Pen"],["H","Highlighter"],["T","Text"],["N","Numbered step"],["X","Pixelate"],["B","Blur"],["S","Spotlight"],["C","Crop"]].map(a=>"<tr><td style='width:48px'><kbd>"+a[0]+"</kbd></td><td>"+a[1]+"</td></tr>").join("")+"</table>"},
-arrow:{r:"B · Mark up",t:"Curved arrows",k:["A"],img:"editor.webp",p:["Arrows draw with a pencil-like curve, so they point the way you would by hand. Bend them later; they stay editable."]},
-steps:{r:"B · Mark up",t:"Numbered steps",k:["N"],img:"editor.webp",p:["Click to drop 1, 2, 3 in order. Good for showing a sequence of clicks."]},
-notes:{r:"B · Mark up",t:"Notes that follow",k:["T"],img:"send.webp",p:["Select a box or arrow and start typing. The note lands right beside it."]},
-blur:{r:"B · Mark up",t:"Blur and pixelate",k:["B","X"],img:"editor.webp",p:["Hide emails, names and keys before you share. B blurs, X pixelates, S puts a spotlight on what matters."]},
-send:{r:"C · Hand off",t:"Send to your agent",k:["⌘↩"],img:"send.webp",p:["Press ⌘↩ to send the capture, marks and notes included, to Claude Code or Codex.","With several sessions open, a menu lists them so it reaches the right one. The Claude Code plugin delivers it between turns."]},
-overlay:{r:"C · Hand off",t:"Quick Access Overlay",k:["corner"],img:"overlay.webp",p:["After a capture it waits in the corner. Hover to copy or save, click to open the editor, or drag it into Slack, Mail or Finder. Take more and they stack up."]},
-drag:{r:"C · Hand off",t:"Drag into any app",k:["drag"],img:"overlay.webp",p:["Drag a capture from the corner straight into Slack, Mail, Finder or anything that takes images."]},
-last:{r:"C · Hand off",t:"Bring back last",k:["⌥⇧⌘9"],p:["Dismissed the overlay too soon? Bring the last capture back."]},
-pin:{r:"C · Hand off",t:"Pin",k:["above all"],img:"pin.webp",p:["Float a capture above every window. Keep a chart, a spec or an error in view while you work on something else."]},
-plugin:{r:"C · Hand off",t:"Claude Code plugin",k:["plugin"],img:"send.webp",p:["The plugin delivers what you send between turns, so it never cuts into a reply."]},
-sessions:{r:"C · Hand off",t:"Several sessions",k:["⌘↩","menu"],img:"send.webp",p:["With more than one Claude Code or Codex session open, ⌘↩ shows a menu of them. Pick the one that should get it."]},
-recent:{r:"D · Keep",t:"Recent stack",k:["⇧ ⇧","⌥⇧⌘0"],img:"recent.webp",p:["Double-tap right Shift and your last 30 screenshots slide in at the screen edge.","Select several, then copy, draw, stitch or send them. Cards made by an agent say who made them."]},
-stitch:{r:"D · Keep",t:"Stitch",k:["⌘S"],img:"stitch.webp",p:["Select several captures in the stack and stitch them into one numbered image, laid out so an AI model shrinks it the least."]},
-stack0:{r:"D · Keep",t:"Open the stack",k:["⌥⇧⌘0"],img:"recent.webp",p:["The same recent stack from a regular shortcut, if you prefer it to double-tapping Shift."]},
-last30:{r:"D · Keep",t:"Last 30 kept",k:["30"],img:"recent.webp",p:["Your last 30 screenshots stay one gesture away, newest first."]},
-notesmd:{r:"D · Keep",t:"Meeting notes",k:[".md"],img:"meeting.webp",p:["Every recorded meeting becomes a markdown file in ~/Glimpse/Meetings. Plain files you can grep, sync or move."]},
-speakers:{r:"D · Keep",t:"Transcripts with speakers",k:["A · B"],img:"meeting.webp",p:["Transcripts are made on the Mac and split by speaker. Voice profiles stay on the Mac too."]},
-private:{r:"D · Keep",t:"Private by default",k:["local"],p:["OCR, transcripts and voice profiles never leave the Mac. Agent access is off until you allow it."]},
-mcp:{r:"E · Agents",t:"MCP server",k:["mcp"],img:"recent.webp",p:["Glimpse includes an MCP server, so Claude Code, Cursor and other agents can see your screen. Turn it on in Settings › Agents, then connect:"],pre:"claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp"},
-"ag-win":{r:"E · Agents",t:"See any window",k:["list_windows","screenshot_window"],p:["Agents can list windows and displays, and screenshot one window even when it is covered."]},
-"ag-read":{r:"E · Agents",t:"Read text",k:["read_text"],p:["On-device OCR and QR codes of a window, region or display."]},
-"ag-rec":{r:"E · Agents",t:"Record clips",k:["start_recording","stop_recording"],p:["Agents can record a short clip to check their own work, and get still frames back. It has its own switch, off by default, never includes mic or camera, and shows the usual recording controls."]},
-"ag-draw":{r:"E · Agents",t:"Draw to show or ask",k:["show_image","ask_user"],img:"recent.webp",p:["Agents draw arrows, boxes and notes on screenshots in their own colour and put them in your stack. They can ask you a question on an image and wait for you to draw an answer and send it."]},
-"ag-meet":{r:"E · Agents",t:"Search meetings",k:["meeting_search","meeting_transcript"],p:["Agents can find recorded meetings by words, people or dates and read the transcript by speaker. They cannot start or stop a meeting recording."]},
-url:{r:"E · Agents",t:"glimpse:// URLs",k:["glimpse://"],p:["Drive Glimpse from Shortcuts, Raycast or a script."],pre:'open "glimpse://capture-area?x=100&y=80&width=800&height=400"'}
-};
-const tiles=[...document.querySelectorAll(".t[data-id]")],ids=tiles.map(t=>t.dataset.id);
-const root=document.documentElement,dr=document.getElementById("drawer"),db=document.getElementById("db");
-let cur=-1,lastFocus=null;
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function show(i){
-  cur=(i+ids.length)%ids.length;const d=D[ids[cur]];
-  document.getElementById("dr").textContent=d.r;
-  let h="<h3 id='dt'>"+esc(d.t)+"</h3>";
-  if(d.k.length)h+="<div class='dk'>"+d.k.map(k=>"<kbd>"+esc(k)+"</kbd>").join("")+"</div>";
-  (d.p||[]).forEach(p=>h+="<p>"+esc(p)+"</p>");
-  if(d.pre)h+="<pre>"+esc(d.pre)+"</pre>";
-  if(d.html)h+=d.html;
-  if(d.img)h+="<figure><img src='../img/"+d.img+"' alt='"+esc(d.t)+"'><figcaption>"+d.img+" · real app render</figcaption></figure>";
-  db.innerHTML=h;db.scrollTop=0;
-}
-function openD(i,from){lastFocus=from||document.activeElement;show(i);root.classList.add("open-d");setTimeout(()=>document.getElementById("dclose").focus(),30)}
-function closeD(){root.classList.remove("open-d");if(lastFocus)lastFocus.focus()}
-tiles.forEach((t,i)=>{t.setAttribute("aria-haspopup","dialog");t.addEventListener("click",()=>openD(i,t))});
-document.getElementById("dclose").onclick=closeD;
-document.getElementById("scrim").onclick=closeD;
-document.getElementById("dprev").onclick=()=>show(cur-1);
-document.getElementById("dnext").onclick=()=>show(cur+1);
-document.addEventListener("keydown",e=>{
-  if(!root.classList.contains("open-d"))return;
-  if(e.key==="Escape")closeD();
-  else if(e.key==="ArrowRight")show(cur+1);
-  else if(e.key==="ArrowLeft")show(cur-1);
-  else if(e.key==="Tab"){const f=[...dr.querySelectorAll("button")];const a=f[0],z=f[f.length-1];
-    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,t=document.getElementById('cmd').textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)}).catch(function(){b.textContent='Select it'})}
+  catch(e){b.textContent='Select it'}
 });
-document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{
-  const txt=document.getElementById(b.dataset.copy).textContent;
-  try{navigator.clipboard.writeText(txt).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1500)}).catch(()=>{b.textContent="Select it"})}catch(e){b.textContent="Select it"}
-}));
 </script>
 </body>
 </html>

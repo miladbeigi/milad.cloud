@@ -4,474 +4,251 @@
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glimpse · A day with Glimpse</title>
+<title>Glimpse · Daylight</title>
 <style>
 @font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(fonts/e8a278522288.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(fonts/e8a278522288.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 800;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(fonts/e8a278522288.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
+  font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(fonts/117e8850f882.woff2) format('woff2');
+  src: url(fonts/340e696a9550.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'IBM Plex Mono';
+  font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(fonts/8e89c0d5c88e.woff2) format('woff2');
+  src: url(fonts/340e696a9550.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(fonts/1dc044f4824f.woff2) format('woff2');
+  src: url(fonts/069be307c1ec.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(fonts/1dc044f4824f.woff2) format('woff2');
+  src: url(fonts/069be307c1ec.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(fonts/1dc044f4824f.woff2) format('woff2');
+  src: url(fonts/069be307c1ec.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/069be307c1ec.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
 <style>
 :root{
-  --ink:#1d1a16; --ink2:#5b5248; --line:rgba(29,26,22,.14);
-  --sans:"Inter",system-ui,-apple-system,sans-serif;
-  --disp:"Bricolage Grotesque","Inter",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ink:#1A1C24; --soft:#555866; --mute:#8A8C97; --acc:#E2572B;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --h:clamp(36px,min(5vw,7.4vh),80px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#FFE7C2}
-body{margin:0;font:400 17px/1.55 var(--sans);color:var(--ink);background:#FFE7C2;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}
+html{scroll-snap-type:y proximity;scroll-padding-top:0}
+html,body{margin:0;background:#FFF6EA;color:var(--ink)}
+body{font:400 clamp(16px,min(1.3vw,2.2vh),20px)/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-kbd{font:600 14px/1 var(--mono);display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 8px;border-radius:7px;background:#fffdf8;color:#1d1a16;border:1px solid rgba(29,26,22,.2);box-shadow:0 2px 0 rgba(29,26,22,.22)}
-.chord{display:inline-flex;gap:4px;align-items:center}
+kbd{font:600 .8em/1 var(--mono);display:inline-flex;align-items:center;justify-content:center;min-width:2em;height:2em;padding:0 .5em;border-radius:.4em;background:#fff;border:1px solid rgba(26,28,36,.14);border-bottom-width:3px;color:var(--ink)}
 
-/* top bar */
-.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-.brand{display:flex;align-items:center;gap:10px;font:700 20px var(--disp);text-decoration:none}
-.brand img{width:34px;height:34px}
-.top nav{display:flex;gap:22px;font-size:15px;color:var(--ink2)}
-.top nav a{text-decoration:none}
-.top nav a:hover{color:var(--ink)}
+/* nav */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:22px;padding:16px clamp(20px,5vw,64px);background:rgba(255,255,255,.55);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid rgba(26,28,36,.06)}
+.brand{display:flex;align-items:center;gap:10px;font:700 16px var(--sans);text-decoration:none;margin-right:auto}
+.brand img{width:28px;height:28px}
+.gh{font:500 15px var(--sans);color:var(--soft);text-decoration:none}
+.gh:hover{color:var(--ink)}
+.inst{font:600 14px var(--sans);text-decoration:none;color:#fff;background:var(--ink);padding:9px 16px;border-radius:999px}
 
+/* sections */
+section{min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:96px 20px 56px}
+.s1{background:#FFF6EA}
+.s2{background:#FFF1E2}
+.s3{background:#FBF1EA}
+.s4{background:#F3F1F1}
+.s5{background:#EAEFF4}
+.s6{background:#E1E7F1}
+.s7{background:#D9DCEC}
+h1,h2{font-weight:800;letter-spacing:-.035em;line-height:1.02;margin:0 auto .4em;max-width:16em}
+h1{font-size:calc(var(--h) * 1.08);max-width:13em}
+h2{font-size:var(--h)}
+h1 span,h2 span{color:var(--acc)}
+.num{font:600 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 18px}
+.num b{color:var(--mute);font-weight:500}
+p.line{color:var(--soft);margin:0 auto;max-width:34em}
+.keys{display:flex;justify-content:center;gap:6px;margin-top:1.2em}
+.shot{margin:clamp(28px,5vh,52px) auto 0;width:100%;display:flex;justify-content:center}
+.shot img{width:auto;max-height:100%;min-height:0;object-fit:contain;border-radius:14px;box-shadow:0 40px 80px -40px rgba(40,45,80,.45),0 12px 30px -16px rgba(40,45,80,.25)}
+.shot.framed img{border-radius:0;box-shadow:none;filter:drop-shadow(0 28px 34px rgba(40,45,80,.18))}
+
+@media (min-width:641px){
+  section{height:100vh;height:100svh;min-height:600px}
+  .shot{flex:1 1 0;min-height:0;align-items:center}
+}
 /* hero */
-.hero{background:linear-gradient(180deg,#FFE0B2 0%,#FFE7C2 100%);padding-bottom:56px}
-.hero h1{font:800 clamp(38px,4.9vw,70px)/1.02 var(--disp);letter-spacing:-.025em;margin:46px 0 22px;max-width:15ch}
-.herogrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center}
-.heroimg{margin-top:30px;transform:rotate(1.5deg)}
-.heroimg .shot{background:#fff}
-.heroimg figcaption{transform:rotate(-1.5deg)}
-.hero h1 em{font-style:normal;color:#C2410C}
-.lede{font-size:clamp(17px,1.5vw,20px);color:var(--ink2);max-width:60ch;margin:0 0 26px}
-.loop{display:flex;flex-wrap:wrap;gap:8px 6px;align-items:center;margin:0 0 40px;font:600 14px var(--mono);color:#7c3a10}
-.loop span{padding:6px 11px;border:1.5px solid #e9a66a;border-radius:6px;background:#fff3e0}
-.loop i{font-style:normal;color:#c98a52}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:46px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:9px;font:600 15px var(--sans);text-decoration:none;border:0;cursor:pointer}
-.btn.dark{background:#1d1a16;color:#fff6e8}
-.btn.ghost{background:transparent;border:1.5px solid rgba(29,26,22,.3);color:var(--ink)}
-
-/* day strip */
-.daylabel{display:flex;justify-content:space-between;font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-bottom:10px}
-.strip{position:relative;display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:10px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:thin}
-.strip::before{content:"";position:absolute;left:2px;right:2px;top:0;height:5px;border-radius:3px;background:linear-gradient(90deg,#F59E0B,#FBBF24 25%,#93C5FD 70%,#334A7A)}
-.stop{display:block;text-decoration:none;border-radius:10px;padding:8px 8px 10px;background:rgba(255,255,255,.55);border:1px solid rgba(29,26,22,.1);transition:transform .2s,background .2s}
-.stop:hover,.stop.on{background:#fff;transform:translateY(-3px)}
-.stop.on{outline:2px solid #1d1a16}
-.stop .th{aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:#ddd;margin-bottom:8px}
-.stop .th img{width:100%;height:100%;object-fit:cover;object-position:left top}
-.stop .th.term{background:#18213a;color:#9fb6de;font:500 9px/1.5 var(--mono);padding:7px;white-space:nowrap}
-.stop b{display:block;font:600 14px var(--mono)}
-.stop small{display:block;font-size:13.5px;line-height:1.3;color:var(--ink2)}
-
-/* moments */
-.moment{--acc:#C2410C;background:linear-gradient(180deg,var(--a),var(--b));padding:84px 0 88px}
-.sunset{height:150px;background:linear-gradient(180deg,#D3DEEB,#8EA2C2 45%,#2E3B5E)}
-.mgrid{display:grid;grid-template-columns:132px minmax(0,5fr) minmax(0,7fr);gap:0 44px;align-items:start}
-.rail{position:sticky;top:28px;border-right:2px solid var(--acc);padding-right:18px;text-align:right;align-self:stretch}
-.rail time{display:block;font:600 34px/1 var(--mono);letter-spacing:-.03em;color:var(--acc)}
-.rail span{display:block;font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-top:8px}
-.rail::after{content:"";position:absolute;right:-8px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--a)}
-.kick{font:600 12px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--acc);margin:4px 0 12px}
-.moment h2{font:700 clamp(28px,3vw,42px)/1.08 var(--disp);letter-spacing:-.02em;margin:0 0 22px}
-.press{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:0 0 22px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.press .then{font:500 13px var(--sans);color:var(--ink2)}
-.moment p{margin:0 0 14px;color:var(--ink2)}
-.moment p strong{color:var(--ink);font-weight:600}
-.facts{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:7px;font-size:15px}
-.facts li{padding-left:18px;position:relative;color:var(--ink2)}
-.facts li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--acc)}
-figure{margin:0;position:relative}
-.shot{border-radius:12px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.05),0 24px 50px -22px rgba(40,25,10,.45)}
-.inset{position:absolute;width:44%;left:-6%;bottom:-40px;border:4px solid #fff;border-radius:10px;overflow:hidden;box-shadow:0 18px 40px -14px rgba(40,25,10,.5)}
-figcaption{font:500 13px var(--mono);color:var(--ink2);margin-top:14px}
-.withinset figcaption{margin-top:56px;padding-left:42%}
-
-/* evening */
-.dusk{--ink:#eef2fb;--ink2:#a9b6d3;--line:rgba(238,242,251,.16);color:var(--ink)}
-.dusk kbd{background:#2b3758;color:#eef2fb;border-color:rgba(255,255,255,.18);box-shadow:0 2px 0 rgba(0,0,0,.45)}
-.term{background:#0e1424;border:1px solid rgba(255,255,255,.1);border-radius:12px;font:500 13.5px/1.65 var(--mono);color:#c8d3ea;box-shadow:0 24px 50px -20px rgba(0,0,0,.6);overflow:hidden}
-.term .bar{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
-.term .bar i{width:10px;height:10px;border-radius:50%;background:#3a4560}
-.term pre{margin:0;padding:16px 18px;white-space:pre-wrap;word-break:break-word;font:inherit}
-.term .u{color:#fff}.term .t{color:#ffb37a}.term .d{color:#7f8db0}.term .ok{color:#86e0a8}
-.evening-shots{display:grid;gap:18px}
-
-/* also */
-.also{background:linear-gradient(180deg,#1b2440,#161d34);color:#eef2fb;padding:88px 0}
-.also h2{font:700 clamp(28px,3vw,40px)/1.1 var(--disp);margin:0 0 12px;letter-spacing:-.02em}
-.also .sub{color:#a9b6d3;margin:0 0 40px;max-width:60ch}
-.jobs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(238,242,251,.16)}
-.job{padding:22px 22px 8px 0;border-right:1px solid rgba(238,242,251,.12);margin-right:22px}
-.job:last-child{border-right:0;margin-right:0}
-.job h3{font:600 13px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#ffb37a;margin:0 0 12px}
-.job ul{list-style:none;margin:0;padding:0;font-size:15px;color:#c8d3ea;display:grid;gap:7px}
-.job code{font:500 12.5px var(--mono);color:#8fa0c4;white-space:nowrap}
+.s1{padding-top:110px}
+.sub{color:var(--soft);max-width:32em;margin:0 auto}
+.cta{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:1.8em}
+.btn{display:inline-flex;padding:14px 28px;border-radius:999px;background:var(--acc);color:#fff;font:700 17px var(--sans);text-decoration:none;box-shadow:0 14px 30px -14px rgba(226,87,43,.7)}
+.quiet{font:500 16px var(--sans);color:var(--soft);text-decoration:none;border-bottom:1px solid rgba(26,28,36,.25);padding-bottom:2px}
+.merge{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,22px);margin-bottom:clamp(28px,5vh,52px)}
+.mk{display:flex;flex-direction:column;align-items:center;gap:8px;font:500 12px var(--mono);color:var(--mute);letter-spacing:.03em}
+.mk i{display:grid;place-items:center;width:clamp(48px,6.4vh,64px);height:clamp(48px,6.4vh,64px);border-radius:16px;background:#fff;box-shadow:0 10px 24px -12px rgba(40,45,80,.35)}
+.mk svg{width:46%;height:46%;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.eq{width:clamp(24px,4vw,56px);height:2px;background:linear-gradient(90deg,rgba(26,28,36,.1),rgba(26,28,36,.35));border-radius:2px;margin:0 4px 22px}
+.core{display:flex;flex-direction:column;align-items:center;gap:8px;font:600 12px var(--mono);color:var(--ink);letter-spacing:.03em}
+.core img{width:clamp(76px,10vh,104px);filter:drop-shadow(0 18px 24px rgba(80,90,255,.32))}
+.marks{display:flex;gap:clamp(10px,2vw,22px)}
 
 /* install */
-.install{background:#10162a;color:#eef2fb;padding:96px 0 120px}
-.install .mgrid{align-items:center;grid-template-columns:132px minmax(0,8fr) minmax(0,4fr)}
-.install .rail span{color:#8fa0c4}
-.install h2{font:800 clamp(34px,4.2vw,58px)/1.02 var(--disp);letter-spacing:-.025em;margin:0 0 18px}
-.install p{color:#a9b6d3;margin:0 0 22px}
-.cmd{display:flex;align-items:stretch;background:#0a0f1d;border:1px solid rgba(255,255,255,.12);border-radius:10px;margin:0 0 14px;overflow:hidden}
-.cmd code{flex:1;min-width:0;padding:14px 16px;font:500 14px/1.5 var(--mono);color:#e6ecf8;overflow-x:auto;white-space:nowrap}
-.cmd code::before{content:"$ ";color:#ffb37a}
-.cmd button{flex:none;border:0;border-left:1px solid rgba(255,255,255,.12);background:#1b2440;color:#eef2fb;font:600 13px var(--sans);padding:0 16px;cursor:pointer}
-.cmd button:hover{background:#25305a}
-.label{font:600 12px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#8fa0c4;margin:22px 0 8px}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-.meta span{font:500 13px var(--mono);padding:6px 10px;border:1px solid rgba(255,255,255,.16);border-radius:6px;color:#c8d3ea}
-.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.links a{color:#fff;font-weight:600}
-.install .night{display:flex;justify-content:center}
-.install .night img{width:min(260px,60%);filter:drop-shadow(0 30px 50px rgba(0,0,0,.5))}
-footer{background:#10162a;color:#6f7ea3;font-size:13px;padding:0 0 40px}
+.cmd{display:flex;width:min(100%,1020px);margin:clamp(20px,4vh,36px) auto 0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -36px rgba(40,45,80,.5);border:1px solid rgba(26,28,36,.08);text-align:left}
+.cmd code{flex:1;min-width:0;padding:18px 20px;font:500 clamp(12.5px,1.05vw,16px)/1.5 var(--mono);overflow-x:auto;white-space:nowrap}
+.cmd code::before{content:"$ ";color:var(--acc)}
+.cmd button{flex:none;border:0;border-left:1px solid rgba(26,28,36,.08);background:#F4F4F8;font:600 15px var(--sans);color:var(--ink);padding:0 22px;cursor:pointer}
+.cmd button:hover{background:#EAEAF1}
+.small{font:500 14px var(--mono);color:var(--soft);margin:22px 0 0}
+.links{display:flex;justify-content:center;gap:26px;margin-top:22px;font-weight:700}
+.icon-big{width:clamp(88px,13vh,128px);margin:0 auto 22px;filter:drop-shadow(0 20px 30px rgba(80,90,255,.3))}
+.ver{font:500 12px var(--mono);color:var(--mute);margin-top:clamp(28px,6vh,64px)}
+.tag{position:fixed;left:14px;bottom:14px;z-index:60;font:600 11.5px var(--mono);color:#fff;background:var(--ink);padding:6px 10px;border-radius:6px}
 
-.tag{position:fixed;left:12px;bottom:12px;z-index:50;font:600 11.5px var(--mono);background:#1d1a16;color:#fff3e0;padding:6px 10px;border-radius:6px;opacity:.92}
+/* motion: from a visible state */
+.r{transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .8s}
+.js .r.pre{transform:translateY(24px);opacity:.25}
+.js .s1 .mk{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .s1.pre .mk:nth-child(1){transform:translateX(-24px)}
+.js .s1.pre .mk:nth-child(2){transform:translateX(-12px)}
+.js .s1.pre .mk:nth-child(3){transform:translateX(12px)}
+.js .s1.pre .mk:nth-child(4){transform:translateX(24px)}
 
-@media (max-width:980px){
-  .mgrid{grid-template-columns:86px minmax(0,1fr);gap:0 22px}
-  .mgrid > figure,.mgrid > .evening-shots,.mgrid > .night{grid-column:2;margin-top:30px}
-  .rail time{font-size:24px}
-  .herogrid{grid-template-columns:1fr;gap:0}
-  .jobs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .job{margin-right:0;padding-right:16px}
-  .job:nth-child(2){border-right:0}
-}
 @media (max-width:640px){
-  .wrap{padding:0 18px}
-  .top nav a:not(:last-child){display:none}
-  .hero h1{margin-top:22px}
-  .strip{grid-template-columns:repeat(6,150px)}
-  .moment{padding:64px 0 72px}
-  .mgrid{display:block}
-  .rail{position:static;text-align:left;border-right:0;border-left:2px solid var(--acc);padding:0 0 0 14px;margin-bottom:18px;display:flex;align-items:baseline;gap:10px}
-  .rail span{margin:0}
-  .rail::after{display:none}
-  .mgrid > figure,.mgrid > .evening-shots,.mgrid > .night{margin-top:28px}
-  .inset{position:relative;left:auto;bottom:auto;width:70%;margin:-30px 0 0 auto}
-  .withinset figcaption{margin-top:14px;padding-left:0}
-  .jobs{grid-template-columns:1fr}
-  .job{border-right:0;border-bottom:1px solid rgba(238,242,251,.12)}
-  .cmd code{font-size:12.5px}
-  .term{font-size:12px}
-  .heroimg{transform:none;margin-top:8px}
-  .heroimg figcaption{transform:none}
-  .install .night{display:none}
+  html{scroll-snap-type:none}
+  section{min-height:0;padding:72px 20px 64px}
+  .s1{padding-top:110px}
+  .merge{flex-direction:column;gap:14px}
+  .eq{width:2px;height:22px;margin:0;background:linear-gradient(180deg,rgba(26,28,36,.1),rgba(26,28,36,.35))}
+  .mk{font-size:11px}
+  .shot img{max-height:none}
+  .top{gap:14px}
+  .brand span{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .stop{transition:none}
-  .stop:hover,.stop.on{transform:none}
+  .r,.js .s1 .mk{transition:none}
+  .js .r.pre,.js .s1.pre .mk{transform:none!important;opacity:1}
 }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="top">
-      <a class="brand" href="#"><img src="../img/icon.png" alt="">Glimpse</a>
-      <nav><a href="#day">The day</a><a href="#all">Everything</a><a href="https://github.com/miladbeigi/glimpse">GitHub</a><a href="#install">Install</a></nav>
-    </div>
-    <div class="herogrid"><div>
-    <h1>Everything you show from your screen, <em>to people and to your AI agent</em>, in one Mac app.</h1>
-    <p class="lede">Glimpse lives in the menu bar. Capture or record the screen, mark it up, hand it to a teammate or to Claude Code and Codex, and find it again later. Here is what that looks like across one working day.</p>
-    <div class="loop" aria-label="The loop"><span>capture</span><i>→</i><span>mark up</span><i>→</i><span>hand off</span><i>→</i><span>keep</span><i>↺</i></div>
-    <div class="ctas">
-      <a class="btn dark" href="#install">Install for free</a>
-      <a class="btn ghost" href="https://github.com/miladbeigi/glimpse">Source on GitHub</a>
-    </div>
-    </div>
-    <figure class="heroimg"><div class="shot"><img src="../img/editor.webp" width="2052" height="1524" alt="Glimpse editor with numbered steps, a highlight, a red box and a curved arrow from the note Best month yet"></div><figcaption>The editor. Every mark stays editable.</figcaption></figure>
-    </div>
-    <div id="day">
-      <div class="daylabel"><span>Morning</span><span>Your day, at a glance</span><span>Evening</span></div>
-      <nav class="strip" aria-label="Moments of the day">
-        <a class="stop" href="#t0941"><div class="th"><img src="../img/selection.webp" alt=""></div><b>9:41</b><small>Spot a bug, send it to Claude</small></a>
-        <a class="stop" href="#t1000"><div class="th"><img src="../img/meeting.webp" alt=""></div><b>10:00</b><small>Weekly sync, transcribed</small></a>
-        <a class="stop" href="#t1130"><div class="th"><img src="../img/pin.webp" alt=""></div><b>11:30</b><small>Pin a design reference</small></a>
-        <a class="stop" href="#t1400"><div class="th"><img src="../img/recording.webp" alt=""></div><b>14:00</b><small>Record a walkthrough</small></a>
-        <a class="stop" href="#t1600"><div class="th"><img src="../img/stitch.webp" alt=""></div><b>16:00</b><small>Stitch a long thread</small></a>
-        <a class="stop" href="#t1730"><div class="th term">› screenshot window<br>› draw box + note<br>› “16 pt gap here”</div><b>17:30</b><small>Your agent checks its work</small></a>
-      </nav>
-    </div>
-  </div>
+<header class="top">
+  <a class="brand" href="#top"><img src="../img/icon.png" width="28" height="28" alt=""><span>Glimpse</span></a>
+  <a class="gh" href="https://github.com/miladbeigi/glimpse">GitHub</a>
+  <a class="inst" href="#install">Install</a>
 </header>
 
 <main>
-<section class="moment" id="t0941" style="--a:#FFE7C2;--b:#FFEFD6;--acc:#C2410C">
-  <div class="wrap mgrid">
-    <div class="rail"><time>9:41</time><span>Morning</span></div>
-    <div>
-      <p class="kick">Capture · Mark up · Send</p>
-      <h2>September on the revenue chart jumps. Ask Claude why.</h2>
-      <div class="press">
-        <span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd></span><span class="then">drag an area, then</span>
-        <span class="chord"><kbd>A</kbd><kbd>T</kbd></span><span class="then">arrow and text, then</span>
-        <span class="chord"><kbd>⌘</kbd><kbd>↩</kbd></span>
-      </div>
-      <p>The screen freezes so the tooltip stays put. A magnifier and a live size readout help you hit the edge exactly.</p>
-      <p>In the editor, every mark stays editable. Type a note and it lands beside the arrow. Press <strong>⌘↩</strong> and the image goes to your Claude Code or Codex session. With several open, a menu lists them.</p>
-      <ul class="facts">
-        <li>One key per tool: V A L R F O P H T N X B S C</li>
-        <li>Pixelate or blur the customer emails before it leaves</li>
-        <li>The Claude Code plugin delivers it between turns</li>
-      </ul>
+<section class="s1" id="top" aria-label="Glimpse">
+  <div class="merge" aria-label="Screenshots, Recording, Meetings and Your agent become one Glimpse icon">
+    <div class="marks">
+      <div class="mk"><i><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="12" r="2.5"/></svg></i>Screenshots</div>
+      <div class="mk"><i><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5l5-3v9l-5-3"/></svg></i>Recording</div>
+      <div class="mk"><i><svg viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4z"/><path d="M9 9h6M9 12h4"/></svg></i>Meetings</div>
+      <div class="mk"><i><svg viewBox="0 0 24 24"><path d="M4 6l5 6-5 6"/><path d="M12 18h8"/></svg></i>Your agent</div>
     </div>
-    <figure class="withinset">
-      <div class="shot"><img src="../img/send.webp" width="1660" height="1160" alt="Glimpse editor with a note 'why does Sep jump?' and the Send menu listing three agent sessions"></div>
-      <div class="inset"><img src="../img/selection.webp" width="1500" height="820" alt="Area selection with magnifier and size 535 by 242"></div>
-      <figcaption>Send menu: three sessions open, pick one with ↩</figcaption>
-    </figure>
+    <span class="eq" aria-hidden="true"></span>
+    <div class="core"><img src="../img/icon.png" width="256" height="256" alt="Glimpse icon">Glimpse</div>
   </div>
+  <h1 class="r">Four tools in your Dock. <span>Or one in your menu bar.</span></h1>
+  <p class="sub r">Glimpse is a free Mac app for screenshots, screen recording, meeting notes, and showing your screen to your AI agent.</p>
+  <div class="cta r"><a class="btn" href="#install">Install</a><a class="quiet" href="https://github.com/miladbeigi/glimpse">GitHub</a></div>
 </section>
 
-<section class="moment" id="t1000" style="--a:#FFEFD6;--b:#FFF5E6;--acc:#B45309">
-  <div class="wrap mgrid">
-    <div class="rail"><time>10:00</time><span>Morning</span></div>
-    <div>
-      <p class="kick">Record a meeting</p>
-      <h2>Weekly sync. You listen, Glimpse takes the notes.</h2>
-      <div class="press">
-        <span class="then">Glimpse notices the call and offers to record.</span>
-        <span class="chord"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>M</kbd></span><span class="then">mute your mic</span>
-      </div>
-      <p>It spots calls in Meet, Zoom, Teams, Slack, Discord, FaceTime, Webex and Tuple. A small pill shows the time with mute, pause and stop.</p>
-      <p>When the call ends you get a transcript with speakers, written on your Mac, saved as a markdown file in <strong>~/Glimpse/Meetings</strong>.</p>
-      <ul class="facts">
-        <li>Transcription and voice profiles stay on device</li>
-        <li>Your agent can search past transcripts too, if you allow it</li>
-      </ul>
-    </div>
-    <figure>
-      <div class="shot"><img src="../img/meeting.webp" width="1100" height="700" alt="Video call with the Glimpse meeting pill showing 23:42 and mute, pause, stop controls"></div>
-      <figcaption>The meeting pill: 23:42, mute, pause, stop</figcaption>
-    </figure>
-  </div>
+<section class="s2" aria-label="Screenshots">
+  <p class="num r">01 <b>Screenshots</b></p>
+  <h2 class="r">Capture it. Mark it up. <span>Share it.</span></h2>
+  <p class="line r">Any area, window or scrolling page. Arrows, notes and blur stay editable.</p>
+  <div class="keys r"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd></div>
+  <figure class="shot framed r"><img src="../img/editor.webp" width="2052" height="1524" alt="Glimpse editor with numbered steps, a red box and a curved arrow"></figure>
 </section>
 
-<section class="moment" id="t1130" style="--a:#FFF5E6;--b:#F6F3EA;--acc:#A16207">
-  <div class="wrap mgrid">
-    <div class="rail"><time>11:30</time><span>Midday</span></div>
-    <div>
-      <p class="kick">Hand off · Pin</p>
-      <h2>Match the new chart to the design. Keep the reference in sight.</h2>
-      <div class="press">
-        <span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd></span><span class="then">capture the mockup, then</span>
-        <span class="then"><strong>Pin</strong> from the corner</span>
-      </div>
-      <p>Each capture waits in the corner of the screen. Hover it to copy, save, or drag it straight into Slack, Mail or Finder.</p>
-      <p>Pin it and it floats above every window while you work in the editor underneath.</p>
-      <ul class="facts">
-        <li><span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>7</kbd></span> captures the same area again</li>
-        <li><span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>9</kbd></span> brings back the last capture</li>
-      </ul>
-    </div>
-    <figure class="withinset">
-      <div class="shot"><img src="../img/pin.webp" width="1100" height="640" alt="A cropped chart pinned above the dashboard"></div>
-      <div class="inset"><img src="../img/overlay.webp" width="1100" height="640" alt="Two captures waiting in the screen corner with Copy and Save"></div>
-      <figcaption>Pinned above everything. Inset: captures waiting in the corner</figcaption>
-    </figure>
-  </div>
+<section class="s3" aria-label="Recording">
+  <p class="num r">02 <b>Recording</b></p>
+  <h2 class="r">Show it with <span>your face and voice.</span></h2>
+  <p class="line r">Record your screen with a camera bubble, your mic and the system sound.</p>
+  <div class="keys r"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>R</kbd></div>
+  <figure class="shot r"><img src="../img/recording.webp" width="1100" height="700" alt="Recording a slide deck with a camera bubble and a control bar"></figure>
 </section>
 
-<section class="moment" id="t1400" style="--a:#F6F3EA;--b:#E8EEF3;--acc:#0F766E">
-  <div class="wrap mgrid">
-    <div class="rail"><time>14:00</time><span>Afternoon</span></div>
-    <div>
-      <p class="kick">Record the screen</p>
-      <h2>Explain a change once, on video, instead of in a long message.</h2>
-      <div class="press">
-        <span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>R</kbd></span><span class="then">pick an area and start talking</span>
-      </div>
-      <p>Glimpse records to MP4 with a round camera bubble you can drag anywhere, your mic, and the system audio.</p>
-      <p>The control bar shows time and level, with pause, restart and stop. The file lands in the corner like any capture, ready to drag into the pull request.</p>
-    </div>
-    <figure>
-      <div class="shot"><img src="../img/recording.webp" width="1100" height="700" alt="Recording a slide deck with a camera bubble and a control bar at 1:23"></div>
-      <figcaption>Recording at 1:23, camera bubble bottom left</figcaption>
-    </figure>
-  </div>
+<section class="s4" aria-label="Meetings">
+  <p class="num r">03 <b>Meetings</b></p>
+  <h2 class="r">Every call, <span>written down.</span></h2>
+  <p class="line r">Glimpse notices your calls and transcribes them on your Mac. Nothing leaves it.</p>
+  <figure class="shot r"><img src="../img/meeting.webp" width="1100" height="700" alt="Video call with the Glimpse meeting bar running"></figure>
 </section>
 
-<section class="moment" id="t1600" style="--a:#E8EEF3;--b:#D3DEEB;--acc:#1D4ED8">
-  <div class="wrap mgrid">
-    <div class="rail"><time>16:00</time><span>Late afternoon</span></div>
-    <div>
-      <p class="kick">Keep · Find · Stitch</p>
-      <h2>Hand off a long thread without ten separate attachments.</h2>
-      <div class="press">
-        <span class="chord"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>6</kbd></span><span class="then">scroll capture the page, then</span>
-        <span class="chord"><kbd>⇧</kbd><kbd>⇧</kbd></span><span class="then">double-tap right Shift, then</span>
-        <span class="chord"><kbd>⌘</kbd><kbd>S</kbd></span>
-      </div>
-      <p>A scrolling capture takes the whole page in one image. Double-tap right Shift and your last 30 screenshots slide in at the screen edge.</p>
-      <p>Select the ones you need and <strong>Stitch</strong> them into one numbered image, laid out so an AI model shrinks it the least.</p>
-      <ul class="facts">
-        <li>Copy, draw on, send or delete from the stack</li>
-        <li>Text capture with on-device OCR reads QR codes too</li>
-      </ul>
-    </div>
-    <figure>
-      <div class="shot"><img src="../img/stitch.webp" width="2067" height="931" alt="Three screenshots stitched into one image with number badges 1 to 3"></div>
-      <figcaption>Three captures, one image, numbered 1 to 3</figcaption>
-    </figure>
-  </div>
+<section class="s5" aria-label="Your agent">
+  <p class="num r">04 <b>Your agent</b></p>
+  <h2 class="r">Show your agent <span>what you mean.</span></h2>
+  <p class="line r">Press ⌘↩ to send a marked-up screenshot to Claude Code or Codex. It can look at your screen and draw back, too.</p>
+  <div class="keys r"><kbd>⌘</kbd><kbd>↩</kbd></div>
+  <figure class="shot framed r"><img src="../img/send.webp" width="1660" height="1160" alt="Editor with a note and a Send menu listing agent sessions"></figure>
 </section>
 
-<div class="sunset" aria-hidden="true"></div>
-<section class="moment dusk" id="t1730" style="--a:#2E3B5E;--b:#1B2440;--acc:#FFB37A">
-  <div class="wrap mgrid">
-    <div class="rail"><time>17:30</time><span>Evening</span></div>
-    <div>
-      <p class="kick">Agents · MCP</p>
-      <h2>Your agent checks its own UI work, and draws back.</h2>
-      <p class="kick" style="color:var(--ink2);margin-top:6px">Add the MCP server once</p>
-      <div class="cmd"><code id="mcp1">claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</code><button data-copy="mcp1">Copy</button></div>
-      <p>Claude Code, Cursor and other agents can list your windows, screenshot one even when it is covered, read its text, and record a short clip to see an animation.</p>
-      <p>When something is off, the agent draws on the screenshot in its own colour, with arrows, boxes and notes, and it shows up in your recent stack.</p>
-      <ul class="facts">
-        <li>Off until you allow it</li>
-        <li>Agents can also search your meeting transcripts</li>
-      </ul>
-    </div>
-    <div class="evening-shots">
-      <div class="term" aria-label="Example agent session">
-        <div class="bar"><i></i><i></i><i></i></div>
-<pre><span class="u">› check the header spacing against the spec</span>
-<span class="t">● glimpse</span> list_windows
-  <span class="d">Northwind · Revenue overview</span>
-<span class="t">● glimpse</span> screenshot_window <span class="d">(behind your editor)</span>
-<span class="t">● glimpse</span> show_image: box and note “16 pt gaps here”
-  <span class="ok">added to recent stack as Claude · spacing</span>
-The cards sit 16 pt apart. The spec says 24. I marked it.</pre>
-      </div>
-      <div class="shot"><img src="../img/recent.webp" width="1100" height="778" alt="Recent stack at the screen edge with a card labelled Claude spacing"></div>
-    </div>
-  </div>
+<section class="s6" aria-label="Together">
+  <h2 class="r">One app. <span>Everything in reach.</span></h2>
+  <p class="line r">Double-tap Shift to bring back your last 30 captures, then copy, send or stitch them.</p>
+  <div class="keys r"><kbd>⇧</kbd><kbd>⇧</kbd></div>
+  <figure class="shot r"><img src="../img/recent.webp" width="1100" height="778" alt="Recent captures stacked at the screen edge"></figure>
 </section>
 
-<section class="also" id="all">
-  <div class="wrap">
-    <h2>The whole kit, by job.</h2>
-    <p class="sub">The day above used most of it. Here is the rest, grouped the same way.</p>
-    <div class="jobs">
-      <div class="job"><h3>Capture</h3><ul>
-        <li>Area <code>⌥⇧⌘4</code></li><li>Window cut-out <code>⌥⇧⌘5</code></li><li>Scrolling page <code>⌥⇧⌘6</code></li><li>Text and QR <code>⌥⇧⌘2</code></li><li>Fullscreen <code>⌥⇧⌘3</code></li><li>Self-timer <code>⌥⇧⌘8</code></li><li>Screen recording <code>⌥⇧⌘R</code></li><li>Meetings, auto-detected</li></ul></div>
-      <div class="job"><h3>Mark up</h3><ul>
-        <li>Curved arrows, boxes</li><li>Numbered steps, highlighter</li><li>Text and notes that sit beside a mark</li><li>Pixelate, blur, spotlight, crop</li><li>Every mark stays editable</li></ul></div>
-      <div class="job"><h3>Hand off</h3><ul>
-        <li>Copy, save, drag from the corner</li><li>Pin above every window</li><li>Send to Claude Code or Codex <code>⌘↩</code></li><li><code>glimpse://</code> URLs for Shortcuts, Raycast, scripts</li></ul></div>
-      <div class="job"><h3>Keep</h3><ul>
-        <li>Last 30 screenshots <code>⇧⇧</code></li><li>Stitch into one numbered image</li><li>Meeting notes in ~/Glimpse/Meetings</li><li>MCP for agents, off until allowed</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section class="install" id="install">
-  <div class="wrap mgrid">
-    <div class="rail" style="--acc:#FFB37A;--a:#10162a"><time>Now</time><span>Install</span></div>
-    <div>
-      <h2>Tomorrow, start with it already in the menu bar.</h2>
-      <p>Free and open source under MIT. Native for macOS 14 and later, on Apple silicon and Intel. It updates itself. OCR, transcripts and voice profiles never leave your Mac.</p>
-      <div class="label">Install</div>
-      <div class="cmd"><code id="inst">curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button data-copy="inst">Copy</button></div>
-      <div class="label">Connect your agent (optional)</div>
-      <div class="cmd"><code id="mcp2">claude mcp add glimpse -- /Applications/Glimpse.app/Contents/MacOS/Glimpse mcp</code><button data-copy="mcp2">Copy</button></div>
-      <div class="meta"><span>v1.6.0</span><span>macOS 14+</span><span>Apple silicon + Intel</span><span>MIT</span></div>
-      <div class="links"><a href="https://github.com/miladbeigi/glimpse/releases/latest">Download the latest release</a><a href="https://github.com/miladbeigi/glimpse">GitHub</a></div>
-    </div>
-    <div class="night"><img src="../img/icon.png" width="256" height="256" alt="Glimpse app icon"></div>
-  </div>
+<section class="s7" id="install" aria-label="Install">
+  <img class="icon-big r" src="../img/icon.png" width="256" height="256" alt="Glimpse icon">
+  <h2 class="r">Get <span>Glimpse.</span></h2>
+  <div class="cmd r"><code id="inst">curl -fsSL https://raw.githubusercontent.com/miladbeigi/glimpse/master/install.sh | bash</code><button data-copy="inst">Copy</button></div>
+  <p class="small r">Free and open source · macOS 14+ · Apple silicon and Intel</p>
+  <div class="links r"><a href="https://github.com/miladbeigi/glimpse">GitHub</a><a href="https://github.com/miladbeigi/glimpse/releases/latest">Download</a></div>
+  <p class="ver">v1.6.0</p>
 </section>
 </main>
-<footer><div class="wrap">Glimpse · MIT licensed · Dashboard shown is made-up sample data.</div></footer>
 
-<div class="tag">Design 03 · A Day with Glimpse</div>
+<div class="tag">Design 03 · Daylight</div>
 
 <script>
-document.querySelectorAll('[data-copy]').forEach(function(b){
-  b.addEventListener('click',function(){
-    var t=document.getElementById(b.dataset.copy).textContent;
-    try{
-      navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)})
-      .catch(function(){b.textContent='Select it';});
-    }catch(e){b.textContent='Select it';}
-  });
-});
 (function(){
-  if(!('IntersectionObserver' in window))return;
-  var stops={};document.querySelectorAll('.stop').forEach(function(s){stops[s.getAttribute('href').slice(1)]=s});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){Object.values(stops).forEach(function(s){s.classList.remove('on')});var s=stops[e.target.id];if(s)s.classList.add('on');}
-  })},{rootMargin:'-45% 0px -50% 0px'});
-  document.querySelectorAll('.moment').forEach(function(m){io.observe(m)});
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.dataset.copy).textContent;
+      try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)}).catch(function(){b.textContent='Select it'})}
+      catch(e){b.textContent='Select it'}
+    });
+  });
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.documentElement.classList.add('js');
+  var els=[].slice.call(document.querySelectorAll('.r, .s1'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{threshold:.15});
+  els.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top>innerHeight*.9){el.classList.add('pre');io.observe(el)}
+  });
+  var hero=document.querySelector('.s1');hero.classList.add('pre');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){hero.classList.remove('pre')})});
 })();
 </script>
 </body>
