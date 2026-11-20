@@ -152,21 +152,25 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   .nav button{width:44px;height:44px;border-radius:50%;border:1px solid #33333a;background:#141417;color:var(--ink);font:500 18px var(--sans);cursor:pointer}
   .nav button:hover{border-color:var(--acc);color:var(--acc)}
   .nav button:disabled{opacity:.3;cursor:default}
-  .slide.in .anim{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .slide.in .anim.d2{animation-delay:.08s}
-  .slide.in .anim.d3{animation-delay:.16s}
-  .slide.in .shot.anim{animation-name:slidein}
-  .slide.in .mk{animation:gather 1s cubic-bezier(.2,.7,.2,1) both}
-  .slide.in .mk.a{--x:-18px;--y:-18px}.slide.in .mk.b{--x:18px;--y:-18px}.slide.in .mk.c{--x:-18px;--y:18px}.slide.in .mk.d{--x:18px;--y:18px}
-  .slide.in .core{animation:pop .9s .25s cubic-bezier(.2,.7,.2,1) both}
+  /* Entrance: transitions, not keyframes. The target slide gets .in as soon as navigation starts,
+     so its content eases in while it slides into view and never restarts after landing. */
+  .deck.ready .anim,.deck.ready .mk,.deck.ready .core{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s cubic-bezier(.2,.7,.2,1)}
+  .deck.ready .slide:not(.in) .anim{transform:translateY(28px);opacity:.15}
+  .deck.ready .slide:not(.in) .shot.anim{transform:translateX(60px) scale(.98)}
+  .deck.ready .slide:not(.in) .mk.a{transform:translate(-18px,-18px);opacity:.3}
+  .deck.ready .slide:not(.in) .mk.b{transform:translate(18px,-18px);opacity:.3}
+  .deck.ready .slide:not(.in) .mk.c{transform:translate(-18px,18px);opacity:.3}
+  .deck.ready .slide:not(.in) .mk.d{transform:translate(18px,18px);opacity:.3}
+  .deck.ready .slide:not(.in) .core{transform:translate(-50%,-50%) scale(.82);opacity:.4}
+  .deck.ready .slide.in .anim.d2{transition-delay:.08s}
+  .deck.ready .slide.in .anim.d3{transition-delay:.16s}
+  .deck.ready .slide.in .core{transition-duration:.9s;transition-delay:.25s}
 }
-@keyframes rise{from{transform:translateY(28px);opacity:.15}to{transform:none;opacity:1}}
-@keyframes slidein{from{transform:translateX(60px) scale(.98);opacity:.15}to{transform:none;opacity:1}}
-@keyframes gather{from{transform:translate(var(--x),var(--y));opacity:.3}to{transform:none;opacity:1}}
-@keyframes pop{from{transform:translate(-50%,-50%) scale(.82);opacity:.4}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
 @media (max-width:420px){.top{gap:14px}.top .brand span{display:none}}
 @media (prefers-reduced-motion:reduce){
-  .slide.in .anim,.slide.in .mk,.slide.in .core{animation:none!important}
+  .deck.ready .anim,.deck.ready .mk,.deck.ready .core{transition:none!important}
+  .deck.ready .slide:not(.in) .anim,.deck.ready .slide:not(.in) .mk,.deck.ready .slide:not(.in) .core{opacity:1!important;transform:none!important}
+  .deck.ready .slide:not(.in) .core{transform:translate(-50%,-50%)!important}
   .progress,.dots button{transition:none}
 }
 </style>
@@ -290,7 +294,7 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   var deck=document.getElementById('deck'), slides=[].slice.call(deck.querySelectorAll('.slide')), n=slides.length;
   var mq=matchMedia('(min-width: 821px)'), rm=matchMedia('(prefers-reduced-motion: reduce)');
   var cur=document.getElementById('cur'), dots=document.getElementById('dots'), bar=document.getElementById('bar');
-  var prev=document.getElementById('prev'), next=document.getElementById('next'), idx=0;
+  var prev=document.getElementById('prev'), next=document.getElementById('next'), idx=0, target=-1, tt;
   document.getElementById('tot').textContent=String(n).padStart(2,'0');
   slides.forEach(function(s,i){
     var d=document.createElement('button');d.setAttribute('aria-label','Slide '+(i+1)+': '+s.getAttribute('aria-label'));
@@ -299,22 +303,34 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   function go(i){
     i=Math.max(0,Math.min(n-1,i));
     if(!mq.matches){slides[i].scrollIntoView({behavior:rm.matches?'auto':'smooth'});return}
+    target=i;clearTimeout(tt);tt=setTimeout(function(){target=-1},1200);
+    mark(i);
     deck.scrollTo({left:i*deck.clientWidth,behavior:rm.matches?'auto':'smooth'});
   }
   function mark(i){
     if(i===idx && slides[i].classList.contains('in'))return;
     idx=i;
-    slides.forEach(function(s,j){s.classList.toggle('in',j===i)});
+    slides[i].classList.add('in');
     cur.textContent=String(i+1).padStart(2,'0');
     [].forEach.call(dots.children,function(d,j){d.setAttribute('aria-current',j===i?'true':'false')});
     bar.style.width=((i+1)/n*100)+'%';
     prev.disabled=i===0;next.disabled=i===n-1;
     if(mq.matches && history.replaceState)history.replaceState(null,'','#'+slides[i].id);
   }
-  var t;
-  deck.addEventListener('scroll',function(){
-    clearTimeout(t);t=setTimeout(function(){if(mq.matches)mark(Math.round(deck.scrollLeft/deck.clientWidth))},60);
-  },{passive:true});
+  // A trackpad swipe: switch as soon as most of the next slide is in view, not after it settles.
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      if(!mq.matches)return;
+      es.forEach(function(e){
+        var i=slides.indexOf(e.target);
+        // Fully out of view: reset it so it animates in next time.
+        if(!e.isIntersecting){if(i!==idx)e.target.classList.remove('in');return}
+        // Most of it in view: it's the current slide, unless we're flying past it to another one.
+        if(e.intersectionRatio>=0.6 && (target<0||target===i)){if(target===i)target=-1;mark(i)}
+      });
+    },{root:deck,threshold:[0,0.6]});
+    slides.forEach(function(s){io.observe(s)});
+  }
   prev.addEventListener('click',function(){go(idx-1)});
   next.addEventListener('click',function(){go(idx+1)});
   document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){if(mq.matches){e.preventDefault();go(+a.dataset.go)}})});
@@ -339,6 +355,7 @@ h1 em,h2 em{font-style:normal;color:var(--acc)}
   slides.forEach(function(s,i){if(s.id===h)start=i});
   if(mq.matches && start){deck.scrollLeft=start*deck.clientWidth}
   mark(start);
+  if(mq.matches)deck.classList.add('ready');
 })();
 </script>
 </body>
